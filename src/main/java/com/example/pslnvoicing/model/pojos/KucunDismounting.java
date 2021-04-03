@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "kucun_dismounting", schema = "pslnvoicing", catalog = "")
+
 public class KucunDismounting {
 	private int dismountingId;
 	private String dismountingOdd;

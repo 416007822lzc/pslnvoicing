@@ -3,8 +3,7 @@ package com.example.pslnvoicing.model.pojos;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "personnel_dept", schema = "pslnvoicing", catalog = "")
+
 public class PersonnelDept {
 	private int deptId;
 	private String deptName;

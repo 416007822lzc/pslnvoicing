@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "capital_purchase", schema = "pslnvoicing", catalog = "")
+
 public class CapitalPurchase {
 	private int purchaseId;
 	private Integer paymentId;

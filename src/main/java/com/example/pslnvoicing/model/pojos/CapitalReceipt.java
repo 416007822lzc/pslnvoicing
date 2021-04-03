@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "capital_receipt", schema = "pslnvoicing", catalog = "")
+
 public class CapitalReceipt {
 	private int receiptId;
 	private String receiptNumber;

@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Objects;
 
-@Entity
-@Table(name = "capital_payment_details", schema = "pslnvoicing", catalog = "")
+
 public class CapitalPaymentDetails {
 	private Integer paymentId;
 

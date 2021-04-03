@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "kucun_assemble", schema = "pslnvoicing", catalog = "")
 public class KucunAssemble {
 	private int assembleId;
 	private String assembleOdd;

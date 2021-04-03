@@ -1,13 +1,15 @@
 package com.example.pslnvoicing.model.pojos;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
 @Table(name = "kucun_check_detail", schema = "pslnvoicing", catalog = "")
 public class KucunCheckDetail {
 	private int checkDetailId;
-	private KucunCheck kucunCheckByCheckId;
 
 	@Id
 	@Column(name = "check_detail_id")
@@ -30,15 +32,5 @@ public class KucunCheckDetail {
 	@Override
 	public int hashCode() {
 		return Objects.hash(checkDetailId);
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "check_id", referencedColumnName = "check_id")
-	public KucunCheck getKucunCheckByCheckId() {
-		return kucunCheckByCheckId;
-	}
-
-	public void setKucunCheckByCheckId(KucunCheck kucunCheckByCheckId) {
-		this.kucunCheckByCheckId = kucunCheckByCheckId;
 	}
 }

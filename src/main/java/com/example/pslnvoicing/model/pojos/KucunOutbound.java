@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "kucun_outbound", schema = "pslnvoicing", catalog = "")
+
 public class KucunOutbound {
 	private int outboundId;
 	private Integer ratifId;
