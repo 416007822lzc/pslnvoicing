@@ -1,15 +1,18 @@
 package com.example.pslnvoicing.model.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 
 public class CapitalPayment {
-	private int paymentId;
-	private Integer pOId;
-	private Integer supplierId;
-	private Integer ieId;
+	private Integer paymentId;
+	private PurchaseOrder pOId;
+	private PslnvoicingSuppier supplierId;
+	private PslnvoicingIncomeExpenses ieId;
 	private String paymentNumber;
 	private Timestamp paymentDat;
 	private Integer paymentMoney;
@@ -18,45 +21,15 @@ public class CapitalPayment {
 	private String rpaymentAccount;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "payment_id")
-	public int getPaymentId() {
+	public Integer getPaymentId() {
 		return paymentId;
 	}
 
-	public void setPaymentId(int paymentId) {
+	public void setPaymentId(Integer paymentId) {
 		this.paymentId = paymentId;
 	}
-
-	@Basic
-	@Column(name = "p_o_id")
-	public Integer getpOId() {
-		return pOId;
-	}
-
-	public void setpOId(Integer pOId) {
-		this.pOId = pOId;
-	}
-
-	@Basic
-	@Column(name = "supplier_id")
-	public Integer getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(Integer supplierId) {
-		this.supplierId = supplierId;
-	}
-
-	@Basic
-	@Column(name = "ie_id")
-	public Integer getIeId() {
-		return ieId;
-	}
-
-	public void setIeId(Integer ieId) {
-		this.ieId = ieId;
-	}
-
 	@Basic
 	@Column(name = "payment_number")
 	public String getPaymentNumber() {
@@ -68,6 +41,8 @@ public class CapitalPayment {
 	}
 
 	@Basic
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	@Column(name = "payment_dat")
 	public Timestamp getPaymentDat() {
 		return paymentDat;
@@ -117,25 +92,46 @@ public class CapitalPayment {
 		this.rpaymentAccount = rpaymentAccount;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		CapitalPayment that = (CapitalPayment) o;
-		return paymentId == that.paymentId &&
-				Objects.equals(pOId, that.pOId) &&
-				Objects.equals(supplierId, that.supplierId) &&
-				Objects.equals(ieId, that.ieId) &&
-				Objects.equals(paymentNumber, that.paymentNumber) &&
-				Objects.equals(paymentDat, that.paymentDat) &&
-				Objects.equals(paymentMoney, that.paymentMoney) &&
-				Objects.equals(paymentAmoney, that.paymentAmoney) &&
-				Objects.equals(rpaymentState, that.rpaymentState) &&
-				Objects.equals(rpaymentAccount, that.rpaymentAccount);
+
+
+
+	/**
+	 * 关系
+	 * @return
+	 */
+
+	@ManyToOne
+	@JoinColumn(name = "p_o_id", referencedColumnName = "p_o_id")
+
+	public PurchaseOrder getpOId() {
+		return pOId;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(paymentId, pOId, supplierId, ieId, paymentNumber, paymentDat, paymentMoney, paymentAmoney, rpaymentState, rpaymentAccount);
+	public void setpOId(PurchaseOrder pOId) {
+		this.pOId = pOId;
+	}
+
+
+
+	@ManyToOne
+	@JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
+
+	public PslnvoicingSuppier getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(PslnvoicingSuppier supplierId) {
+		this.supplierId = supplierId;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "ie_id", referencedColumnName = "ie_id")
+
+	public PslnvoicingIncomeExpenses getIeId() {
+		return ieId;
+	}
+
+	public void setIeId(PslnvoicingIncomeExpenses ieId) {
+		this.ieId = ieId;
 	}
 }
