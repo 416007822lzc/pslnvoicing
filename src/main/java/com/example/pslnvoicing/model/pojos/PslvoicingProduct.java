@@ -9,7 +9,7 @@ import java.util.Objects;
 public class PslvoicingProduct {
 	private String productName;
 	private int productId;
-	private int productNum;
+	private String productNum;
 	private String productSpec;
 	private String productCategories;
 	private String productUnit;
@@ -44,11 +44,11 @@ public class PslvoicingProduct {
 
 	@Basic
 	@Column(name = "product_num")
-	public int getProductNum() {
+	public String getProductNum() {
 		return productNum;
 	}
 
-	public void setProductNum(int productNum) {
+	public void setProductNum(String productNum) {
 		this.productNum = productNum;
 	}
 

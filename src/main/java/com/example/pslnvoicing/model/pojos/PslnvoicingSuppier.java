@@ -9,7 +9,7 @@ import java.util.Objects;
 public class PslnvoicingSuppier {
 	private String supplierName;
 	private int supplierId;
-	private int supplierNum;
+	private String supplierNum;
 	private String supplierType;
 	private BigDecimal supplierShouldPayments;
 	private BigDecimal supplierPillPayments;
@@ -43,11 +43,11 @@ public class PslnvoicingSuppier {
 
 	@Basic
 	@Column(name = "supplier_num")
-	public int getSupplierNum() {
+	public String getSupplierNum() {
 		return supplierNum;
 	}
 
-	public void setSupplierNum(int supplierNum) {
+	public void setSupplierNum(String supplierNum) {
 		this.supplierNum = supplierNum;
 	}
 

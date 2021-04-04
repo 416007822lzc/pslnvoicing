@@ -9,7 +9,7 @@ import java.util.Objects;
 public class PslnvoicingClient {
 	private String clientName;
 	private int clientId;
-	private int clientNum;
+	private String clientNum;
 	private String clientType;
 	private BigDecimal clientPriceRatio;
 	private BigDecimal clientReceivablesBalance;
@@ -44,11 +44,11 @@ public class PslnvoicingClient {
 
 	@Basic
 	@Column(name = "client_num")
-	public int getClientNum() {
+	public String getClientNum() {
 		return clientNum;
 	}
 
-	public void setClientNum(int clientNum) {
+	public void setClientNum(String clientNum) {
 		this.clientNum = clientNum;
 	}
 
