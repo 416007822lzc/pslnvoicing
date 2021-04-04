@@ -1,6 +1,6 @@
 package com.example.pslnvoicing.mapper;
 
-import com.example.pslnvoicing.model.pojos.CapitalPayment;
+import com.example.pslnvoicing.pojos.CapitalPayment;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
