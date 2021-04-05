@@ -7,7 +7,6 @@
         <result column="payment_money" property="paymentMoney"/>
         <result column="payment_amoney" property="paymentAmoney"/>
         <result column="rpayment_state" property="rpaymentState"/>
-        <result column="rpayment_account" property="rpaymentAccount"/>
 
 
         <!--采购表-->
@@ -47,7 +46,14 @@
             <result column="income_name" property="incomeName"/>
             <result column="expenses_name" property="expensesName"/>
         </association>
+        <!--资金账户表-->
+        <association property="zjId" javaType="com.example.pslnvoicing.pojos.PslnvoicingZijin">
+            <id column="zj_id" property="zjId"/>
+            <result column="zj_name" property="zjName"/>
+        </association>
+
     </resultMap>
+
 
 
     <!--收支类型-->
@@ -58,10 +64,25 @@
     </resultMap>
 
 
+    <!--供应商-->
+    <resultMap id="gys" type="com.example.pslnvoicing.pojos.PslnvoicingSuppier">
+        <id column="supplier_id" property="supplierId"/>
+        <result column="supplier_name" property="supplierName"/>
+    </resultMap>
+
+        <!--资金账户表-->
+    <resultMap id="zijin" type="com.example.pslnvoicing.pojos.PslnvoicingZijin">
+        <id column="zj_id" property="zjId"/>
+        <result column="zj_name" property="zjName"/>
+    </resultMap>
+
+
+
 
     <!--模糊查询 条件筛选  供应商  收支类别   付款人   单编号-->
-    <select id="selectAll" resultMap="fu">
+    <select id="selectall" resultMap="fu">
         select * from  purchase_order   pco  	left join capital_payment clp   on   clp.p_o_id=pco.p_o_id
+        left join pslnvoicing_zijin  plz on clp.zj_id=plz.zj_id
         left join pslnvoicing_suppier  pls on pco.supplier_id=pls.supplier_id
         left join pslnvoicing_income_expenses   pie on   clp.ie_id=pie.ie_id
 			<where>
@@ -76,9 +97,17 @@
     </select>
 
     <!--下拉表-->
-    <select id="selectLxAll" resultMap="leix">
+    <select id="selectlxall" resultMap="leix">
             select distinct * from  pslnvoicing_income_expenses
     </select>
 
+    <!--下拉表  供应商-->
+    <select id="selectlallgys" resultMap="gys">
+            select distinct * from  pslnvoicing_suppier
+    </select>
+    <!--下拉表  资金账户-->
+    <select id="selectlallzijin" resultMap="zijin">
+            select distinct * from  pslnvoicing_zijin
+    </select>
 
 </mapper>

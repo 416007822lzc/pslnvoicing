@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.pslnvoicing.pojos.CapitalPayment;
 import com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses;
+import com.example.pslnvoicing.pojos.PslnvoicingSuppier;
+import com.example.pslnvoicing.pojos.PslnvoicingZijin;
 import com.example.pslnvoicing.service.CapitalPaymentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -37,18 +39,32 @@ public class CapitalPaymentController {
 		Map<String,Object> map = new HashMap<>();
 		Page<Object> page = PageHelper.startPage(pageNum, size);
 		CapitalPayment cpilt= JSONObject.toJavaObject(JSON.parseObject(cplt), CapitalPayment.class);
-		List<CapitalPayment> list=capitalPaymentService.SelectAll(cpilt);
+		List<CapitalPayment> list=capitalPaymentService.selectall(cpilt);
 		map.put("rows",list);
 		map.put("total",page.getTotal());
 		return map;
 
 	}
-
 	/**
 	 * 下拉表查询
 	 */
 	@RequestMapping("/fu-xla")
-	public List<PslnvoicingIncomeExpenses> SelectXl(){
-		return  capitalPaymentService.selectLxAll();
+	public List<PslnvoicingIncomeExpenses> selectxl(){
+		return  capitalPaymentService.selectlxall();
+	}
+	/**
+	 *供应商下拉表
+	 */
+	@RequestMapping("/fu-xgys")
+	public List<PslnvoicingSuppier>selectlallgys(){
+		return  capitalPaymentService.selectlallgys();
+	}
+
+	/**
+	 *自己下拉表
+	 */
+	@RequestMapping("/fu-zjin")
+	public List<PslnvoicingZijin>selectlallzijin(){
+		return  capitalPaymentService.selectlallzijin();
 	}
 }

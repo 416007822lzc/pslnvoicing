@@ -18,7 +18,7 @@ public class CapitalPayment {
 	private Integer paymentMoney;
 	private Integer paymentAmoney;
 	private Integer rpaymentState;
-	private String rpaymentAccount;
+	private PslnvoicingZijin zjId;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,15 +82,7 @@ public class CapitalPayment {
 		this.rpaymentState = rpaymentState;
 	}
 
-	@Basic
-	@Column(name = "rpayment_account")
-	public String getRpaymentAccount() {
-		return rpaymentAccount;
-	}
 
-	public void setRpaymentAccount(String rpaymentAccount) {
-		this.rpaymentAccount = rpaymentAccount;
-	}
 
 
 
@@ -135,6 +127,13 @@ public class CapitalPayment {
 		this.ieId = ieId;
 	}
 
+	public PslnvoicingZijin getZjId() {
+		return zjId;
+	}
+
+	public void setZjId(PslnvoicingZijin zjId) {
+		this.zjId = zjId;
+	}
 
 	@Override
 	public String toString() {
@@ -145,7 +144,6 @@ public class CapitalPayment {
 				", paymentMoney=" + paymentMoney +
 				", paymentAmoney=" + paymentAmoney +
 				", rpaymentState=" + rpaymentState +
-				", rpaymentAccount='" + rpaymentAccount + '\'' +
 				'}';
 	}
 }
