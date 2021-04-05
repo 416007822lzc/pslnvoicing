@@ -1,6 +1,7 @@
 package com.example.pslnvoicing.conn;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

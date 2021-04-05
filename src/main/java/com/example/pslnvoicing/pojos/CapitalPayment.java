@@ -134,4 +134,18 @@ public class CapitalPayment {
 	public void setIeId(PslnvoicingIncomeExpenses ieId) {
 		this.ieId = ieId;
 	}
+
+
+	@Override
+	public String toString() {
+		return "CapitalPayment{" +
+				"paymentId=" + paymentId +
+				", paymentNumber='" + paymentNumber + '\'' +
+				", paymentDat=" + paymentDat +
+				", paymentMoney=" + paymentMoney +
+				", paymentAmoney=" + paymentAmoney +
+				", rpaymentState=" + rpaymentState +
+				", rpaymentAccount='" + rpaymentAccount + '\'' +
+				'}';
+	}
 }
