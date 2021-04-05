@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--用来关联该xml文件所对应的java接口类，命名标签是唯一重复会找不到-->
+<!-- mapper为映射的根节点，namespace指定Dao接口的完整类名
+   mybatis会依据这个接口动态创建一个实现类去实现这个接口，
+   而这个实现类是一个Mapper对象-->
+
+<mapper namespace="com.example.pslnvoicing.model.mapper.KucunAllotMapper">
+    <resultMap id="allot" type="com.example.pslnvoicing.model.pojos.KucunAllot">
+        <id column="allot_id" property="allotId"></id>
+        <result column="allot_odd" property="allotOdd"></result>
+        <result column="allot_date" property="allotDate"></result>
+        <result column="allot_name" property="allotName"></result>
+        <result column="allot_total" property="allotTotal"></result>
+        <result column="allot_time" property="allotTime"></result>
+        <result column="allot_state" property="allotState"></result>
+        <result column="allot_remark" property="allotRemark"></result>
+        <result column="allot_shr" property="allotShr"></result>
+        <result column="allot_fold" property="allotFold"></result>
+        <result column="allot_callout" property="allotCallout"></result>
+    </resultMap>
+
+
+    <select id="allotList" resultMap="allot">
+        SELECT * FROM kucun_allot a
+        <where>
+            <if test="allotOdd!=null and allotOdd!=''">
+                and allot_odd like '%${allotOdd}%'
+            </if>
+            <if test="allotDate!=null and allotDate!=''">
+                and DATE_FORMAT(a.allot_date,'%Y-%m-%d')='2021-04-03'
+            </if>
+            <if test="allotName!=null and allotName!=''">
+                and allot_name=#{allotName}
+            </if>
+            <if test="allotState!=null and allotState!=''">
+                and allot_state=#{allotState}
+            </if>
+        </where>
+        ORDER BY allot_date DESC
+
+    </select>
+
+    <insert id="addallot">
+        insert into kucun_allot values
+        (#{allotId},#{allotOdd},#{allotDate},#{allotCallout},#{allotFold},#{allotName}
+        ,#{allotTotal},#{allotTime},#{allotState},#{allotRemark},#{allotShr})
+    </insert>
+
+    <select id="maxId" resultMap="allot">
+        SELECT * FROM kucun_allot where allot_id=(SELECT max(allot_id) FROM kucun_allot)
+    </select>
+
+
+</mapper>

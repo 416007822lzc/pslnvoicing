@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--用来关联该xml文件所对应的java接口类，命名标签是唯一重复会找不到-->
+<!-- mapper为映射的根节点，namespace指定Dao接口的完整类名
+   mybatis会依据这个接口动态创建一个实现类去实现这个接口，
+   而这个实现类是一个Mapper对象-->
+
+<mapper namespace="com.example.pslnvoicing.model.mapper.KucunAllotDetailsMapper">
+    <resultMap id="allotDetails" type="com.example.pslnvoicing.model.pojos.KucunAllotDetails">
+        <id column="allot_details_id" property="allotDetailsId"></id>
+        <result column="allot_details_number" property="allotDetailsNumber"></result>
+        <result column="allot_details_number" property="allotDetailsNumber"></result>
+        <result column="allot_details_cost" property="allotDetailsCost"></result>
+        <result column="allot_details_remark" property="allotDetailsRemark"></result>
+        <association property="kucunAllot" javaType="com.example.pslnvoicing.model.pojos.KucunAllot">
+            <id column="allot_id" property="allotId"></id>
+            <result column="allot_odd" property="allotOdd"></result>
+            <result column="allot_date" property="allotDate"></result>
+            <result column="allot_name" property="allotName"></result>
+        </association>
+        <association property="products" javaType="com.example.pslnvoicing.model.pojos.PslvoicingProduct">
+            <id column="product_id" property="productId"></id>
+            <result column="product_name" property="productName"></result>
+            <result column="product_num" property="productNum"></result>
+            <result column="product_spec" property="productSpec"></result>
+            <result column="product_categories" property="productCategories"></result>
+            <result column="product_unit" property="productUnit"></result>
+            <result column="product_openingNum" property="productOpeningNum"></result>
+            <result column="product_status" property="productStatus"></result>
+            <result column="product_remark" property="productRemark"></result>
+            <result column="product_createTime" property="productCreateTime"></result>
+            <result column="product_salesPrice" property="productSalesPrice"></result>
+            <result column="product_purchasePrice" property="productPurchasePrice"></result>
+            <result column="product_openingCost" property="productOpeningCost"></result>
+            <result column="warehouse_id" property="warehouseId"></result>
+        </association>
+    </resultMap>
+
+
+    <select id="allotDetailsList" resultMap="allotDetails">
+        SELECT * FROM kucun_allot_details a
+        LEFT JOIN pslvoicing_product p ON a.allot_details_productId=p.product_id
+        WHERE a.allot_id=#{allotId}
+    </select>
+
+    <insert id="addAllotDetails">
+        insert into kucun_allot_details values
+        (#{allotDetailsId},#{kucunAllot.allotId},#{products.productId},
+         #{allotDetailsNumber},#{allotDetailsCost},#{allotDetailsRemark})
+    </insert>
+
+
+
+
+
+
+
+
+
+</mapper>
