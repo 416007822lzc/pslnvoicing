@@ -21,6 +21,8 @@ public class PslnvoicingClient {
 	private String clientCreator;
 	private Timestamp clientCreateTime;
 	private Timestamp clientUpdateTime;
+	private String clientPhone;
+	private String clientContactNum;
 
 	@Basic
 	@Column(name = "client_name")
@@ -162,6 +164,26 @@ public class PslnvoicingClient {
 		this.clientUpdateTime = clientUpdateTime;
 	}
 
+	@Basic
+	@Column(name = "client_phone")
+	public String getClientPhone() {
+		return clientPhone;
+	}
+
+	public void setClientPhone(String clientPhone) {
+		this.clientPhone = clientPhone;
+	}
+
+	@Basic
+	@Column(name = "client_creator")
+	public String getClientContactNum() {
+		return clientContactNum;
+	}
+
+	public void setClientContactNum(String clientContactNum) {
+		this.clientContactNum = clientContactNum;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -180,11 +202,14 @@ public class PslnvoicingClient {
 				Objects.equals(clientContact, that.clientContact) &&
 				Objects.equals(clientCreator, that.clientCreator) &&
 				Objects.equals(clientCreateTime, that.clientCreateTime) &&
-				Objects.equals(clientUpdateTime, that.clientUpdateTime);
+				Objects.equals(clientUpdateTime, that.clientUpdateTime) &&
+				Objects.equals(clientPhone , that.clientPhone ) &&
+				Objects.equals(clientContactNum, that.clientContactNum);
+
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(clientName, clientId, clientNum, clientType, clientPriceRatio, clientReceivablesBalance, clientBalancePrepayment, clientActualReceivable, clientAddress, clientHead, clientContact, clientCreator, clientCreateTime, clientUpdateTime);
+		return Objects.hash(clientName, clientId, clientNum, clientType, clientPriceRatio, clientReceivablesBalance, clientBalancePrepayment, clientActualReceivable, clientAddress, clientHead, clientContact, clientCreator, clientCreateTime, clientUpdateTime,clientPhone,clientPhone,clientContactNum);
 	}
 }

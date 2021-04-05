@@ -1,11 +1,13 @@
 package com.example.pslnvoicing.pojos;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-
+@Data
 public class PslvoicingProduct {
 	private String productName;
 	private int productId;
@@ -21,6 +23,7 @@ public class PslvoicingProduct {
 	private BigDecimal productPurchasePrice;
 	private BigDecimal productOpeningCost;
 	private Integer warehouseId;
+	private String productDescription;
 
 	@Basic
 	@Column(name = "product_name")
@@ -162,6 +165,16 @@ public class PslvoicingProduct {
 		this.warehouseId = warehouseId;
 	}
 
+	@Basic
+	@Column(name = "warehouse_id")
+	public String getproductDescription() {
+		return productDescription;
+	}
+
+	public void setproductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -180,11 +193,12 @@ public class PslvoicingProduct {
 				Objects.equals(productSalesPrice, that.productSalesPrice) &&
 				Objects.equals(productPurchasePrice, that.productPurchasePrice) &&
 				Objects.equals(productOpeningCost, that.productOpeningCost) &&
+				Objects.equals(productDescription, that.productDescription) &&
 				Objects.equals(warehouseId, that.warehouseId);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(productName, productId, productNum, productSpec, productCategories, productUnit, productOpeningNum, productStatus, productRemark, productCreateTime, productSalesPrice, productPurchasePrice, productOpeningCost, warehouseId);
+		return Objects.hash(productName, productId, productNum, productSpec, productCategories, productUnit, productOpeningNum, productStatus, productRemark, productCreateTime, productSalesPrice, productPurchasePrice, productOpeningCost, warehouseId,productDescription);
 	}
 }
