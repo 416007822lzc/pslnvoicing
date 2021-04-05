@@ -166,7 +166,7 @@ public class PslvoicingProduct {
 	}
 
 	@Basic
-	@Column(name = "warehouse_id")
+	@Column(name = "product_description")
 	public String getproductDescription() {
 		return productDescription;
 	}

@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper
 public interface PslnvoicingClientMapper {
 
-    //新增客户
-    public Integer createclient(PslnvoicingClient client);
+//    //新增客户
+//    public Integer createclient(PslnvoicingClient client);
 
     //全部查询
     public List<PslnvoicingClient> selectClient();

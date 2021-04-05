@@ -175,7 +175,7 @@ public class PslnvoicingClient {
 	}
 
 	@Basic
-	@Column(name = "client_creator")
+	@Column(name = "client_contact_num")
 	public String getClientContactNum() {
 		return clientContactNum;
 	}
