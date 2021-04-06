@@ -5,5 +5,4 @@
         <result column="payment_id" property="paymentId" />
     </resultMap>
 
-
 </mapper>

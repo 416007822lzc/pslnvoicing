@@ -42,7 +42,6 @@ public class CapitalPaymentController {
 		map.put("total",page.getTotal());
 		return map;
 
-
 	}
 	/**
 	 * 下拉表查询
