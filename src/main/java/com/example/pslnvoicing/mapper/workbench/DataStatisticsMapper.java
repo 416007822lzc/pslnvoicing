@@ -1,25 +1,39 @@
-package com.example.pslnvoicing.service.workbench;
+package com.example.pslnvoicing.mapper.workbench;
 
 import com.example.pslnvoicing.pojos.CapitalPayment;
+import com.example.pslnvoicing.pojos.CapitalReceipt;
+import com.example.pslnvoicing.vo.workbench.DataStatisticsVo;
 import com.example.pslnvoicing.vo.workbench.RatifyVo;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
+@Mapper
+public interface DataStatisticsMapper {
+    //查询未付款
+    Integer queryPaymentByState();
 
-public interface DataStatisticsService {
-    //查询基本数据
-    Map<String,Integer> queryPaymentByState();
+    //查询未收款
+    Integer queryReceiptByState();
 
-    //查询采购额
-    Map<String,Integer> queryProcurementAmount(String saleT);
+    //查询本段时间内的采购额
+    DataStatisticsVo queryWarehousingByTimeNow(String saleT);
+    DataStatisticsVo queryWarehousingByTimePreviously(String saleT);
 
-    //查询销售额
-    Map<String,Integer> querySellAmount(String saleT);
+    //查询本段时间内的销售额
+    DataStatisticsVo queryDeliverygByTimeNow(String saleT);
+    DataStatisticsVo queryDeliveryByTimePreviously(String saleT);
 
+    DataStatisticsVo queryWarehouseNumber();
+
+    //销售出库审批
     List<RatifyVo> queryTbDeliveryRatify(Integer approvalStatus);
 
+    //销售退货
     List<RatifyVo> querySalesReturns(Integer approvalStatus);
+
 
     //销售订单审批
     List<RatifyVo> queryTbOrderReturns(Integer approvalStatus);
@@ -27,7 +41,7 @@ public interface DataStatisticsService {
     List<RatifyVo> queryCapitalReceiptReturns(Integer approvalStatus);
     //销售开票
     List<RatifyVo> queryCapitalSaleReturns(Integer approvalStatus);
-    //    采购入库
+//    采购入库
     List<RatifyVo> queryPurchaseWarehousingReturns(Integer approvalStatus);
     //采购单
     List<RatifyVo> queryPurchaseOrderReturns(Integer approvalStatus);
@@ -35,7 +49,7 @@ public interface DataStatisticsService {
     List<RatifyVo> queryPurchaseReturnReturns(Integer approvalStatus);
     //采购付款
     List<RatifyVo> queryCapitalPaymentReturns(Integer approvalStatus);
-    //    //采购收票
+//    //采购收票
 //    List<RatifyVo> queryCapitalPurchaseReturns(Integer approvalStatus);
     //组装单
     List<RatifyVo> queryAssembleReturns(Integer approvalStatus);
@@ -47,7 +61,5 @@ public interface DataStatisticsService {
     List<RatifyVo> queryOutboundReturns(Integer approvalStatus);
     //其他入库
     List<RatifyVo> queryWarehouseReturns(Integer approvalStatus);
-
-    List<RatifyVo> queryAllReturns(Integer approvalStatus);
 
 }

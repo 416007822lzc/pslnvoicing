@@ -21,6 +21,8 @@ mybatis:
   type-aliases-package: com.example.pslnvoicing.pojos
   configuration:
     map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 pagehelper:
   helperDialect: mysql

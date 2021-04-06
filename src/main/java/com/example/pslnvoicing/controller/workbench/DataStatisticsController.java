@@ -7,6 +7,7 @@ import com.example.pslnvoicing.vo.workbench.DataStatisticsVo;
 import com.example.pslnvoicing.vo.workbench.RatifyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class DataStatisticsController {
     @GetMapping("/workbench/queryProcurementAmount")
     public CommonResult queryProcurementAmount(String saleT){
         Map<String, Integer> procurementAmount = dataStatistics.queryProcurementAmount(saleT);
-        CommonResult<Map<String,Integer>> voCommonResult = new CommonResult<>();
+        CommonResult<Map<String,Integer>> voCommonResult = new CommonResult<Map<String,Integer>>();
         if (procurementAmount != null){
             voCommonResult.setCode(200);
             voCommonResult.setData(procurementAmount);
@@ -51,9 +52,12 @@ public class DataStatisticsController {
     }
 
     @GetMapping("/queryTbDeliveryRatify")
-    public CommonResult queryTbDeliveryRatify(){
-        List<RatifyVo> ratifyVos = dataStatistics.queryTbDeliveryRatify();
-        return new CommonResult(200,"",ratifyVos);
+    public List<RatifyVo> queryTbDeliveryRatify(String approvalStatus1){
+        int approvalStatus = Integer.parseInt(approvalStatus1);
+        approvalStatus+=1;
+        List<RatifyVo> ratifyVos = dataStatistics.queryAllReturns(approvalStatus);
+//        return new CommonResult(200,"",ratifyVos);
+        return ratifyVos;
     }
 
 }
