@@ -10,7 +10,7 @@ public class KucunDismounting {
 	private String dismountingOdd;
 	private Timestamp dismountingDate;
 	private Integer dismountingMoney;
-	private Integer dismountingProductId;
+//	private Integer dismountingProductId;
 	private Integer dismountingWarehouse;
 	private Integer dismountingNumber;
 	private Integer dismountingCost;
@@ -18,6 +18,33 @@ public class KucunDismounting {
 	private Timestamp dismountingTime;
 	private Integer dismountingState;
 	private String dismountingRemark;
+	private PslvoicingProduct product;
+
+	@Override
+	public String toString() {
+		return "KucunDismounting{" +
+				"dismountingId=" + dismountingId +
+				", dismountingOdd='" + dismountingOdd + '\'' +
+				", dismountingDate=" + dismountingDate +
+				", dismountingMoney=" + dismountingMoney +
+				", dismountingWarehouse=" + dismountingWarehouse +
+				", dismountingNumber=" + dismountingNumber +
+				", dismountingCost=" + dismountingCost +
+				", dismountingName='" + dismountingName + '\'' +
+				", dismountingTime=" + dismountingTime +
+				", dismountingState=" + dismountingState +
+				", dismountingRemark='" + dismountingRemark + '\'' +
+				", product=" + product +
+				'}';
+	}
+
+	public PslvoicingProduct getProduct() {
+		return product;
+	}
+
+	public void setProduct(PslvoicingProduct product) {
+		this.product = product;
+	}
 
 	@Id
 	@Column(name = "dismounting_id")
@@ -59,15 +86,6 @@ public class KucunDismounting {
 		this.dismountingMoney = dismountingMoney;
 	}
 
-	@Basic
-	@Column(name = "dismounting_productId")
-	public Integer getDismountingProductId() {
-		return dismountingProductId;
-	}
-
-	public void setDismountingProductId(Integer dismountingProductId) {
-		this.dismountingProductId = dismountingProductId;
-	}
 
 	@Basic
 	@Column(name = "dismounting_warehouse")
@@ -148,7 +166,6 @@ public class KucunDismounting {
 				Objects.equals(dismountingOdd, that.dismountingOdd) &&
 				Objects.equals(dismountingDate, that.dismountingDate) &&
 				Objects.equals(dismountingMoney, that.dismountingMoney) &&
-				Objects.equals(dismountingProductId, that.dismountingProductId) &&
 				Objects.equals(dismountingWarehouse, that.dismountingWarehouse) &&
 				Objects.equals(dismountingNumber, that.dismountingNumber) &&
 				Objects.equals(dismountingCost, that.dismountingCost) &&
@@ -160,6 +177,6 @@ public class KucunDismounting {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dismountingId, dismountingOdd, dismountingDate, dismountingMoney, dismountingProductId, dismountingWarehouse, dismountingNumber, dismountingCost, dismountingName, dismountingTime, dismountingState, dismountingRemark);
+		return Objects.hash(dismountingId, dismountingOdd, dismountingDate, dismountingMoney, dismountingWarehouse, dismountingNumber, dismountingCost, dismountingName, dismountingTime, dismountingState, dismountingRemark);
 	}
 }

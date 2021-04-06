@@ -1,18 +1,34 @@
 package com.example.pslnvoicing.pojos;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
 public class KucunAllotDetails {
 	private int allotDetailsId;
-	private Integer allotDetailsProductId;
+//	private Integer allotDetailsProductId;
 	private Integer allotDetailsNumber;
 	private Integer allotDetailsCost;
 	private String allotDetailsRemark;
+	private PslvoicingProduct products;
+	private KucunAllot kucunAllot;
+
+	@Override
+	public String toString() {
+		return "KucunAllotDetails{" +
+				"allotDetailsId=" + allotDetailsId +
+				", allotDetailsNumber=" + allotDetailsNumber +
+				", allotDetailsCost=" + allotDetailsCost +
+				", allotDetailsRemark='" + allotDetailsRemark + '\'' +
+				", products=" + products +
+				", kucunAllot=" + kucunAllot +
+				'}';
+	}
 
 	@Id
 	@Column(name = "allot_details_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getAllotDetailsId() {
 		return allotDetailsId;
 	}
@@ -21,15 +37,27 @@ public class KucunAllotDetails {
 		this.allotDetailsId = allotDetailsId;
 	}
 
-	@Basic
-	@Column(name = "allot_details_productId")
-	public Integer getAllotDetailsProductId() {
-		return allotDetailsProductId;
+
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	public PslvoicingProduct getProducts() {
+		return products;
 	}
 
-	public void setAllotDetailsProductId(Integer allotDetailsProductId) {
-		this.allotDetailsProductId = allotDetailsProductId;
+	public void setProducts(PslvoicingProduct products) {
+		this.products = products;
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "allot_id")
+	public KucunAllot getKucunAllot() {
+		return kucunAllot;
+	}
+
+	public void setKucunAllot(KucunAllot kucunAllot) {
+		this.kucunAllot = kucunAllot;
+	}
+
 
 	@Basic
 	@Column(name = "allot_details_number")
@@ -67,7 +95,7 @@ public class KucunAllotDetails {
 		if (o == null || getClass() != o.getClass()) return false;
 		KucunAllotDetails that = (KucunAllotDetails) o;
 		return allotDetailsId == that.allotDetailsId &&
-				Objects.equals(allotDetailsProductId, that.allotDetailsProductId) &&
+
 				Objects.equals(allotDetailsNumber, that.allotDetailsNumber) &&
 				Objects.equals(allotDetailsCost, that.allotDetailsCost) &&
 				Objects.equals(allotDetailsRemark, that.allotDetailsRemark);
@@ -75,6 +103,6 @@ public class KucunAllotDetails {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(allotDetailsId, allotDetailsProductId, allotDetailsNumber, allotDetailsCost, allotDetailsRemark);
+		return Objects.hash(allotDetailsId,allotDetailsNumber, allotDetailsCost, allotDetailsRemark);
 	}
 }

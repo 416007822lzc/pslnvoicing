@@ -7,7 +7,7 @@ import java.util.Objects;
 public class PslnvoiningWarehouse {
 	private String warehouseName;
 	private int warehouseId;
-	private int warehouseNum;
+	private String warehouseNum;
 	private String warehouseAddress;
 	private String warehouseHead;
 	private int warehousePhone;
@@ -37,11 +37,11 @@ public class PslnvoiningWarehouse {
 
 	@Basic
 	@Column(name = "warehouse_num")
-	public int getWarehouseNum() {
+	public String getWarehouseNum() {
 		return warehouseNum;
 	}
 
-	public void setWarehouseNum(int warehouseNum) {
+	public void setWarehouseNum(String warehouseNum) {
 		this.warehouseNum = warehouseNum;
 	}
 

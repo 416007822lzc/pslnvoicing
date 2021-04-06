@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--用来关联该xml文件所对应的java接口类，命名标签是唯一重复会找不到-->
+<!-- mapper为映射的根节点，namespace指定Dao接口的完整类名
+   mybatis会依据这个接口动态创建一个实现类去实现这个接口，
+   而这个实现类是一个Mapper对象-->
+
+<mapper namespace="com.example.pslnvoicing.model.mapper.KucunAssembleMapper">
+    <resultMap id="assemble" type="com.example.pslnvoicing.model.pojos.KucunAssemble">
+        <id column="assemble_id" property="assembleId"></id>
+        <result column="assemble_odd" property="assembleOdd"></result>
+        <result column="assemble_date" property="assembleDate"></result>
+        <result column="assemble_money" property="assembleMoney"></result>
+        <result column="assemble_warehouse" property="assembleWarehouse"></result>
+        <result column="assemble_number" property="assembleNumber"></result>
+        <result column="assemble_cost" property="assembleCost"></result>
+        <result column="assemble_name" property="assembleName"></result>
+        <result column="assemble_time" property="assembleTime"></result>
+        <result column="assemble_state" property="assembleState"></result>
+        <result column="assemble_remark" property="assembleRemark"></result>
+        <association property="product" javaType="com.example.pslnvoicing.model.pojos.PslvoicingProduct">
+            <id column="product_id" property="productId"></id>
+            <result column="product_name" property="productName"></result>
+            <result column="product_num" property="productNum"></result>
+            <result column="product_spec" property="productSpec"></result>
+            <result column="product_categories" property="productCategories"></result>
+            <result column="product_unit" property="productUnit"></result>
+            <result column="product_opening_num" property="productOpeningNum"></result>
+            <result column="product_status" property="productStatus"></result>
+            <result column="product_remark" property="productRemark"></result>
+            <result column="product_create_time" property="productCreateTime"></result>
+            <result column="product_sales_price" property="productSalesPrice"></result>
+            <result column="product_purchase_price" property="productPurchasePrice"></result>
+            <result column="product_opening_cost" property="productOpeningCost"></result>
+            <association property="warehouse" javaType="com.example.pslnvoicing.model.pojos.PslnvoiningWarehouse">
+                <id column="warehouse_id" property="warehouseId"></id>
+                <result column="warehouse_name" property="warehouseName"></result>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="assembleList" resultMap="assemble">
+        SELECT * FROM kucun_assemble a
+        LEFT JOIN pslvoicing_product p on a.assemble_productId=p.product_id
+        LEFT JOIN pslnvoining_warehouse w on p.warehouse_id=w.warehouse_id
+        <where>
+            <if test="assembleDate!=null and assembleDate!=''">
+                and assemble_date=#{assembleDate}
+            </if>
+            <if test="assembleName!=null and assembleName!=''">
+                and assemble_name=#{assembleName}
+            </if>
+            <if test="assembleState!=null and assembleState!=''">
+                and assemble_state=#{assembleState}
+            </if>
+        </where>
+        ORDER BY assemble_date desc
+    </select>
+
+    <insert id="addAssemble">
+        insert into kucun_assemble values
+        (#{assembleId},#{assembleOdd},#{assembleDate},#{assembleMoney},#{product.productId},#{product.warehouse.warehouseName},
+         #{assembleNumber},#{assembleCost},#{assembleName},#{assembleTime},#{assembleState},#{assembleRemark})
+    </insert>
+
+    <select id="maxId" resultMap="assemble">
+        select * from kucun_assemble where assemble_id=(select max(assemble_id) from kucun_assemble)
+    </select>
+
+
+
+</mapper>
