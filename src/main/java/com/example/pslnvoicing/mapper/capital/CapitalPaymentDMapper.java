@@ -1,4 +1,4 @@
-package com.example.pslnvoicing.mapper;
+package com.example.pslnvoicing.mapper.capital;
 
 import com.example.pslnvoicing.pojos.CapitalPaymentDetails;
 import org.apache.ibatis.annotations.Mapper;

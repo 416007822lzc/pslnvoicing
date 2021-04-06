@@ -1,5 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pslnvoicing.mapper.CapitalPaymentMapper">
+<mapper namespace="com.example.pslnvoicing.mapper.capital.CapitalPaymentMapper">
     <resultMap id="fu" type="com.example.pslnvoicing.pojos.CapitalPayment">
         <id column="payment_id" property="paymentId"/>
         <result column="payment_number" property="paymentNumber"/>
@@ -83,13 +83,16 @@
 
     <!--模糊查询 条件筛选  供应商  收支类别   付款人   单编号-->
     <select id="selectall" resultMap="fu">
-        select * from  purchase_order pco  left join capital_payment clp   on   clp.p_o_id=pco.p_o_id
+        select * from  purchase_order   pco  	left join capital_payment clp   on   clp.p_o_id=pco.p_o_id
         left join pslnvoicing_zijin  plz on clp.zj_id=plz.zj_id
-        left join pslnvoicing_suppier  pls on pco.supplier_id=pls.supplier_id
+        left join pslnvoicing_suppier  pls on pls.supplier_id=pco.supplier_id
         left join pslnvoicing_income_expenses   pie on   clp.ie_id=pie.ie_id
 			<where>
-                <if test="pOId !=null and pOId !=''">
-                    and pco.p_o_purchasingstaff like concat('%',concat(#{pOId.pOPurchasingstaff},'%'))
+                <if test="supplierId !=null and supplierId !=''">
+                    and pls.supplier_name like concat('%',concat(#{supplierId.supplierName},'%'))
+                </if>
+                <if test="rpaymentState !=null and rpaymentState !=''">
+                    and clp.rpayment_state like concat('%',concat(#{rpaymentState},'%'))
                 </if>
             </where>
         order by clp.payment_id desc

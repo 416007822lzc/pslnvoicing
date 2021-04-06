@@ -1,8 +1,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper  namespace="com.example.pslnvoicing.mapper.CapitalPaymentDMapper">
-    <resultMap id="fxq" type="com.example.pslnvoicing.pojos.CapitalPaymentDetails">
-        <id column="payment_details_id" property="paymentDetailsId"/>
-        <result column="payment_id" property="paymentId" />
+<mapper  namespace="com.example.pslnvoicing.mapper.capital.CapitalPaymentDMapper">
+    <resultMap id="fxq" type="com.example.pslnvoicing.vo.Capitali">
+        <id column="payment_details_id" property="xqid"/>
+        <result column="payment_details_id" property="xqid" />
+        <result column="payment_id" property="id" />
+        <result column="income_name" property="incomeName" />
+        <result column="payment_dat" property="paymentDat" />
+        <result column="income_name" property="popurchasingstaff" />
+        <result column="p_o_jine" property="pojinne" />
+        <result column="payment_id" property="paymenMoney" />
+        <result column="payment_id" property="supplierName" />
+        <result column="payment_id" property="paymentNumber" />
+        <result column="payment_id" property="zjname" />
+        <result column="payment_id" property="rpaymentState" />
     </resultMap>
 
+    <select id="selectall" resultMap="fxq">
+        select * from capital_payment_details  clpds
+        left join capital_payment clp on clpds.payment_id=clp.payment_id
+        left join purchase_order   pco   on   clp.p_o_id=pco.p_o_id
+			<where>
+
+            </where>
+        order by payment_details_id desc
+    </select>
 </mapper>

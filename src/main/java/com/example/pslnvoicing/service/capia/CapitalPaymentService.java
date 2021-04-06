@@ -1,6 +1,6 @@
-package com.example.pslnvoicing.service;
+package com.example.pslnvoicing.service.capia;
 
-import com.example.pslnvoicing.mapper.CapitalPaymentMapper;
+import com.example.pslnvoicing.mapper.capital.CapitalPaymentMapper;
 import com.example.pslnvoicing.pojos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
