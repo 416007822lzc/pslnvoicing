@@ -2,14 +2,12 @@ package com.example.pslnvoicing.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.pslnvoicing.pojos.CapitalPayment;
-import com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses;
-import com.example.pslnvoicing.pojos.PslnvoicingSuppier;
-import com.example.pslnvoicing.pojos.PslnvoicingZijin;
+import com.example.pslnvoicing.pojos.*;
 import com.example.pslnvoicing.service.CapitalPaymentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +29,7 @@ public class CapitalPaymentController {
 	 * @return
 	 */
 	@RequestMapping("/fu-select")
-	public Map<String,Object> productmgr(String cplt, Integer pageNum, Integer size){
+	public Map<String,Object> productmgr( String cplt, Integer pageNum, Integer size){
 		if(pageNum==null)
 			pageNum=1;
 		if( size==null)
@@ -48,14 +46,14 @@ public class CapitalPaymentController {
 	/**
 	 * 下拉表查询
 	 */
-	@RequestMapping("/fu-xla")
+	@RequestMapping("/xla")
 	public List<PslnvoicingIncomeExpenses> selectxl(){
 		return  capitalPaymentService.selectlxall();
 	}
 	/**
 	 *供应商下拉表
 	 */
-	@RequestMapping("/fu-xgys")
+	@RequestMapping("/xgys")
 	public List<PslnvoicingSuppier>selectlallgys(){
 		return  capitalPaymentService.selectlallgys();
 	}
@@ -63,8 +61,31 @@ public class CapitalPaymentController {
 	/**
 	 *自己下拉表
 	 */
-	@RequestMapping("/fu-zjin")
+	@RequestMapping("/zjin")
 	public List<PslnvoicingZijin>selectlallzijin(){
 		return  capitalPaymentService.selectlallzijin();
+	}
+	/**
+	 * 采购u
+	 */
+	@RequestMapping("/cg")
+	public List<PurchaseOrder>selectcg(){
+		return capitalPaymentService.selectcg();
+	}
+
+	/**
+	 * 修改 对象传值
+	 */
+	@RequestMapping("/update")
+	public void updatefuk(@RequestBody CapitalPayment capitalPayment){
+		capitalPaymentService.updatefukuan(capitalPayment);
+	}
+
+	/**
+	 * 新增 对象传值
+	 */
+	@RequestMapping("/insert")
+	public void insertfukuan(@RequestBody CapitalPayment capitalPayment){
+		capitalPaymentService.insertfukuan(capitalPayment);
 	}
 }

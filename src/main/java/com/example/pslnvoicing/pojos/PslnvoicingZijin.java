@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 public class PslnvoicingZijin {
-	private int zjId;
+	private Integer zjId;
 	private String zjName;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "zj_id")
-	public int getZjId() {
+	public Integer getZjId() {
 		return zjId;
 	}
 
-	public void setZjId(int zjId) {
+	public void setZjId(Integer zjId) {
 		this.zjId = zjId;
 	}
 

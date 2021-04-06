@@ -1,10 +1,7 @@
 package com.example.pslnvoicing.service;
 
 import com.example.pslnvoicing.mapper.CapitalPaymentMapper;
-import com.example.pslnvoicing.pojos.CapitalPayment;
-import com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses;
-import com.example.pslnvoicing.pojos.PslnvoicingSuppier;
-import com.example.pslnvoicing.pojos.PslnvoicingZijin;
+import com.example.pslnvoicing.pojos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +33,30 @@ public class CapitalPaymentService {
 	 */
 	public List<PslnvoicingZijin>selectlallzijin(){
 		return capitalPaymentMapper.selectlallzijin();
+	}
+
+	/**
+	 * 采购
+	 */
+	public List<PurchaseOrder>selectcg(){
+		return  capitalPaymentMapper.selectcg();
+	}
+
+
+	/**
+	 * 修改
+	 */
+	public void updatefukuan(CapitalPayment capitalPayment){
+		System.out.println("修改成功:"+capitalPayment.toString());
+		capitalPaymentMapper.updatefukuan(capitalPayment);
+		capitalPaymentMapper.insertxq(capitalPayment);
+	}
+
+	/**
+	 * 新增
+	 */
+	public void insertfukuan(CapitalPayment capitalPayment){
+		System.out.println("新增成功:"+capitalPayment.toString());
+		capitalPaymentMapper.insertfukuan(capitalPayment);
 	}
 }

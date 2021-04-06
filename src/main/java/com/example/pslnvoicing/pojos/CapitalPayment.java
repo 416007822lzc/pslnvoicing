@@ -18,7 +18,7 @@ public class CapitalPayment {
 	private Integer paymentMoney;
 	private Integer paymentAmoney;
 	private Integer rpaymentState;
-	private PslnvoicingZijin zjId;
+	private Integer zjId;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,8 +85,6 @@ public class CapitalPayment {
 
 
 
-
-
 	/**
 	 * 关系
 	 * @return
@@ -127,11 +125,12 @@ public class CapitalPayment {
 		this.ieId = ieId;
 	}
 
-	public PslnvoicingZijin getZjId() {
+
+	public Integer getZjId() {
 		return zjId;
 	}
 
-	public void setZjId(PslnvoicingZijin zjId) {
+	public void setZjId(Integer zjId) {
 		this.zjId = zjId;
 	}
 
