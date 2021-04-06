@@ -1,7 +1,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pslnvoicing.mapper.PslnvoicingClientMapper">
 
-    <resultMap id="a" type="com.example.pslnvoicing.pojos.PslnvoicingClient">
+    <resultMap id="all" type="com.example.pslnvoicing.pojos.PslnvoicingClient">
         <id property="clientId" column="client_id"></id>
         <result property="clientName" column="client_name"></result>
         <result property="clientNum" column="client_num"></result>
@@ -21,20 +21,32 @@
     </resultMap>
 
 <!--    新增-->
-<!--    <insert id="createclient" parameterType="a">-->
-<!--        INSERT  INTO pslnvoicing_client-->
-<!--        (client_name,client_id,client_num,client_type,client_price_ratio,client_receivables_balance,-->
-<!--        client_balance_prepayment,client_actual_receivable,client_address,client_head,client_contact,-->
-<!--        client_creator,client_create_time,client_update_time,client_phone,client_contact_number)-->
-<!--        VALUES-->
-<!--        (#{clientName}，#{clientType}，#{clientNum}，#{clientReceivablesBalance}，#{clientBalancePrepayment}，-->
-<!--        #{clientActualReceivable}，#{clientPriceRatio}，#{clientCreator}，#{clientUpdateTime}，#{clientCreateTime}，-->
-<!--        #{clientContact}，#{clientHead}，#{clientPhone}，#{clientContactNum}，#{clientId});-->
-
-<!--    </insert>-->
+    <insert id="createclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">
+       INSERT  INTO pslnvoicing_client
+       (client_name,client_id,client_num,client_type,client_price_ratio,client_receivables_balance,
+        client_balance_prepayment,client_actual_receivable,client_address,client_head,client_contact,
+        client_creator,client_create_time,client_update_time,client_phone,client_contact_number)
+        VALUES
+        (#{clientName},#{clientId},#{clientType},#{clientNum},#{clientReceivablesBalance},#{clientBalancePrepayment},
+       #{clientActualReceivable},#{clientAddress},#{clientPriceRatio},#{clientCreator},#{clientUpdateTime},#{clientCreateTime},
+       #{clientContact},#{clientHead},#{clientPhone},#{clientContactNum})
+    </insert>
 
     <!-- 查询-->
-    <select id="selectClient" resultMap="a">
+    <select id="selectClient" resultMap="all">
         SELECT * FROM pslnvoicing_client ORDER BY client_id asc
     </select>
+
+<!--    修改-->
+    <update id="updateclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">
+        update pslnvoicing_client
+        set client_name = #{client_name},
+            client_type = #{client_type},
+            client_head = #{client_head}
+            WHERE client_id = #{client_id}
+    </update>
+
+    <delete id="deleteclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">
+        delete from pslvoicing_client where client_id=#{clientId}
+    </delete>
 </mapper>
