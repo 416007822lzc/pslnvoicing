@@ -1,4 +1,4 @@
-package com.example.pslnvoicing.vo;
+package com.example.pslnvoicing.conn;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

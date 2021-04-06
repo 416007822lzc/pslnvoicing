@@ -10,7 +10,7 @@ public class PslnvoiningWarehouse {
 	private int warehouseNum;
 	private String warehouseAddress;
 	private String warehouseHead;
-	private int warehousePhone;
+	private String warehousePhone;
 	private int warehouseCall;
 	private String warehouseNote;
 	private int warehouseDisable;
@@ -67,11 +67,11 @@ public class PslnvoiningWarehouse {
 
 	@Basic
 	@Column(name = "warehouse_phone")
-	public int getWarehousePhone() {
+	public String getWarehousePhone() {
 		return warehousePhone;
 	}
 
-	public void setWarehousePhone(int warehousePhone) {
+	public void setWarehousePhone(String warehousePhone) {
 		this.warehousePhone = warehousePhone;
 	}
 

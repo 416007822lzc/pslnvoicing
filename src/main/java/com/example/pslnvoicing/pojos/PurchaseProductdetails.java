@@ -13,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class PurchaseProductdetails {
 	private int pPdId;
-	private Integer pOId;
+	private String pOPurchasenumber;
 	private String pPdCpid;
 	private String pPdSname;
 	private Integer pPdNumber;
