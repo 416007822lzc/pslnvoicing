@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class PslnvoicingSuppier {
 	private String supplierName;
-	private Integer supplierId;
+	private int supplierId;
 	private int supplierNum;
 	private String supplierType;
 	private BigDecimal supplierShouldPayments;
@@ -33,11 +33,11 @@ public class PslnvoicingSuppier {
 
 	@Id
 	@Column(name = "supplier_id")
-	public Integer getSupplierId() {
+	public int getSupplierId() {
 		return supplierId;
 	}
 
-	public void setSupplierId(Integer supplierId) {
+	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
 	}
 

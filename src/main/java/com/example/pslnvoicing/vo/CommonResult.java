@@ -1,14 +1,12 @@
-package com.example.pslnvoicing.conn;
+package com.example.pslnvoicing.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-//@Data  //(get  set)
-//@NoArgsConstructor//(有参  构造 )
-//@AllArgsConstructor//（无参数构造）
-
+//@Data  (get  set)
+//@NoArgsConstructor(有参  构造 )
+//@AllArgsConstructor（无参数构造）
 public class CommonResult<T> {
 
     private Integer code;

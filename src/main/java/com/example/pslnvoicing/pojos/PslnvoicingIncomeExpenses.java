@@ -5,17 +5,17 @@ import java.util.Objects;
 
 
 public class PslnvoicingIncomeExpenses {
-	private Integer ieId;
+	private int ieId;
 	private String incomeName;
 	private String expensesName;
 
 	@Id
 	@Column(name = "ie_id")
-	public Integer getIeId() {
+	public int getIeId() {
 		return ieId;
 	}
 
-	public void setIeId(Integer ieId) {
+	public void setIeId(int ieId) {
 		this.ieId = ieId;
 	}
 
