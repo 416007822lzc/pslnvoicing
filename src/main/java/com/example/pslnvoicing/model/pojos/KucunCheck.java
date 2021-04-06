@@ -1,5 +1,8 @@
 package com.example.pslnvoicing.model.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,6 +11,8 @@ import java.util.Objects;
 public class KucunCheck {
 	private int checkId;
 	private Integer empId;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Timestamp checkTime;
 	private Integer checkProduct;
 	private Integer checkProductEnd;
@@ -16,6 +21,20 @@ public class KucunCheck {
 	private Integer checkInventory;
 	private String checkNote;
 	private Integer checkNumber;
+	private String checkNum;
+
+
+	private PslnvoiningWarehouse warehouse;
+
+	@ManyToOne
+	@JoinColumn(name = "warehouse_id",referencedColumnName = "warehouse_id")
+	public PslnvoiningWarehouse getWarehouse() {
+		return warehouse;
+	}
+
+	public void setWarehouse(PslnvoiningWarehouse warehouse) {
+		this.warehouse = warehouse;
+	}
 
 	@Id
 	@Column(name = "check_id")
@@ -116,7 +135,15 @@ public class KucunCheck {
 	public void setCheckNumber(Integer checkNumber) {
 		this.checkNumber = checkNumber;
 	}
+	@Basic
+	@Column(name = "check_num")
+	public String getCheckNum() {
+		return checkNum;
+	}
 
+	public void setCheckNum(String checkNum) {
+		this.checkNum = checkNum;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

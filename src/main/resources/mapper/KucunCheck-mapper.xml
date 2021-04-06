@@ -1,0 +1,85 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pslnvoicing.model.mapper.KucunCheckMapper">
+    <resultMap id="check" type="com.example.pslnvoicing.model.pojos.KucunCheck">
+        <id column="check_id" property="checkId"></id>
+        <result column="check_time" property="checkTime"></result>
+        <result column="check_product" property="checkProduct"></result>
+        <result column="check_product_end" property="checkProductEnd"></result>
+        <result column="check_staff" property="checkStaff"></result>
+        <result column="check_state" property="checkState"></result>
+        <result column="check_inventory" property="checkInventory"></result>
+        <result column="check_note" property="checkNote"></result>
+        <result column="check_number" property="checkNumber"></result>
+        <result column="check_num" property="checkNum"></result>
+        <!--仓库-->
+        <association property="warehouse" javaType="com.example.pslnvoicing.model.pojos.PslnvoiningWarehouse">
+            <id column="warehouse_id" property="warehouseId"></id>
+            <result column="warehouse_name" property="warehouseName"></result>
+            <result column="warehouse_num" property="warehouseNum"></result>
+            <result column="warehouse_address" property="warehouseAddress"></result>
+            <result column="warehouse_head" property="warehouseHead"></result>
+            <result column="warehouse_phone" property="warehousePhone"></result>
+            <result column="warehouse_call" property="warehouseCall"></result>
+            <result column="warehouse_note" property="warehouseNote"></result>
+            <result column="warehouse_disable" property="warehouseDisable"></result>
+        </association>
+    </resultMap>
+
+    <select id="findCheck" resultMap="check">
+        select * from kucun_check checks left join pslnvoining_warehouse pw on checks.psl_warehouse_id=pw.warehouse_id
+        <!--<where>-->
+            <!--<if test="checkTime!=null and checkTime!=''">-->
+                <!--and checks.check_time like '%${checkTime}%'-->
+            <!--</if>-->
+            <!--<if test="warehouseName!=null and warehouseName!=''">-->
+                <!--and pw.warehouse_name like '%${warehouseName}%'-->
+            <!--</if>-->
+            <!--<if test="checkStaff!=null and checkStaff!=''">-->
+                <!--and checks.check_staff like '%${checkStaff}%'-->
+            <!--</if>-->
+            <!--<if test="checkTime!=null and checkTime!=''">-->
+                <!--and checks.check_time between '${checkTime}' and '${checkTime}'-->
+            <!--</if>-->
+        <!--</where>-->
+    </select>
+
+    <!--按时间查询-->
+    <!--&#45;&#45; 查询盘点时间-->
+    <!--&#45;&#45; 今天-->
+    <select id="toDay" resultMap="check">
+      select * from kucun_check where to_days(check_time) = to_days(now())
+    </select>
+    <!--&#45;&#45; 昨天-->
+    <select id="yesterday" resultMap="check">
+    select * from kucun_check where 1=> to_days(now()) - to_days(check_time)
+    </select>
+    <!--&#45;&#45; 本周-->
+    <select id="thisWeek" resultMap="check">
+      select * from kucun_check where yearweek(date_format(check_time,'%Y-%m-%d')) = yearweek(now())
+    </select>
+    <!--&#45;&#45; 上周-->
+    <select id="lastWeek" resultMap="check">
+      select * from kucun_check where yearweek(date_format(check_time,'%Y-%m-%d')) = yearweek(now())-1
+    </select>
+    <!--&#45;&#45; 本月-->
+    <select id="thisMonth" resultMap="check">
+      select * from kucun_check where date_format(check_time,'%Y%m') = date_format(curdate(),'%Y%m')
+    </select>
+    <!--&#45;&#45; 上月-->
+    <select id="lastMonth" resultMap="check">
+      select * from kucun_check where period_diff(date_format(now(),'%Y%m'),date_format(check_time,'%Y%m')) =1
+    </select>
+    <!--&#45;&#45; 自定义查询时间-->
+    <select id="findDate" resultMap="check">
+      select * from kucun_check where check_time between '2021-04-01' and '2021-04-03'
+    </select>
+
+    <!--&#45;&#45; 新增盘点单-->
+    <insert id="addCheck">
+        insert into kucun_check
+        (check_id,warehouse_id,outbound_id,psl_warehouse_id,product_id,
+        emp_id,check_time,check_product,check_product_end,check_staff,
+        check_state,check_inventory,check_note,check_number)
+        values (6,6,6,6,6,6,'2020-09-12',100,100,'亚总',1,0,'我是你爹',100)
+    </insert>
+</mapper>
