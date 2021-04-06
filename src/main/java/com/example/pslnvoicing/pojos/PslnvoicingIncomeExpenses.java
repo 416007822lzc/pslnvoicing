@@ -3,7 +3,6 @@ package com.example.pslnvoicing.pojos;
 import javax.persistence.*;
 import java.util.Objects;
 
-
 public class PslnvoicingIncomeExpenses {
 	private Integer ieId;
 	private String incomeName;

@@ -42,7 +42,6 @@ public class CapitalPaymentService {
 		return  capitalPaymentMapper.selectcg();
 	}
 
-
 	/**
 	 * 修改
 	 */
