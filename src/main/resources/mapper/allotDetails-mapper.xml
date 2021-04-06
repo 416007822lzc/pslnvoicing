@@ -27,19 +27,19 @@
             <result column="allot_callout" property="allotCallout"></result>
         </association>
         <association property="products" javaType="com.example.pslnvoicing.model.pojos.PslvoicingProduct">
-            <id column="product_id" property="productId"></id>
-            <result column="product_name" property="productName"></result>
-            <result column="product_num" property="productNum"></result>
-            <result column="product_spec" property="productSpec"></result>
-            <result column="product_categories" property="productCategories"></result>
-            <result column="product_unit" property="productUnit"></result>
-            <result column="product_openingNum" property="productOpeningNum"></result>
-            <result column="product_status" property="productStatus"></result>
-            <result column="product_remark" property="productRemark"></result>
-            <result column="product_createTime" property="productCreateTime"></result>
-            <result column="product_salesPrice" property="productSalesPrice"></result>
-            <result column="product_purchase_price" property="productPurchasePrice"></result>
-            <result column="product_opening_cost" property="productOpeningCost"></result>
+        <id column="product_id" property="productId"></id>
+        <result column="product_name" property="productName"></result>
+        <result column="product_num" property="productNum"></result>
+        <result column="product_spec" property="productSpec"></result>
+        <result column="product_categories" property="productCategories"></result>
+        <result column="product_unit" property="productUnit"></result>
+        <result column="product_openingNum" property="productOpeningNum"></result>
+        <result column="product_status" property="productStatus"></result>
+        <result column="product_remark" property="productRemark"></result>
+        <result column="product_createTime" property="productCreateTime"></result>
+        <result column="product_salesPrice" property="productSalesPrice"></result>
+        <result column="product_purchase_price" property="productPurchasePrice"></result>
+        <result column="product_opening_cost" property="productOpeningCost"></result>
             <association property="warehouse" javaType="com.example.pslnvoicing.model.pojos.PslnvoiningWarehouse">
                 <id column="warehouse_id" property="warehouseId"></id>
                 <result column="warehouse_name" property="warehouseName"></result>

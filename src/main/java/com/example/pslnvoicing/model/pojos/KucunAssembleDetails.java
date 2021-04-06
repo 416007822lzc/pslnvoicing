@@ -6,20 +6,21 @@ import java.util.Objects;
 
 public class KucunAssembleDetails {
 	private int assembleDetailsId;
-	private int assembleId;
-//	private Integer assembleDetailsProuctId;
 	private String assembleDetailsWarehouse;
 	private Integer assembleDetailsNumber;
 	private Integer assembleDetailsCost;
 	private String assembleDetailsRemark;
 	private PslvoicingProduct product;
+	private KucunAssemble kucunAssemble;
 
-	public int getAssembleId() {
-		return assembleId;
+	@ManyToOne
+	@JoinColumn(name = "assemble_id")
+	public KucunAssemble getKucunAssemble() {
+		return kucunAssemble;
 	}
 
-	public void setAssembleId(int assembleId) {
-		this.assembleId = assembleId;
+	public void setKucunAssemble(KucunAssemble kucunAssemble) {
+		this.kucunAssemble = kucunAssemble;
 	}
 
 	@Id
