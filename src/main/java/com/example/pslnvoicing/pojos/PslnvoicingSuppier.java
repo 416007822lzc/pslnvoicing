@@ -26,7 +26,6 @@ public class PslnvoicingSuppier {
 	public String getSupplierName() {
 		return supplierName;
 	}
-
 	public void setSupplierName(String supplierName) {
 		this.supplierName = supplierName;
 	}

@@ -41,7 +41,6 @@ public class CapitalPaymentService {
 	public List<PurchaseOrder>selectcg(){
 		return  capitalPaymentMapper.selectcg();
 	}
-
 	/**
 	 * 修改
 	 */

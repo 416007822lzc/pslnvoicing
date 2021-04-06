@@ -8,5 +8,4 @@ import org.springframework.stereotype.Service;
 public class CapialPaymentdService {
 	@Autowired
 	CapitalPaymentDMapper capitalPaymentDMapper;
-
 }

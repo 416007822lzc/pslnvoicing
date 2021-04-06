@@ -20,6 +20,8 @@ public class CapitalPayment {
 	private Integer rpaymentState;
 	private Integer zjId;
 
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "payment_id")
