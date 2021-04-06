@@ -1,0 +1,132 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pslnvoicing.mapper.CapitalPaymentMapper">
+    <resultMap id="fu" type="com.example.pslnvoicing.pojos.CapitalPayment">
+        <id column="payment_id" property="paymentId"/>
+        <result column="payment_number" property="paymentNumber"/>
+        <result column="payment_dat" property="paymentDat"/>
+        <result column="payment_money" property="paymentMoney"/>
+        <result column="payment_amoney" property="paymentAmoney"/>
+        <result column="rpayment_state" property="rpaymentState"/>
+        <result column="zj_id" property="zjId"/>
+
+        <!--采购表-->
+        <association property="pOId" javaType="com.example.pslnvoicing.pojos.PurchaseOrder">
+            <id column="p_o_id" property="pOId"/>
+            <result column="p_o_purchasenumber" property="pOPurchasenumber"/>
+            <result column="p_o_documentdate" property="pODocumentdate"/>
+            <result column="p_o_deliverydate" property="pODeliverydate"/>
+            <result column="p_o_jine" property="pOJine"/>
+            <result column="p_o_purchasingstaff" property="pOPurchasingstaff"/>
+            <result column="p_o_approvalstatus" property="pOApprovalstatus"/>
+            <result column="p_o_finalapprovaltime" property="pOFinalapprovaltime"/>
+            <result column="p_o_executionstatus" property="pOExecutionstatus"/>
+            <result column="p_o_repositorystatus" property="pORepositorystatus"/>
+            <result column="p_o_notesondocuments" property="pONotesondocuments"/>
+            <result column="p_o_creationtime" property="pOCreationtime"/>
+            <result column="p_o_modificationtime" property="pOModificationtime"/>
+            <result column="p_w_warehousingnumber" property="pWWarehousingnumber"/>
+            <!--供应商表-->
+            <association property="supplierId" javaType="com.example.pslnvoicing.pojos.PslnvoicingSuppier">
+                <id column="supplier_id" property="supplierId"/>
+                <result column="supplier_name" property="supplierName"/>
+            </association>
+
+        </association>
+
+        <!--供应商表-->
+        <association property="supplierId" javaType="com.example.pslnvoicing.pojos.PslnvoicingSuppier">
+            <id column="supplier_id" property="supplierId"/>
+            <result column="supplier_name" property="supplierName"/>
+        </association>
+
+
+        <!--收支类别表-->
+        <association property="ieId" javaType="com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses">
+            <id column="ie_id" property="ieId"/>
+            <result column="income_name" property="incomeName"/>
+            <result column="expenses_name" property="expensesName"/>
+        </association>
+
+    </resultMap>
+
+
+
+    <!--收支类型-->
+    <resultMap id="leix" type="com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses">
+        <id column="ie_id" property="ieId"/>
+        <result column="income_name" property="incomeName"/>
+        <result column="expenses_name" property="expensesName"/>
+    </resultMap>
+
+
+    <!--供应商-->
+    <resultMap id="gys" type="com.example.pslnvoicing.pojos.PslnvoicingSuppier">
+        <id column="supplier_id" property="supplierId"/>
+        <result column="supplier_name" property="supplierName"/>
+    </resultMap>
+
+        <!--资金账户表-->
+    <resultMap id="zijin" type="com.example.pslnvoicing.pojos.PslnvoicingZijin">
+        <id column="zj_id" property="zjId"/>
+        <result column="zj_name" property="zjName"/>
+    </resultMap>
+
+    <!--采购表-->
+    <resultMap id="cg" type="com.example.pslnvoicing.pojos.PurchaseOrder">
+        <id column="p_o_id" property="pOId"/>
+        <result column="p_o_purchasenumber" property="pOPurchasenumber"/>
+        <result column="p_o_purchasingstaff" property="pOPurchasingstaff"/>
+    </resultMap>
+
+
+
+
+    <!--模糊查询 条件筛选  供应商  收支类别   付款人   单编号-->
+    <select id="selectall" resultMap="fu">
+        select * from  purchase_order pco  left join capital_payment clp   on   clp.p_o_id=pco.p_o_id
+        left join pslnvoicing_zijin  plz on clp.zj_id=plz.zj_id
+        left join pslnvoicing_suppier  pls on pco.supplier_id=pls.supplier_id
+        left join pslnvoicing_income_expenses   pie on   clp.ie_id=pie.ie_id
+			<where>
+                <if test="pOId !=null and pOId !=''">
+                    and pco.p_o_purchasingstaff like concat('%',concat(#{pOId.pOPurchasingstaff},'%'))
+                </if>
+            </where>
+        order by clp.payment_id desc
+    </select>
+
+    <!--下拉表-->
+    <select id="selectlxall" resultMap="leix">
+            select distinct * from  pslnvoicing_income_expenses
+    </select>
+
+
+    <!--下拉表  供应商-->
+    <select id="selectlallgys" resultMap="gys">
+            select distinct * from  pslnvoicing_suppier
+    </select>
+    <!--下拉表  资金账户-->
+    <select id="selectlallzijin" resultMap="zijin">
+            select distinct * from  pslnvoicing_zijin
+    </select>
+
+    <!--采购表-->
+    <select id="selectcg" resultMap="cg">
+         select distinct * from  purchase_order
+    </select>
+
+    <update id="updatefukuan"  parameterType="com.example.pslnvoicing.pojos.CapitalPayment">
+       update capital_payment set payment_dat = #{paymentDat},payment_money=#{paymentMoney},
+       payment_number=#{paymentNumber},rpayment_state=#{rpaymentState},zj_id=#{zjId} where payment_id = #{paymentId};
+    </update>
+
+    <insert id="insertfukuan" parameterType="com.example.pslnvoicing.pojos.CapitalPayment">
+        insert into capital_payment(p_o_id) values (#{pOId.pOId})
+    </insert>
+
+    <!--详情表新增-->
+    <insert id="insertxq" parameterType="com.example.pslnvoicing.pojos.CapitalPaymentDetails">
+        insert into capital_payment_details(payment_id) values(#{paymentId});
+    </insert>
+
+</mapper>
