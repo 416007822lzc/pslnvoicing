@@ -6,7 +6,6 @@ import java.util.Objects;
 public class PslnvoicingZijin {
 	private Integer zjId;
 	private String zjName;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "zj_id")

@@ -7,8 +7,6 @@ public class PslnvoicingIncomeExpenses {
 	private int ieId;
 	private String incomeName;
 	private String expensesName;
-
-
 	@Id
 	@Column(name = "ie_id")
 	public int getIeId() {

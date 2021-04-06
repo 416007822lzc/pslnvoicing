@@ -99,7 +99,7 @@
     <select id="selectlxall" resultMap="leix">
             select distinct * from  pslnvoicing_income_expenses
     </select>
-    
+
     <!--下拉表  供应商-->
     <select id="selectlallgys" resultMap="gys">
             select distinct * from  pslnvoicing_suppier
