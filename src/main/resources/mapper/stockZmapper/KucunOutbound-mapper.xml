@@ -1,12 +1,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pslnvoicing.model.mapper.stockZmapper.KucunOutboundMapper">
-    <resultMap id="outbound" type="com.example.pslnvoicing.model.pojos.KucunOutbound">
+<mapper namespace="com.example.pslnvoicing.mapper.stockZmapper.KucunOutboundMapper">
+    <resultMap id="outbound" type="com.example.pslnvoicing.pojos.KucunOutbound">
         <id column="outbound_id" property="outboundId"></id>
         <result column="outbound_number" property="outboundNumber"></result>
         <result column="outbound_time" property="outboundTime"></result>
         <result column="outbound_staff" property="outboundStaff"></result>
         <!--仓库-->
-        <association property="warehouse" javaType="com.example.pslnvoicing.model.pojos.PslnvoiningWarehouse">
+        <association property="warehouse" javaType="com.example.pslnvoicing.pojos.PslnvoiningWarehouse">
             <id column="warehouse_id" property="warehouseId"></id>
             <result column="warehouse_name" property="warehouseName"></result>
             <result column="warehouse_num" property="warehouseNum"></result>

@@ -1,7 +1,7 @@
 package com.example.pslnvoicing.controller.stockZcontroller;
 
-import com.example.pslnvoicing.model.pojos.KucunWarehouse;
-import com.example.pslnvoicing.model.service.stockZservice.KucunWarehouseService;
+import com.example.pslnvoicing.pojos.KucunWarehouse;
+import com.example.pslnvoicing.service.stockZservice.KucunWarehouseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

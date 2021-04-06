@@ -1,6 +1,6 @@
-package com.example.pslnvoicing.model.mapper.stockZmapper;
+package com.example.pslnvoicing.mapper.stockZmapper;
 
-import com.example.pslnvoicing.model.pojos.KucunCheck;
+import com.example.pslnvoicing.pojos.KucunCheck;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

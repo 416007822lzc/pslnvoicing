@@ -1,4 +1,4 @@
-package com.example.pslnvoicing.model.pojos;
+package com.example.pslnvoicing.pojos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;

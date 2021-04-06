@@ -1,7 +1,7 @@
-package com.example.pslnvoicing.model.service.stockZservice;
+package com.example.pslnvoicing.service.stockZservice;
 
-import com.example.pslnvoicing.model.mapper.stockZmapper.KucunCheckMapper;
-import com.example.pslnvoicing.model.pojos.KucunCheck;
+import com.example.pslnvoicing.mapper.stockZmapper.KucunCheckMapper;
+import com.example.pslnvoicing.pojos.KucunCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
