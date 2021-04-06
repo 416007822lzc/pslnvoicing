@@ -20,6 +20,8 @@ public class PslnvoicingSuppier {
 	private String supplierCreator;
 	private Timestamp supplierCreateTime;
 	private Timestamp supplierUpdateTime;
+	private String supplierPhone;
+	private String supplierContactNumber;
 
 	@Basic
 	@Column(name = "supplier_name")
@@ -151,6 +153,26 @@ public class PslnvoicingSuppier {
 		this.supplierUpdateTime = supplierUpdateTime;
 	}
 
+	@Basic
+	@Column(name = "supplier_phone")
+	public String getSupplierPhone() {
+		return supplierPhone;
+	}
+
+	public void setSupplierPhone(String SsupplierPhone) {
+		this.supplierPhone = supplierPhone;
+	}
+
+	@Basic
+	@Column(name = "supplier_contact_number")
+	public String getSupplierContactNumber() {
+		return supplierContactNumber;
+	}
+
+	public void setSupplierContactNumber(String supplierContactNumber) {
+		this.supplierContactNumber = supplierContactNumber;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -168,11 +190,13 @@ public class PslnvoicingSuppier {
 				Objects.equals(supplierContact, that.supplierContact) &&
 				Objects.equals(supplierCreator, that.supplierCreator) &&
 				Objects.equals(supplierCreateTime, that.supplierCreateTime) &&
+				Objects.equals(supplierPhone, that.supplierPhone) &&
+				Objects.equals(supplierContactNumber, that.supplierContactNumber) &&
 				Objects.equals(supplierUpdateTime, that.supplierUpdateTime);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(supplierName, supplierId, supplierNum, supplierType, supplierShouldPayments, supplierPillPayments, supplierActualPayments, supplierAddress, supplierHead, supplierContact, supplierCreator, supplierCreateTime, supplierUpdateTime);
+		return Objects.hash(supplierName, supplierId, supplierNum, supplierType, supplierShouldPayments, supplierPillPayments, supplierActualPayments, supplierAddress, supplierHead, supplierContact, supplierCreator, supplierCreateTime, supplierUpdateTime,supplierPhone,supplierContactNumber);
 	}
 }
