@@ -55,6 +55,7 @@ public class DataStatisticsController {
     public List<RatifyVo> queryTbDeliveryRatify(String approvalStatus1){
         int approvalStatus = Integer.parseInt(approvalStatus1);
         approvalStatus+=1;
+        System.out.println(approvalStatus);
         List<RatifyVo> ratifyVos = dataStatistics.queryAllReturns(approvalStatus);
 //        return new CommonResult(200,"",ratifyVos);
         return ratifyVos;

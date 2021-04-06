@@ -98,12 +98,12 @@
         <result column="outbound_time" property="submitterTime"/>
     </resultMap>
     <resultMap id="WarehouseReturns" type="com.example.pslnvoicing.vo.workbench.RatifyVo">
-        <id column="warehouse_id" property="id"/>
+        <id column="k_warehouse_id" property="id"/>
         <result column="warehouse_number" property="number"/>
         <result column="supplier_name" property="supplier"/>
-        <result column="dismounting_money" property="price"/>
-        <result column="warehouse_staff" property="submitter"/>
-        <result column="warehouse_time" property="submitterTime"/>
+        <result column="k_dismounting_money" property="price"/>
+        <result column="k_warehouse_staff" property="submitter"/>
+        <result column="k_warehouse_time" property="submitterTime"/>
     </resultMap>
 
     <resultMap id="PurchaseReturnReturns" type="com.example.pslnvoicing.vo.workbench.RatifyVo">
@@ -242,6 +242,6 @@
     </select>
 
     <select id="queryWarehouseReturns" resultMap="WarehouseReturns">
-        select * from kucun_warehouse where approval_status = #{approvalStatus}
+        select * from kucun_warehouse where k_approval_status = #{approvalStatus}
     </select>
 </mapper>

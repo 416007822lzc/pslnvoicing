@@ -6,21 +6,11 @@ import java.util.Objects;
 
 public class KucunAssembleDetails {
 	private int assembleDetailsId;
-	private int assembleId;
-//	private Integer assembleDetailsProuctId;
-	private String assembleDetailsWarehouse;
+	private Integer assembleDetailsProuctId;
+	private Integer assembleDetailsWarehouse;
 	private Integer assembleDetailsNumber;
 	private Integer assembleDetailsCost;
 	private String assembleDetailsRemark;
-	private PslvoicingProduct product;
-
-	public int getAssembleId() {
-		return assembleId;
-	}
-
-	public void setAssembleId(int assembleId) {
-		this.assembleId = assembleId;
-	}
 
 	@Id
 	@Column(name = "assemble_details_id")
@@ -32,23 +22,23 @@ public class KucunAssembleDetails {
 		this.assembleDetailsId = assembleDetailsId;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	public PslvoicingProduct getProduct() {
-		return product;
+	@Basic
+	@Column(name = "assemble_details_prouctId")
+	public Integer getAssembleDetailsProuctId() {
+		return assembleDetailsProuctId;
 	}
 
-	public void setProduct(PslvoicingProduct product) {
-		this.product = product;
+	public void setAssembleDetailsProuctId(Integer assembleDetailsProuctId) {
+		this.assembleDetailsProuctId = assembleDetailsProuctId;
 	}
 
 	@Basic
 	@Column(name = "assemble_details_warehouse")
-	public String getAssembleDetailsWarehouse() {
+	public Integer getAssembleDetailsWarehouse() {
 		return assembleDetailsWarehouse;
 	}
 
-	public void setAssembleDetailsWarehouse(String assembleDetailsWarehouse) {
+	public void setAssembleDetailsWarehouse(Integer assembleDetailsWarehouse) {
 		this.assembleDetailsWarehouse = assembleDetailsWarehouse;
 	}
 
@@ -88,6 +78,7 @@ public class KucunAssembleDetails {
 		if (o == null || getClass() != o.getClass()) return false;
 		KucunAssembleDetails that = (KucunAssembleDetails) o;
 		return assembleDetailsId == that.assembleDetailsId &&
+				Objects.equals(assembleDetailsProuctId, that.assembleDetailsProuctId) &&
 				Objects.equals(assembleDetailsWarehouse, that.assembleDetailsWarehouse) &&
 				Objects.equals(assembleDetailsNumber, that.assembleDetailsNumber) &&
 				Objects.equals(assembleDetailsCost, that.assembleDetailsCost) &&
@@ -96,6 +87,6 @@ public class KucunAssembleDetails {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(assembleDetailsId, assembleDetailsWarehouse, assembleDetailsNumber, assembleDetailsCost, assembleDetailsRemark);
+		return Objects.hash(assembleDetailsId, assembleDetailsProuctId, assembleDetailsWarehouse, assembleDetailsNumber, assembleDetailsCost, assembleDetailsRemark);
 	}
 }

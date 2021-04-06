@@ -6,30 +6,11 @@ import java.util.Objects;
 
 public class KucunDismountingDetails {
 	private int dismountingDetailsId;
-	private Integer dismountingId;
-//	private Integer dismountingDetailsProuctId;
+	private Integer dismountingDetailsProuctId;
 	private Integer dismountingDetailsWarehouse;
 	private Integer dismountingDetailsNumber;
 	private Integer dismountingDetailsCost;
 	private String dismountingDetailsRemark;
-	private PslvoicingProduct product;
-
-
-	public PslvoicingProduct getProduct() {
-		return product;
-	}
-
-	public void setProduct(PslvoicingProduct product) {
-		this.product = product;
-	}
-
-	public Integer getDismountingId() {
-		return dismountingId;
-	}
-
-	public void setDismountingId(Integer dismountingId) {
-		this.dismountingId = dismountingId;
-	}
 
 	@Id
 	@Column(name = "dismounting_details_id")
@@ -41,6 +22,15 @@ public class KucunDismountingDetails {
 		this.dismountingDetailsId = dismountingDetailsId;
 	}
 
+	@Basic
+	@Column(name = "dismounting_details_prouctId")
+	public Integer getDismountingDetailsProuctId() {
+		return dismountingDetailsProuctId;
+	}
+
+	public void setDismountingDetailsProuctId(Integer dismountingDetailsProuctId) {
+		this.dismountingDetailsProuctId = dismountingDetailsProuctId;
+	}
 
 	@Basic
 	@Column(name = "dismounting_details_warehouse")
@@ -88,6 +78,7 @@ public class KucunDismountingDetails {
 		if (o == null || getClass() != o.getClass()) return false;
 		KucunDismountingDetails that = (KucunDismountingDetails) o;
 		return dismountingDetailsId == that.dismountingDetailsId &&
+				Objects.equals(dismountingDetailsProuctId, that.dismountingDetailsProuctId) &&
 				Objects.equals(dismountingDetailsWarehouse, that.dismountingDetailsWarehouse) &&
 				Objects.equals(dismountingDetailsNumber, that.dismountingDetailsNumber) &&
 				Objects.equals(dismountingDetailsCost, that.dismountingDetailsCost) &&
@@ -96,6 +87,6 @@ public class KucunDismountingDetails {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dismountingDetailsId, dismountingDetailsWarehouse, dismountingDetailsNumber, dismountingDetailsCost, dismountingDetailsRemark);
+		return Objects.hash(dismountingDetailsId, dismountingDetailsProuctId, dismountingDetailsWarehouse, dismountingDetailsNumber, dismountingDetailsCost, dismountingDetailsRemark);
 	}
 }

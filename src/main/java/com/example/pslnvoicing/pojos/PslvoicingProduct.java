@@ -9,7 +9,7 @@ import java.util.Objects;
 public class PslvoicingProduct {
 	private String productName;
 	private int productId;
-	private String productNum;
+	private int productNum;
 	private String productSpec;
 	private String productCategories;
 	private String productUnit;
@@ -20,17 +20,7 @@ public class PslvoicingProduct {
 	private BigDecimal productSalesPrice;
 	private BigDecimal productPurchasePrice;
 	private BigDecimal productOpeningCost;
-	private PslnvoiningWarehouse warehouse;
-
-	@ManyToOne
-	@JoinColumn(name = "warehouse_id")
-	public PslnvoiningWarehouse getWarehouse() {
-		return warehouse;
-	}
-
-	public void setWarehouse(PslnvoiningWarehouse warehouse) {
-		this.warehouse = warehouse;
-	}
+	private Integer warehouseId;
 
 	@Basic
 	@Column(name = "product_name")
@@ -54,11 +44,11 @@ public class PslvoicingProduct {
 
 	@Basic
 	@Column(name = "product_num")
-	public String getProductNum() {
+	public int getProductNum() {
 		return productNum;
 	}
 
-	public void setProductNum(String productNum) {
+	public void setProductNum(int productNum) {
 		this.productNum = productNum;
 	}
 
@@ -162,7 +152,15 @@ public class PslvoicingProduct {
 		this.productOpeningCost = productOpeningCost;
 	}
 
+	@Basic
+	@Column(name = "warehouse_id")
+	public Integer getWarehouseId() {
+		return warehouseId;
+	}
 
+	public void setWarehouseId(Integer warehouseId) {
+		this.warehouseId = warehouseId;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -181,11 +179,12 @@ public class PslvoicingProduct {
 				Objects.equals(productCreateTime, that.productCreateTime) &&
 				Objects.equals(productSalesPrice, that.productSalesPrice) &&
 				Objects.equals(productPurchasePrice, that.productPurchasePrice) &&
-				Objects.equals(productOpeningCost, that.productOpeningCost);
+				Objects.equals(productOpeningCost, that.productOpeningCost) &&
+				Objects.equals(warehouseId, that.warehouseId);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(productName, productId, productNum, productSpec, productCategories, productUnit, productOpeningNum, productStatus, productRemark, productCreateTime, productSalesPrice, productPurchasePrice, productOpeningCost);
+		return Objects.hash(productName, productId, productNum, productSpec, productCategories, productUnit, productOpeningNum, productStatus, productRemark, productCreateTime, productSalesPrice, productPurchasePrice, productOpeningCost, warehouseId);
 	}
 }
