@@ -1,0 +1,100 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pslnvoicing.model.mapper.workbench.DataStatisticsMapper">
+
+    <resultMap id="TbDeliveryRatify" type="com.example.pslnvoicing.vo.workbench.RatifyVo">
+        <id column="delivery_order_id" property="id"/>
+        <result column="delivery_order_number" property="number"/>
+        <result column="client_name" property="supplier"/>
+        <result column="receivables" property="price"/>
+        <result column="emp_name" property="submitter"/>
+        <result column="create_time" property="submitterTime"/>
+    </resultMap>
+    <resultMap id="salesReturns" type="com.example.pslnvoicing.vo.workbench.RatifyVo">
+        <id column="sales_returns_id" property="id"/>
+        <result column="sales_returns_number" property="number"/>
+        <result column="client_name" property="supplier"/>
+        <result column="receivables" property="price"/>
+        <result column="emp_name" property="submitter"/>
+        <result column="create_time" property="submitterTime"/>
+    </resultMap>
+    <select id="queryPaymentByState" resultType="integer">
+        SELECT sum(payment_money) FROM capital_payment WHERE rpayment_state = 1
+    </select>
+
+    <select id="queryReceiptByState" resultType="integer">
+        SELECT sum(receipt_money) FROM capital_receipt WHERE receipt_state = 1
+    </select>
+
+    <select id="queryWarehousingByTimeNow" parameterType="string" resultType="com.example.pslnvoicing.vo.workbench.DataStatisticsVo">
+        select sum(p_w_jine) as sum,COUNT(*) as count from purchase_warehousing
+        <where>
+            <if test='saleT != null and saleT == "天"'>
+                to_days(p_w_storagedate) = to_days(now()) and p_w_approvalstatus = 2;
+            </if>
+            <if test='saleT != null and saleT == "周"'>
+                YEARWEEK(date_format(p_w_storagedate,'%Y-%m-%d')) = YEARWEEK(now()) and p_w_approvalstatus = 2;
+            </if>
+            <if test='saleT != null and saleT == "月"'>
+                DATE_FORMAT( p_w_storagedate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m') and p_w_approvalstatus = 2;
+            </if>
+        </where>
+
+    </select>
+
+    <select id="queryWarehousingByTimePreviously" resultType="com.example.pslnvoicing.vo.workbench.DataStatisticsVo">
+        select sum(p_w_jine) as sum,COUNT(*) as count from purchase_warehousing
+        <where>
+            <if test='saleT != null and saleT == "天"'>
+                DATEDIFF(p_w_storagedate,NOW())=-1 and p_w_approvalstatus = 2
+            </if>
+            <if test='saleT != null and saleT == "周"'>
+                YEARWEEK(date_format(p_w_storagedate,'%Y-%m-%d')) = YEARWEEK(now())-1 and p_w_approvalstatus = 2
+            </if>
+            <if test='saleT != null and saleT == "月"'>
+                PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( p_w_storagedate, '%Y%m' ) ) =1 and p_w_approvalstatus = 2
+            </if>
+        </where>
+    </select>
+
+    <select id="queryDeliverygByTimeNow" resultType="com.example.pslnvoicing.vo.workbench.DataStatisticsVo">
+        select sum(receivables)as sum,COUNT(*) as count from td_delivery_order
+        <where>
+            <if test='saleT != null and saleT == "天"'>
+                to_days(delivery_time) = to_days(now()) and approval_status = 2;
+            </if>
+            <if test='saleT != null and saleT == "周"'>
+                YEARWEEK(date_format(delivery_time,'%Y-%m-%d')) = YEARWEEK(now()) and approval_status = 2;
+            </if>
+            <if test='saleT != null and saleT == "月"'>
+                DATE_FORMAT( delivery_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m') and approval_status = 2;
+            </if>
+        </where>
+    </select>
+
+    <select id="queryDeliveryByTimePreviously" resultType="com.example.pslnvoicing.vo.workbench.DataStatisticsVo">
+        select sum(receivables) as sum,COUNT(*) as count from td_delivery_order
+        <where>
+            <if test='saleT != null and saleT == "天"'>
+                DATEDIFF(delivery_time,NOW())=-1 and approval_status = 2
+            </if>
+            <if test='saleT != null and saleT == "周"'>
+                YEARWEEK(date_format(delivery_time,'%Y-%m-%d')) = YEARWEEK(now())-1 and approval_status = 2
+            </if>
+            <if test='saleT != null and saleT == "月"'>
+                PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( delivery_time, '%Y%m' ) ) =1 and approval_status = 2
+            </if>
+        </where>
+    </select>
+
+    <select id="queryWarehouseNumber" resultType="com.example.pslnvoicing.vo.workbench.DataStatisticsVo">
+        SELECT sum(product_purchase_price) as sum, sum(product_opening_num) as count  FROM pslvoicing_product
+    </select>
+    
+    <select id="queryTbDeliveryRatify" resultMap="TbDeliveryRatify">
+        SELECT a.delivery_order_id,a.delivery_order_number,a.receivables,a.create_time,b.emp_name,c.client_name FROM td_delivery_order a LEFT JOIN personnel_emp b on a.emp_id = b.emp_id LEFT JOIN pslnvoicing_client c on c.client_id = a.client_id WHERE approval_status = 1
+    </select>
+
+    <select id="querySalesReturns" resultMap="salesReturns">
+        SELECT a.sales_returns_id,a.sales_returns_number,a.receivables,a.create_time,b.emp_name,c.client_name FROM td_sales_returns a LEFT JOIN personnel_emp b on a.emp_id = b.emp_id LEFT JOIN pslnvoicing_client c on c.client_id = a.client_id  WHERE approval_status = 1
+    </select>
+</mapper>
