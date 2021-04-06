@@ -1,5 +1,7 @@
 package com.example.pslnvoicing.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -7,24 +9,47 @@ import java.util.Objects;
 
 public class TbOrder {
 	private int orderId;
-	private Integer empId;
-	private Integer clientId;
-	private Integer warehouseId;
 	private String orderNumber;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp documentDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp deliveryDate;
 	private Double accountReceivable;
 	private Double paymentReceived;
 	private Integer deliveryStatus;
 	private String creatorPerson;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp createTime;
 	private Integer approvalStatus;
 	private Integer orderStatus;
 	private String currentExaminer;
 	private String deliveryOrderNumber;
+	private PersonnelEmp personnelEmp;
+	private PslnvoicingClient pslnvoicingClient;
+	private PslnvoiningWarehouse PslnvoiningWarehouse;
 
-	@Id
-	@Column(name = "order_id")
+	public TbOrder() {
+	}
+
+	public TbOrder(int orderId, String orderNumber, Timestamp documentDate, Timestamp deliveryDate, Double accountReceivable, Double paymentReceived, Integer deliveryStatus, String creatorPerson, Timestamp createTime, Integer approvalStatus, Integer orderStatus, String currentExaminer, String deliveryOrderNumber, PersonnelEmp personnelEmp, PslnvoicingClient pslnvoicingClient, com.example.pslnvoicing.pojos.PslnvoiningWarehouse pslnvoiningWarehouse) {
+		this.orderId = orderId;
+		this.orderNumber = orderNumber;
+		this.documentDate = documentDate;
+		this.deliveryDate = deliveryDate;
+		this.accountReceivable = accountReceivable;
+		this.paymentReceived = paymentReceived;
+		this.deliveryStatus = deliveryStatus;
+		this.creatorPerson = creatorPerson;
+		this.createTime = createTime;
+		this.approvalStatus = approvalStatus;
+		this.orderStatus = orderStatus;
+		this.currentExaminer = currentExaminer;
+		this.deliveryOrderNumber = deliveryOrderNumber;
+		this.personnelEmp = personnelEmp;
+		this.pslnvoicingClient = pslnvoicingClient;
+		PslnvoiningWarehouse = pslnvoiningWarehouse;
+	}
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -33,38 +58,6 @@ public class TbOrder {
 		this.orderId = orderId;
 	}
 
-	@Basic
-	@Column(name = "emp_id")
-	public Integer getEmpId() {
-		return empId;
-	}
-
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
-	}
-
-	@Basic
-	@Column(name = "client_id")
-	public Integer getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(Integer clientId) {
-		this.clientId = clientId;
-	}
-
-	@Basic
-	@Column(name = "warehouse_id")
-	public Integer getWarehouseId() {
-		return warehouseId;
-	}
-
-	public void setWarehouseId(Integer warehouseId) {
-		this.warehouseId = warehouseId;
-	}
-
-	@Basic
-	@Column(name = "order_number")
 	public String getOrderNumber() {
 		return orderNumber;
 	}
@@ -73,8 +66,6 @@ public class TbOrder {
 		this.orderNumber = orderNumber;
 	}
 
-	@Basic
-	@Column(name = "document_date")
 	public Timestamp getDocumentDate() {
 		return documentDate;
 	}
@@ -83,8 +74,6 @@ public class TbOrder {
 		this.documentDate = documentDate;
 	}
 
-	@Basic
-	@Column(name = "delivery_date")
 	public Timestamp getDeliveryDate() {
 		return deliveryDate;
 	}
@@ -93,8 +82,6 @@ public class TbOrder {
 		this.deliveryDate = deliveryDate;
 	}
 
-	@Basic
-	@Column(name = "account_receivable")
 	public Double getAccountReceivable() {
 		return accountReceivable;
 	}
@@ -103,8 +90,6 @@ public class TbOrder {
 		this.accountReceivable = accountReceivable;
 	}
 
-	@Basic
-	@Column(name = "payment_received")
 	public Double getPaymentReceived() {
 		return paymentReceived;
 	}
@@ -113,8 +98,6 @@ public class TbOrder {
 		this.paymentReceived = paymentReceived;
 	}
 
-	@Basic
-	@Column(name = "delivery_status")
 	public Integer getDeliveryStatus() {
 		return deliveryStatus;
 	}
@@ -123,8 +106,6 @@ public class TbOrder {
 		this.deliveryStatus = deliveryStatus;
 	}
 
-	@Basic
-	@Column(name = "creator_person")
 	public String getCreatorPerson() {
 		return creatorPerson;
 	}
@@ -133,8 +114,6 @@ public class TbOrder {
 		this.creatorPerson = creatorPerson;
 	}
 
-	@Basic
-	@Column(name = "create_time")
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -143,8 +122,6 @@ public class TbOrder {
 		this.createTime = createTime;
 	}
 
-	@Basic
-	@Column(name = "approval_status")
 	public Integer getApprovalStatus() {
 		return approvalStatus;
 	}
@@ -153,8 +130,6 @@ public class TbOrder {
 		this.approvalStatus = approvalStatus;
 	}
 
-	@Basic
-	@Column(name = "order_status")
 	public Integer getOrderStatus() {
 		return orderStatus;
 	}
@@ -163,8 +138,6 @@ public class TbOrder {
 		this.orderStatus = orderStatus;
 	}
 
-	@Basic
-	@Column(name = "current_examiner")
 	public String getCurrentExaminer() {
 		return currentExaminer;
 	}
@@ -173,8 +146,6 @@ public class TbOrder {
 		this.currentExaminer = currentExaminer;
 	}
 
-	@Basic
-	@Column(name = "delivery_order_number")
 	public String getDeliveryOrderNumber() {
 		return deliveryOrderNumber;
 	}
@@ -183,31 +154,27 @@ public class TbOrder {
 		this.deliveryOrderNumber = deliveryOrderNumber;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		TbOrder tbOrder = (TbOrder) o;
-		return orderId == tbOrder.orderId &&
-				Objects.equals(empId, tbOrder.empId) &&
-				Objects.equals(clientId, tbOrder.clientId) &&
-				Objects.equals(warehouseId, tbOrder.warehouseId) &&
-				Objects.equals(orderNumber, tbOrder.orderNumber) &&
-				Objects.equals(documentDate, tbOrder.documentDate) &&
-				Objects.equals(deliveryDate, tbOrder.deliveryDate) &&
-				Objects.equals(accountReceivable, tbOrder.accountReceivable) &&
-				Objects.equals(paymentReceived, tbOrder.paymentReceived) &&
-				Objects.equals(deliveryStatus, tbOrder.deliveryStatus) &&
-				Objects.equals(creatorPerson, tbOrder.creatorPerson) &&
-				Objects.equals(createTime, tbOrder.createTime) &&
-				Objects.equals(approvalStatus, tbOrder.approvalStatus) &&
-				Objects.equals(orderStatus, tbOrder.orderStatus) &&
-				Objects.equals(currentExaminer, tbOrder.currentExaminer) &&
-				Objects.equals(deliveryOrderNumber, tbOrder.deliveryOrderNumber);
+	public PersonnelEmp getPersonnelEmp() {
+		return personnelEmp;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(orderId, empId, clientId, warehouseId, orderNumber, documentDate, deliveryDate, accountReceivable, paymentReceived, deliveryStatus, creatorPerson, createTime, approvalStatus, orderStatus, currentExaminer, deliveryOrderNumber);
+	public void setPersonnelEmp(PersonnelEmp personnelEmp) {
+		this.personnelEmp = personnelEmp;
+	}
+
+	public PslnvoicingClient getPslnvoicingClient() {
+		return pslnvoicingClient;
+	}
+
+	public void setPslnvoicingClient(PslnvoicingClient pslnvoicingClient) {
+		this.pslnvoicingClient = pslnvoicingClient;
+	}
+
+	public com.example.pslnvoicing.pojos.PslnvoiningWarehouse getPslnvoiningWarehouse() {
+		return PslnvoiningWarehouse;
+	}
+
+	public void setPslnvoiningWarehouse(com.example.pslnvoicing.pojos.PslnvoiningWarehouse pslnvoiningWarehouse) {
+		PslnvoiningWarehouse = pslnvoiningWarehouse;
 	}
 }
