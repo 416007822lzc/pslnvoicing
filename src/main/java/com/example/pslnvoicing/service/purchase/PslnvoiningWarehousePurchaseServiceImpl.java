@@ -1,6 +1,6 @@
 package com.example.pslnvoicing.service.purchase;
 
-import com.example.pslnvoicing.mapper.purchase.PslnvoiningWarehouseMapper;
+import com.example.pslnvoicing.mapper.purchase.PslnvoiningWarehousePurchaseMapper;
 import com.example.pslnvoicing.pojos.PslnvoiningWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PslnvoiningWarehouseServiceImpl implements PslnvoiningWarehouseService {
+public class PslnvoiningWarehousePurchaseServiceImpl implements PslnvoiningWarehouseService {
 
     @Autowired
-    private PslnvoiningWarehouseMapper kucunWarehouseMapper;
+    private PslnvoiningWarehousePurchaseMapper kucunWarehouseMapper;
 
     @Override
     public List<PslnvoiningWarehouse> pslnvoiningWarehouseList() {

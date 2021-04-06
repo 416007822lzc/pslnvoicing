@@ -1,8 +1,8 @@
 package com.example.pslnvoicing.controller.workbench;
 
+import com.example.pslnvoicing.conn.CommonResult;
 import com.example.pslnvoicing.pojos.CapitalPayment;
 import com.example.pslnvoicing.service.workbench.DataStatisticsService;
-import com.example.pslnvoicing.vo.CommonResult;
 import com.example.pslnvoicing.vo.workbench.DataStatisticsVo;
 import com.example.pslnvoicing.vo.workbench.RatifyVo;
 import org.springframework.beans.factory.annotation.Autowired;
