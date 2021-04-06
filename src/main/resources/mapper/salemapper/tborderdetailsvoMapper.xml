@@ -1,0 +1,59 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pslnvoicing.mapper.salemapper.TbOrderDetailsVoMapper">
+    <resultMap id="orderMap" type="com.example.pslnvoicing.vo.TbOrderDetailsVo">
+        <id property="orderId" column="order_id" />
+        <result property="empname" column="emp_name" />
+        <result property="clientname" column="client_name" />
+        <result property="warehousename" column="warehouse_name" />
+        <result property="clientContact" column="client_contact" />
+        <result property="clientPhone" column="client_phone" />
+        <result property="clientContactNumber" column="client_contact_number" />
+        <result property="clientAddress" column="client_address" />
+        <result property="orderNumber" column="order_number" />
+        <result property="documentDate" column="document_date" />
+        <result property="deliveryDate" column="delivery_date" />
+        <result property="accountReceivable" column="account_receivable" />
+        <result property="paymentReceived" column="payment_received" />
+        <result property="deliveryStatus" column="delivery_status" />
+        <result property="creatorPerson" column="creator_person" />
+        <result property="createTime" column="create_time" />
+        <result property="approvalStatus" column="approval_status" />
+        <result property="orderStatus" column="order_status"/>
+        <result property="deliveryOrderNumber" column="delivery_order_number" />
+        <result property="currentExaminer" column="current_examiner" />
+        <collection property="tbOrderDetails" ofType="com.example.pslnvoicing.pojos.TbOrderDetails">
+            <id property="orderDetailsId" column="order_details_id"/>
+            <result property="orderId" column="order_id" />
+            <result property="productName" column="product_name" />
+            <result property="productNumber" column="product_number" />
+            <result property="number" column="number" />
+            <result property="salesUnitPrice" column="sales_unit_price" />
+            <result property="salesAmount" column="sales_amount" />
+            <result property="productUnit" column="product_unit"/>
+            <result property="orderDetailsRemarks" column="order_details_remarks" />
+        </collection>
+    </resultMap>
+
+    <select id="tbOrderDetailsVoList"  resultMap="orderMap">
+            SELECT *
+            FROM tb_order t LEFT JOIN tb_order_details tt on t.order_number=tt.order_id
+            LEFT JOIN personnel_emp p on t.emp_id=p.emp_id LEFT JOIN  pslnvoicing_client p1 on
+            t.client_id=p1.client_id  LEFT JOIN pslnvoining_warehouse p2 on t.warehouse_id=p2.warehouse_id
+            where tt.order_id=#{id}
+    </select>
+
+
+    <select id="selectOrderById" resultType="com.example.pslnvoicing.pojos.TbOrder">
+        select * from tb_order t where  t.order_number=#{id}
+    </select>
+
+    <select id="updateOrderStatus" resultType="com.example.pslnvoicing.pojos.TbOrder">
+        update tb_order  set approval_status= 2 , order_status = 1 where order_id=#{id}
+    </select>
+
+    <select id="rejectOrderStatus" resultType="com.example.pslnvoicing.pojos.TbOrder">
+        update tb_order  set order_status= 1 ,approval_status = 1 where order_id=#{id}
+    </select>
+</mapper>
