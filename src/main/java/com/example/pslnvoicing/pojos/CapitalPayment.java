@@ -27,6 +27,7 @@ public class CapitalPayment {
 		return paymentId;
 	}
 
+
 	public void setPaymentId(Integer paymentId) {
 		this.paymentId = paymentId;
 	}

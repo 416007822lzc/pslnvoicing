@@ -8,6 +8,7 @@ public class CapitalPaymentDetails {
 	private Integer paymentId;
 	private Integer paymentState;
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "payment_details_id")
