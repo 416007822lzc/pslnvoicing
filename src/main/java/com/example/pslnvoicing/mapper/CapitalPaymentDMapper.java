@@ -12,4 +12,5 @@ public interface CapitalPaymentDMapper {
 	//模糊查询 条件
 	public List<CapitalPaymentDetails> selectall(CapitalPaymentDetails capitalPaymentDetails);
 
+
 }

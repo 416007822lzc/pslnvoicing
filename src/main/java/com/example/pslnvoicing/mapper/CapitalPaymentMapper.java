@@ -27,4 +27,5 @@ public interface CapitalPaymentMapper {
 
 	//详情表新增
 	public void insertxq(CapitalPayment capitalPayment);
+
 }
