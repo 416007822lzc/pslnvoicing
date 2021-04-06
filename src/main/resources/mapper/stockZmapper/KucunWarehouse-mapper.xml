@@ -1,0 +1,61 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pslnvoicing.mapper.stockZmapper.KucunWarehouseMapper">
+    <resultMap id="ware" type="com.example.pslnvoicing.pojos.KucunWarehouse">
+        <id column="k_warehouse_id" property="kWarehouseId"></id>
+        <result column="k_warehouse_number" property="kWarehouseNumber"></result>
+        <result column="k_warehouse_time" property="kWarehouseTime"></result>
+        <result column="k_warehouse_staff" property="kWarehouseStaff"></result>
+        <!--仓库-->
+        <association property="warehouse" javaType="com.example.pslnvoicing.pojos.PslnvoiningWarehouse">
+            <id column="warehouse_id" property="warehouseId"></id>
+            <result column="warehouse_name" property="warehouseName"></result>
+            <result column="warehouse_num" property="warehouseNum"></result>
+            <result column="warehouse_address" property="warehouseAddress"></result>
+            <result column="warehouse_head" property="warehouseHead"></result>
+            <result column="warehouse_phone" property="warehousePhone"></result>
+            <result column="warehouse_call" property="warehouseCall"></result>
+            <result column="warehouse_note" property="warehouseNote"></result>
+            <result column="warehouse_disable" property="warehouseDisable"></result>
+        </association>
+    </resultMap>
+
+    <select id="selectWarehouse" resultMap="ware">
+        select * from kucun_warehouse
+    </select>
+
+    <select id="findWarehouse" resultMap="ware">
+            select * from kucun_warehouse ware left join pslnvoining_warehouse warehouse
+            on ware.warehouse_id=warehouse.warehouse_id
+    </select>
+
+    <!--按时间查询-->
+    <!--&#45;&#45; 查询盘点时间-->
+    <!--&#45;&#45; 今天-->
+    <select id="toDay" resultMap="ware">
+      select * from kucun_warehouse where to_days(k_warehouse_time) = to_days(now())
+    </select>
+    <!--&#45;&#45; 昨天-->
+    <select id="yesterday" resultMap="ware">
+    select * from kucun_warehouse where 1=> to_days(now()) - to_days(k_warehouse_time)
+    </select>
+    <!--&#45;&#45; 本周-->
+    <select id="thisWeek" resultMap="ware">
+      select * from kucun_warehouse where yearweek(date_format(k_warehouse_time,'%Y-%m-%d')) = yearweek(now())
+    </select>
+    <!--&#45;&#45; 上周-->
+    <select id="lastWeek" resultMap="ware">
+      select * from kucun_warehouse where yearweek(date_format(k_warehouse_time,'%Y-%m-%d')) = yearweek(now())-1
+    </select>
+    <!--&#45;&#45; 本月-->
+    <select id="thisMonth" resultMap="ware">
+      select * from kucun_warehouse where date_format(k_warehouse_time,'%Y%m') = date_format(curdate(),'%Y%m')
+    </select>
+    <!--&#45;&#45; 上月-->
+    <select id="lastMonth" resultMap="ware">
+      select * from kucun_warehouse where period_diff(date_format(now(),'%Y%m'),date_format(k_warehouse_time,'%Y%m')) =1
+    </select>
+    <!--&#45;&#45; 自定义查询时间-->
+    <select id="findDate" resultMap="ware">
+      select * from kucun_warehouse where k_warehouse_time between '2021-04-01' and '2021-04-03'
+    </select>
+</mapper>
