@@ -66,7 +66,6 @@
     <select id="assembleDetailsList" resultMap="assembleDetails">
         select * from kucun_assemble_details a
                           LEFT JOIN kucun_assemble b ON a.assemble_id=b.assemble_id
-                          LEFT JOIN pslvoicing_product r ON b.assemble_productId=r.product_id
                           Left join pslvoicing_product p on a.assemble_details_prouctId=p.product_id
         where a.assemble_id=#{assembleId}
     </select>
