@@ -18,7 +18,7 @@ public class CapitalPayment {
 	private Integer paymentMoney;
 	private Integer paymentAmoney;
 	private Integer rpaymentState;
-	private String rpaymentAccount;
+	private Integer zjId;
 
 
 
@@ -83,16 +83,6 @@ public class CapitalPayment {
 		this.rpaymentState = rpaymentState;
 	}
 
-	@Basic
-	@Column(name = "rpayment_account")
-	public String getRpaymentAccount() {
-		return rpaymentAccount;
-	}
-
-	public void setRpaymentAccount(String rpaymentAccount) {
-		this.rpaymentAccount = rpaymentAccount;
-	}
-
 
 
 
@@ -134,5 +124,26 @@ public class CapitalPayment {
 
 	public void setIeId(PslnvoicingIncomeExpenses ieId) {
 		this.ieId = ieId;
+	}
+
+
+	public Integer getZjId() {
+		return zjId;
+	}
+
+	public void setZjId(Integer zjId) {
+		this.zjId = zjId;
+	}
+
+	@Override
+	public String toString() {
+		return "CapitalPayment{" +
+				"paymentId=" + paymentId +
+				", paymentNumber='" + paymentNumber + '\'' +
+				", paymentDat=" + paymentDat +
+				", paymentMoney=" + paymentMoney +
+				", paymentAmoney=" + paymentAmoney +
+				", rpaymentState=" + rpaymentState +
+				'}';
 	}
 }
