@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,19 @@ public class KucunAllotController {
         return ps.productList(warehouseName,name);
     }
 
+    //根据仓库，商品id查询产品的库存数
+    @RequestMapping("/number")
+    @ResponseBody
+    public Integer number(String name,Integer id){
+        System.out.println(name+"/"+id);
+        return ps.number(name,id);
+    }
 
+    //审批
+    @RequestMapping("/updateState")
+    @ResponseBody
+    public void updateState(Integer allotState,String allotShr,Integer allotId){
+        ks.updateState(allotState,allotShr,new Date(),allotId);
+    }
 
 }

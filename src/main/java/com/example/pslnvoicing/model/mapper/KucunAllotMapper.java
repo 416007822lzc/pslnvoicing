@@ -4,6 +4,7 @@ import com.example.pslnvoicing.model.pojos.KucunAllot;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -13,4 +14,5 @@ public interface KucunAllotMapper {
     public List<KucunAllot> allotList(KucunAllot kucunAllot);
     public void addallot(KucunAllot kucunAllot);
     public KucunAllot maxId();
+    public void updateState(Integer allotState, String allotShr, Date allotTime, Integer allotId);
 }

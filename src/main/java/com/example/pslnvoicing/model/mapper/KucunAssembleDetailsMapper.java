@@ -10,5 +10,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface KucunAssembleDetailsMapper {
-   public void addAsembleDetails(KucunAssembleDetails kucunAssembleDetails);
+   public List<KucunAssembleDetails> assembleDetailsList(Integer assembleId);
+   public void addAssembleDetails(KucunAssembleDetails kucunAssembleDetails);
 }

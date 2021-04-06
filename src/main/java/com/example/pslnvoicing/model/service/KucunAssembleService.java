@@ -29,7 +29,12 @@ public class KucunAssembleService {
         return kucunAssembleMapper.maxId();
     }
 
+
     public void addAssembleDetails(KucunAssembleDetails kucunAssembleDetails){
-        kucunAssembleDetailsMapper.addAsembleDetails(kucunAssembleDetails);
+        kucunAssembleDetailsMapper.addAssembleDetails(kucunAssembleDetails);
+    }
+
+    public List<KucunAssembleDetails> assembleDetailsList(Integer id){
+        return kucunAssembleDetailsMapper.assembleDetailsList(id);
     }
 }

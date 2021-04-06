@@ -2,8 +2,12 @@ package com.example.pslnvoicing.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.pslnvoicing.model.pojos.*;
-import com.example.pslnvoicing.model.service.*;
+import com.example.pslnvoicing.model.pojos.KucunAssemble;
+import com.example.pslnvoicing.model.pojos.KucunAssembleDetails;
+import com.example.pslnvoicing.model.pojos.KucunDismounting;
+import com.example.pslnvoicing.model.pojos.KucunDismountingDetails;
+import com.example.pslnvoicing.model.service.KucunAssembleService;
+import com.example.pslnvoicing.model.service.KucunDismountingService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,46 +22,31 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class KucunAssembleController {
+public class KucunDismountingController {
     @Autowired
-    KucunAssembleService ks;
+    KucunDismountingService ks;
 
 
-    @RequestMapping("/assembleList")
+    @RequestMapping("/dismountingList")
     @ResponseBody
     //调拨单查询
     public Map<String, Object> assembleList(Integer pageNum, Integer size, String serach){
         System.err.println(serach);
-        KucunAssemble k = JSONObject.toJavaObject(JSON.parseObject(serach),KucunAssemble.class);
-
+        KucunDismounting kd = JSONObject.toJavaObject(JSON.parseObject(serach),KucunDismounting.class);
         Map<String,Object> map = new HashMap<>();
         Page<Object> page = PageHelper.startPage(pageNum, size);
-        List<KucunAssemble> KucunAssemble = ks.assembleList(k);
-        map.put("rows",KucunAssemble);
+        List<KucunDismounting> dismountings = ks.kucunDismountingList(kd);
+        map.put("rows",dismountings);
         map.put("total",page.getTotal());
         return map;
     }
 
-    //查询组装详情
-    @RequestMapping("/assembleDetailsList")
+    @RequestMapping("/dismountingDetailsList")
     @ResponseBody
-    public List<KucunAssembleDetails> assembleDetailsList(Integer id){
-        return ks.assembleDetailsList(id);
+    public List<KucunDismountingDetails> dismountingDetailsList(Integer id){
+        return ks.kucunDismountingDetailsList(id);
     }
 
-    //新增组装单
-    @PostMapping("/addAssemble")
-    @ResponseBody
-    public void addAssemble(@RequestBody KucunAssemble kucunAssemble){
-        ks.addAssemble(kucunAssemble);
-    }
-
-    //新增组装详情
-    @RequestMapping(value = "/addAssembleDetails", produces = "application/json")
-    @ResponseBody
-    public void addAllotDetails(@RequestBody String json){
-        System.err.println(json);
-    }
 
 
 

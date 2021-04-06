@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface ProductMapper {
     public List<PslvoicingProduct> productList(String warehouseName,String name);
+    public Integer number(String name,Integer productId);
 }

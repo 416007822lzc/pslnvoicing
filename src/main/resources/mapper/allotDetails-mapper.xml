@@ -18,6 +18,13 @@
             <result column="allot_odd" property="allotOdd"></result>
             <result column="allot_date" property="allotDate"></result>
             <result column="allot_name" property="allotName"></result>
+            <result column="allot_total" property="allotTotal"></result>
+            <result column="allot_time" property="allotTime"></result>
+            <result column="allot_state" property="allotState"></result>
+            <result column="allot_remark" property="allotRemark"></result>
+            <result column="allot_shr" property="allotShr"></result>
+            <result column="allot_fold" property="allotFold"></result>
+            <result column="allot_callout" property="allotCallout"></result>
         </association>
         <association property="products" javaType="com.example.pslnvoicing.model.pojos.PslvoicingProduct">
             <id column="product_id" property="productId"></id>
@@ -31,15 +38,19 @@
             <result column="product_remark" property="productRemark"></result>
             <result column="product_createTime" property="productCreateTime"></result>
             <result column="product_salesPrice" property="productSalesPrice"></result>
-            <result column="product_purchasePrice" property="productPurchasePrice"></result>
-            <result column="product_openingCost" property="productOpeningCost"></result>
-            <result column="warehouse_id" property="warehouseId"></result>
+            <result column="product_purchase_price" property="productPurchasePrice"></result>
+            <result column="product_opening_cost" property="productOpeningCost"></result>
+            <association property="warehouse" javaType="com.example.pslnvoicing.model.pojos.PslnvoiningWarehouse">
+                <id column="warehouse_id" property="warehouseId"></id>
+                <result column="warehouse_name" property="warehouseName"></result>
+            </association>
         </association>
     </resultMap>
 
 
     <select id="allotDetailsList" resultMap="allotDetails">
         SELECT * FROM kucun_allot_details a
+        LEFT JOIN kucun_allot b ON a.allot_id=b.allot_id
         LEFT JOIN pslvoicing_product p ON a.allot_details_productId=p.product_id
         WHERE a.allot_id=#{allotId}
     </select>

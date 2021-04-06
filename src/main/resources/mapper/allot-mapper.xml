@@ -52,5 +52,9 @@
         SELECT * FROM kucun_allot where allot_id=(SELECT max(allot_id) FROM kucun_allot)
     </select>
 
+    <update id="updateState">
+        UPDATE kucun_allot set allot_state=#{allotState},allot_shr=#{allotShr},allot_time=#{allotTime} where allot_id=#{allotId}
+    </update>
+
 
 </mapper>

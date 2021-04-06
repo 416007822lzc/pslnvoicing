@@ -39,7 +39,12 @@
                   and p.product_name like '%${name}%'
               </if>
           </where>
+    </select>
 
+    <select id="number" resultType="java.lang.Integer">
+        SELECT product_opening_num FROM pslvoicing_product p
+        LEFT JOIN pslnvoining_warehouse w on p.warehouse_id=w.warehouse_id
+        WHERE w.warehouse_name=#{name} and p.product_id=#{productId}
     </select>
 
 

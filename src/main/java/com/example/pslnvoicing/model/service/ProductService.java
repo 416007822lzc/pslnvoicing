@@ -16,4 +16,8 @@ public class ProductService {
         System.out.println(warehouseName+"---"+name);
         return productMapper.productList(warehouseName,name);
     }
+
+    public Integer number(String name,Integer id){
+        return productMapper.number(name,id);
+    }
 }
