@@ -1,5 +1,8 @@
 package com.example.pslnvoicing.model.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,11 +11,24 @@ import java.util.Objects;
 public class KucunOutbound {
 	private int outboundId;
 	private Integer ratifId;
-	private Integer warehouseId;
 	private Integer productId;
 	private String outboundNumber;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Timestamp outboundTime;
 	private String outboundStaff;
+
+	private PslnvoiningWarehouse warehouse;
+	@ManyToOne
+	@JoinColumn(name = "warehouse_id",referencedColumnName = "warehouse_id")
+	public PslnvoiningWarehouse getWarehouse() {
+		return warehouse;
+	}
+
+	public void setWarehouse(PslnvoiningWarehouse warehouse) {
+		this.warehouse = warehouse;
+	}
+
 
 	@Id
 	@Column(name = "outbound_id")
@@ -32,16 +48,6 @@ public class KucunOutbound {
 
 	public void setRatifId(Integer ratifId) {
 		this.ratifId = ratifId;
-	}
-
-	@Basic
-	@Column(name = "warehouse_id")
-	public Integer getWarehouseId() {
-		return warehouseId;
-	}
-
-	public void setWarehouseId(Integer warehouseId) {
-		this.warehouseId = warehouseId;
 	}
 
 	@Basic
@@ -91,7 +97,6 @@ public class KucunOutbound {
 		KucunOutbound that = (KucunOutbound) o;
 		return outboundId == that.outboundId &&
 				Objects.equals(ratifId, that.ratifId) &&
-				Objects.equals(warehouseId, that.warehouseId) &&
 				Objects.equals(productId, that.productId) &&
 				Objects.equals(outboundNumber, that.outboundNumber) &&
 				Objects.equals(outboundTime, that.outboundTime) &&
@@ -100,6 +105,6 @@ public class KucunOutbound {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(outboundId, ratifId, warehouseId, productId, outboundNumber, outboundTime, outboundStaff);
+		return Objects.hash(outboundId, ratifId, productId, outboundNumber, outboundTime, outboundStaff);
 	}
 }

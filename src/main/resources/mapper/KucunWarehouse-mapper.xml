@@ -1,9 +1,0 @@
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pslnvoicing.model.mapper.KucunWarehouseMapper">
-    <resultMap id="warehouse" type="com.example.pslnvoicing.model.pojos.KucunWarehouse">
-        <id column="warehouse_id" property="warehouseId"></id>
-        <result column="warehouse_number" property="warehouseNumber"></result>
-        <result column="warehouse_time" property="warehouseTime"></result>
-        <result column="warehouse_staff" property="warehouseStaff"></result>
-    </resultMap>
-</mapper>

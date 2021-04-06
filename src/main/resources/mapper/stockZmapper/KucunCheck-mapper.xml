@@ -1,5 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pslnvoicing.model.mapper.KucunCheckMapper">
+<mapper namespace="com.example.pslnvoicing.model.mapper.stockZmapper.KucunCheckMapper">
     <resultMap id="check" type="com.example.pslnvoicing.model.pojos.KucunCheck">
         <id column="check_id" property="checkId"></id>
         <result column="check_time" property="checkTime"></result>
@@ -25,6 +25,10 @@
         </association>
     </resultMap>
 
+    <select id="selectCheck" resultMap="check">
+        select * from kucun_check
+    </select>
+
     <select id="findCheck" resultMap="check">
         select * from kucun_check checks left join pslnvoining_warehouse pw on checks.psl_warehouse_id=pw.warehouse_id
         <!--<where>-->
@@ -41,6 +45,11 @@
                 <!--and checks.check_time between '${checkTime}' and '${checkTime}'-->
             <!--</if>-->
         <!--</where>-->
+    </select>
+
+
+    <select id="findLikeStaff" resultMap="check">
+        select * from kucun_check where check_staff like '%${checkStaff}%'
     </select>
 
     <!--按时间查询-->
@@ -82,4 +91,8 @@
         check_state,check_inventory,check_note,check_number)
         values (6,6,6,6,6,6,'2020-09-12',100,100,'亚总',1,0,'我是你爹',100)
     </insert>
+
+    <delete id="deleteCheckId">
+        delete from kucun_check where check_id='${checkId}'
+    </delete>
 </mapper>

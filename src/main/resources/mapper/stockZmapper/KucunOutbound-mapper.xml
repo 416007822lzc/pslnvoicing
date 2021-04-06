@@ -1,0 +1,61 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pslnvoicing.model.mapper.stockZmapper.KucunOutboundMapper">
+    <resultMap id="outbound" type="com.example.pslnvoicing.model.pojos.KucunOutbound">
+        <id column="outbound_id" property="outboundId"></id>
+        <result column="outbound_number" property="outboundNumber"></result>
+        <result column="outbound_time" property="outboundTime"></result>
+        <result column="outbound_staff" property="outboundStaff"></result>
+        <!--仓库-->
+        <association property="warehouse" javaType="com.example.pslnvoicing.model.pojos.PslnvoiningWarehouse">
+            <id column="warehouse_id" property="warehouseId"></id>
+            <result column="warehouse_name" property="warehouseName"></result>
+            <result column="warehouse_num" property="warehouseNum"></result>
+            <result column="warehouse_address" property="warehouseAddress"></result>
+            <result column="warehouse_head" property="warehouseHead"></result>
+            <result column="warehouse_phone" property="warehousePhone"></result>
+            <result column="warehouse_call" property="warehouseCall"></result>
+            <result column="warehouse_note" property="warehouseNote"></result>
+            <result column="warehouse_disable" property="warehouseDisable"></result>
+        </association>
+    </resultMap>
+
+    <select id="selectOutbound" resultMap="outbound">
+        select * from kucun_outbound
+    </select>
+
+    <select id="findOutbound" resultMap="outbound">
+        select * from kucun_outbound outbound left join pslnvoining_warehouse warehouse
+        on outbound.warehouse_id=warehouse.warehouse_id
+    </select>
+
+    <!--按时间查询-->
+    <!--&#45;&#45; 查询盘点时间-->
+    <!--&#45;&#45; 今天-->
+    <select id="toDay" resultMap="outbound">
+      select * from kucun_outbound where to_days(outbound_time) = to_days(now())
+    </select>
+    <!--&#45;&#45; 昨天-->
+    <select id="yesterday" resultMap="outbound">
+    select * from kucun_outbound where 1=> to_days(now()) - to_days(outbound_time)
+    </select>
+    <!--&#45;&#45; 本周-->
+    <select id="thisWeek" resultMap="outbound">
+      select * from kucun_outbound where yearweek(date_format(outbound_time,'%Y-%m-%d')) = yearweek(now())
+    </select>
+    <!--&#45;&#45; 上周-->
+    <select id="lastWeek" resultMap="outbound">
+      select * from kucun_outbound where yearweek(date_format(outbound_time,'%Y-%m-%d')) = yearweek(now())-1
+    </select>
+    <!--&#45;&#45; 本月-->
+    <select id="thisMonth" resultMap="outbound">
+      select * from kucun_outbound where date_format(outbound_time,'%Y%m') = date_format(curdate(),'%Y%m')
+    </select>
+    <!--&#45;&#45; 上月-->
+    <select id="lastMonth" resultMap="outbound">
+      select * from kucun_outbound where period_diff(date_format(now(),'%Y%m'),date_format(outbound_time,'%Y%m')) =1
+    </select>
+    <!--&#45;&#45; 自定义查询时间-->
+    <select id="findDate" resultMap="outbound">
+      select * from kucun_outbound where outbound_time between '2021-04-01' and '2021-04-03'
+    </select>
+</mapper>

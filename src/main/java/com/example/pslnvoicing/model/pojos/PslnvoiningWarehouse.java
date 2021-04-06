@@ -1,6 +1,7 @@
 package com.example.pslnvoicing.model.pojos;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -14,6 +15,8 @@ public class PslnvoiningWarehouse {
 	private int warehouseCall;
 	private String warehouseNote;
 	private int warehouseDisable;
+
+
 
 	@Basic
 	@Column(name = "warehouse_name")
@@ -124,5 +127,17 @@ public class PslnvoiningWarehouse {
 	@Override
 	public int hashCode() {
 		return Objects.hash(warehouseName, warehouseId, warehouseNum, warehouseAddress, warehouseHead, warehousePhone, warehouseCall, warehouseNote, warehouseDisable);
+	}
+
+	private List<KucunWarehouse> kucunWarehouses;
+
+
+	@OneToMany
+	public List<KucunWarehouse> getKucunWarehouses() {
+		return kucunWarehouses;
+	}
+
+	public void setKucunWarehouses(List<KucunWarehouse> kucunWarehouses) {
+		this.kucunWarehouses = kucunWarehouses;
 	}
 }
