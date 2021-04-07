@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.pslnvoicing.pojos.*;
 import com.example.pslnvoicing.service.xgy.*;
 import com.example.pslnvoicing.vo.xgy.AllotDetailsVo;
+import com.example.pslnvoicing.vo.xgy.ProductVo;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,9 @@ public class KucunAllotController {
     @ResponseBody
     //调拨单查询
     public Map<String, Object> allotList(Integer pageNum, Integer size, String serach){
-        System.err.println(serach);
-        KucunAllot k = JSONObject.toJavaObject(JSON.parseObject(serach),KucunAllot.class);
 
+        KucunAllot k = JSONObject.toJavaObject(JSON.parseObject(serach),KucunAllot.class);
+//        System.err.println(k);
         Map<String,Object> map = new HashMap<>();
         Page<Object> page = PageHelper.startPage(pageNum, size);
         List<KucunAllot> kucunAllot = ks.allotList(k);
@@ -78,7 +79,7 @@ public class KucunAllotController {
             k.setAllotDetailsNumber(a.getAllotDetailsNumber());
             k.setAllotDetailsCost(a.getAllotDetailsCost());
             k.setKucunAllot(kucunAllot);
-            PslvoicingProduct product= new PslvoicingProduct();
+            ProductVo product= new ProductVo();
             product.setProductId(a.getProductId());
             k.setProducts(product);
             System.err.println(k);

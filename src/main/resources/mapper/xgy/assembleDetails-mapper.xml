@@ -25,7 +25,7 @@
             <result column="assemble_time" property="assembleTime"></result>
             <result column="assemble_state" property="assembleState"></result>
             <result column="assemble_remark" property="assembleRemark"></result>
-            <association property="product" javaType="com.example.pslnvoicing.pojos.PslvoicingProduct">
+            <association property="product" javaType="com.example.pslnvoicing.vo.xgy.ProductVo">
                 <id column="product_id" property="productId"></id>
                 <result column="product_name" property="productName"></result>
                 <result column="product_num" property="productNum"></result>
@@ -39,13 +39,13 @@
                 <result column="product_sales_price" property="productSalesPrice"></result>
                 <result column="product_purchase_price" property="productPurchasePrice"></result>
                 <result column="product_opening_cost" property="productOpeningCost"></result>
-                <association property="warehouse" javaType="com.example.pslnvoicing.pojos.PslnvoiningWarehouse">
+                <association property="warehouse" javaType="com.example.pslnvoicing.vo.xgy.WarehouseVo">
                     <id column="warehouse_id" property="warehouseId"></id>
                     <result column="warehouse_name" property="warehouseName"></result>
                 </association>
             </association>
         </association>
-        <association property="product" javaType="com.example.pslnvoicing.pojos.PslvoicingProduct">
+        <association property="product" javaType="com.example.pslnvoicing.vo.xgy.ProductVo">
             <id column="product_id" property="productId"></id>
             <result column="product_name" property="productName"></result>
             <result column="product_num" property="productNum"></result>
