@@ -1,0 +1,32 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pslnvoicing.mapper.purchase.PurchaseMapper">
+<!--    <insert id="addPurchase">
+        insert into purchase_order
+        (supplier_id,warehouse_id,emp_id,p_o_purchasenumber,p_o_documentdate,
+         p_o_deliverydate,p_o_purchasingstaff,p_o_approvalstatus,p_o_finalapprovaltime,
+         p_o_executionstatus,p_o_repositorystatus,p_o_notesondocuments,p_w_warehousingnumber)
+        values(23,34,45,{},'2021-04-02 22:07:10','2021-04-02 23:08:10','刘文博',3,
+               '2021-04-03 16:07:11',1,0,null,null)
+    </insert>-->
+    <!--新增采购单-->
+    <insert id="addPurchase" parameterType="com.example.pslnvoicing.pojos.PurchaseOrder">
+        INSERT INTO purchase_order
+        (supplier_id,warehouse_id,emp_id,p_o_purchasenumber,p_o_documentdate,
+        p_o_deliverydate,p_o_jine,p_o_approvalstatus,p_o_executionstatus,p_o_repositorystatus
+        ,p_o_notesondocuments)
+        values (#{supplierId},#{warehouseId},#{empId},#{pOPurchasenumber},#{pODocumentdate},
+        #{pODeliverydate},#{pOJine},1,1,0,#{pORepositorystatus})
+    </insert>
+    <!--新增采购单详情表-->
+    <insert id="addPurchaseDetails" parameterType="java.util.List">
+        INSERT INTO purchase_productdetails(p_o_purchasenumber,p_pd_cpid,p_pd_sname,p_pd_number,p_pd_company,p_pd_unitprice,p_pd_totalprice)
+        values
+        <foreach collection="d"  item="item" separator="," >
+            (#{item.pOPurchasenumber,jdbcType=VARCHAR},#{item.pPdCpid,jdbcType=VARCHAR},
+            #{item.pPdSname,jdbcType=VARCHAR},#{item.pPdNumber},#{item.pPdCompany,jdbcType=VARCHAR},
+            #{item.pPdUnitprice,jdbcType=VARCHAR},#{item.pPdTotalprice,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+</mapper>

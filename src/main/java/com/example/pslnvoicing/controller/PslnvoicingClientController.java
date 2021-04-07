@@ -1,8 +1,9 @@
 package com.example.pslnvoicing.controller;
 
+import com.example.pslnvoicing.conn.CommonResult;
 import com.example.pslnvoicing.pojos.PslnvoicingClient;
 import com.example.pslnvoicing.service.PslnvoicingClientService;
-import com.example.pslnvoicing.vo.CommonResult;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;

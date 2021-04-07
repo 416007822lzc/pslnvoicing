@@ -20,6 +20,7 @@ public class PurchaseOrder {
 	private String pOPurchasenumber;
 	private Timestamp pODocumentdate;
 	private Timestamp pODeliverydate;
+	private Double pOJine;
 	private String pOPurchasingstaff;
 	private Integer pOApprovalstatus;
 	private Timestamp pOFinalapprovaltime;

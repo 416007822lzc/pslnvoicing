@@ -1,13 +1,18 @@
 package com.example.pslnvoicing.pojos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PslvoicingProduct {
 	private String productName;
 	private int productId;
@@ -143,62 +148,5 @@ public class PslvoicingProduct {
 
 	public void setProductPurchasePrice(BigDecimal productPurchasePrice) {
 		this.productPurchasePrice = productPurchasePrice;
-	}
-
-	@Basic
-	@Column(name = "product_opening_cost")
-	public BigDecimal getProductOpeningCost() {
-		return productOpeningCost;
-	}
-
-	public void setProductOpeningCost(BigDecimal productOpeningCost) {
-		this.productOpeningCost = productOpeningCost;
-	}
-
-	@Basic
-	@Column(name = "warehouse_id")
-	public Integer getWarehouseId() {
-		return warehouseId;
-	}
-
-	public void setWarehouseId(Integer warehouseId) {
-		this.warehouseId = warehouseId;
-	}
-
-	@Basic
-	@Column(name = "product_description")
-	public String getproductDescription() {
-		return productDescription;
-	}
-
-	public void setproductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		PslvoicingProduct that = (PslvoicingProduct) o;
-		return productId == that.productId &&
-				productNum == that.productNum &&
-				productStatus == that.productStatus &&
-				Objects.equals(productName, that.productName) &&
-				Objects.equals(productSpec, that.productSpec) &&
-				Objects.equals(productCategories, that.productCategories) &&
-				Objects.equals(productUnit, that.productUnit) &&
-				Objects.equals(productOpeningNum, that.productOpeningNum) &&
-				Objects.equals(productRemark, that.productRemark) &&
-				Objects.equals(productCreateTime, that.productCreateTime) &&
-				Objects.equals(productSalesPrice, that.productSalesPrice) &&
-				Objects.equals(productPurchasePrice, that.productPurchasePrice) &&
-				Objects.equals(productOpeningCost, that.productOpeningCost) &&
-				Objects.equals(productDescription, that.productDescription) &&
-				Objects.equals(warehouseId, that.warehouseId);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(productName, productId, productNum, productSpec, productCategories, productUnit, productOpeningNum, productStatus, productRemark, productCreateTime, productSalesPrice, productPurchasePrice, productOpeningCost, warehouseId,productDescription);
 	}
 }
