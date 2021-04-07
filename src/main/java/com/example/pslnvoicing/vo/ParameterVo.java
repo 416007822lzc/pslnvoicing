@@ -4,18 +4,18 @@ public class ParameterVo {
     private String startTime;
     private String endTime;
     private String empNameOrStoreNameOrNumber;
-    private Integer orderStatus;
+    private Integer status;
     private Integer pageNum;
     private Integer pageSize;
 
     public ParameterVo() {
     }
 
-    public ParameterVo(String startTime, String endTime, String empNameOrStoreNameOrNumber, Integer orderStatus, Integer pageNum, Integer pageSize) {
+    public ParameterVo(String startTime, String endTime, String empNameOrStoreNameOrNumber, Integer status, Integer pageNum, Integer pageSize) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.empNameOrStoreNameOrNumber = empNameOrStoreNameOrNumber;
-        this.orderStatus = orderStatus;
+        this.status = status;
         this.pageNum = pageNum;
         this.pageSize = pageSize;
     }
@@ -44,12 +44,12 @@ public class ParameterVo {
         this.empNameOrStoreNameOrNumber = empNameOrStoreNameOrNumber;
     }
 
-    public Integer getOrderStatus() {
-        return orderStatus;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getPageNum() {

@@ -9,7 +9,7 @@ public class TbOrderDetails {
     private int orderDetailsId;
     private String orderId;
     private String productName;
-    private String productNumber;
+    private Integer productNumber;
     private Integer number;
     private Double salesUnitPrice;
     private Double salesAmount;
@@ -48,11 +48,11 @@ public class TbOrderDetails {
 
     @Basic
     @Column(name = "product_number")
-    public String getProductNumber() {
+    public Integer getProductNumber() {
         return productNumber;
     }
 
-    public void setProductNumber(String productNumber) {
+    public void setProductNumber(Integer productNumber) {
         this.productNumber = productNumber;
     }
 

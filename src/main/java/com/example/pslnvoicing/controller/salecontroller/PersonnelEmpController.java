@@ -16,13 +16,13 @@ public class PersonnelEmpController {
     private PersonnelEmpService personnelEmpService;
 
     @RequestMapping("/PersonnelEmpAll")
-    public @ResponseBody CommonResult personnelEmpAll(){
+    public @ResponseBody CommonResult personnelEmpAll() {
         try {
             List<PersonnelEmp> personnelEmps = personnelEmpService.personnelEmpClientList();
-            return new CommonResult(200,"查询成功",personnelEmps);
+            return new CommonResult(200, "查询成功", personnelEmps);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new CommonResult(500,"查询失败");
+        return new CommonResult(500, "查询失败");
     }
 }

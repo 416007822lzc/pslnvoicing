@@ -56,4 +56,15 @@
     <select id="rejectOrderStatus" resultType="com.example.pslnvoicing.pojos.TbOrder">
         update tb_order  set order_status= 1 ,approval_status = 1 where order_id=#{id}
     </select>
+
+    <!--新增采购单详情表-->
+    <insert id="addtbOrderDetails" parameterType="java.util.List">
+        INSERT INTO tb_order_details(order_id,product_name,product_number,number,sales_unit_price,sales_amount,product_unit,order_details_remarks)
+        values
+        <foreach collection="d"  item="item" separator="," >
+            (#{item.order_id,jdbcType=VARCHAR},#{item.product_name,jdbcType=VARCHAR},
+            #{item.product_number,jdbcType=VARCHAR},#{item.number},#{item.sales_unit_price,jdbcType=VARCHAR},
+            #{item.sales_amount,jdbcType=VARCHAR},#{item.product_unit,jdbcType=VARCHAR},#{item.order_details_remarks,jdbcType=VARCHAR})
+    </foreach>
+    </insert>
 </mapper>
