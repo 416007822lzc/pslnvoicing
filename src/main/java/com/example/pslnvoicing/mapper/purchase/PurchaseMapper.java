@@ -2,7 +2,6 @@ package com.example.pslnvoicing.mapper.purchase;
 
 import com.example.pslnvoicing.pojos.PurchaseOrder;
 import com.example.pslnvoicing.pojos.PurchaseProductdetails;
-import com.example.pslnvoicing.vo.NewpurchaseOrderVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,7 @@
 package com.example.pslnvoicing.mapper.stockZmapper;
 
 import com.example.pslnvoicing.pojos.KucunWarehouse;
+import com.example.pslnvoicing.pojos.PslnvoiningWarehouse;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -11,9 +12,9 @@ import java.util.List;
 public interface KucunWarehouseMapper {
     List<KucunWarehouse> selectWarehouse();
 
-    List<KucunWarehouse> findWarehouse();
+    List<PslnvoiningWarehouse> selectWarehouseName();
 
-    List<KucunWarehouse> findLikeStaff(String warehouseStaff);
+    List<KucunWarehouse> findWarehouse(String warehouseName,String kWarehouseStaff);
 
     List<KucunWarehouse> toDay();
 
@@ -28,4 +29,6 @@ public interface KucunWarehouseMapper {
     List<KucunWarehouse> lastMonth();
 
     List<KucunWarehouse> findDate();
+
+
 }

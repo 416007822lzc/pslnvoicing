@@ -2,6 +2,7 @@ package com.example.pslnvoicing.service.stockZservice;
 
 import com.example.pslnvoicing.mapper.stockZmapper.KucunWarehouseMapper;
 import com.example.pslnvoicing.pojos.KucunWarehouse;
+import com.example.pslnvoicing.pojos.PslnvoiningWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +19,10 @@ public class KucunWarehouseService {
         return warehouseMapper.selectWarehouse();
     }
 
-    public List<KucunWarehouse> findWarehouse() {
-        return warehouseMapper.findWarehouse();
+    public List<KucunWarehouse> findWarehouse(String warehouseName,String kWarehouseStaff) {
+        return warehouseMapper.findWarehouse(warehouseName,kWarehouseStaff);
     }
 
-    public List<KucunWarehouse> findLikeStaff(String warehouseStaff) {
-        return warehouseMapper.findLikeStaff(warehouseStaff);
-    }
 
     public List<KucunWarehouse> toDay() {
         return warehouseMapper.toDay();
@@ -52,5 +50,9 @@ public class KucunWarehouseService {
 
     public List<KucunWarehouse> findDate() {
         return warehouseMapper.findDate();
+    }
+
+    public List<PslnvoiningWarehouse> selectWarehouseName() {
+        return warehouseMapper.selectWarehouseName();
     }
 }

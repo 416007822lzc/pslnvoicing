@@ -26,6 +26,14 @@
     <select id="findWarehouse" resultMap="ware">
             select * from kucun_warehouse ware left join pslnvoining_warehouse warehouse
             on ware.warehouse_id=warehouse.warehouse_id
+        <where>
+            <if test="warehouseName!=null and warehouseName!=''">
+                and warehouse.warehouse_name like '%${warehouseName}%'
+            </if>
+            <if test="kWarehouseStaff!=null and kWarehouseStaff!=''">
+                and ware.k_warehouse_staff like '%${kWarehouseStaff}%'
+            </if>
+        </where>
     </select>
 
     <!--按时间查询-->
@@ -57,5 +65,22 @@
     <!--&#45;&#45; 自定义查询时间-->
     <select id="findDate" resultMap="ware">
       select * from kucun_warehouse where k_warehouse_time between '2021-04-01' and '2021-04-03'
+    </select>
+
+    <!--仓库-->
+    <resultMap id="warehouse" type="com.example.pslnvoicing.pojos.PslnvoiningWarehouse">
+        <id column="warehouse_id" property="warehouseId"></id>
+        <result column="warehouse_name" property="warehouseName"></result>
+        <result column="warehouse_num" property="warehouseNum"></result>
+        <result column="warehouse_address" property="warehouseAddress"></result>
+        <result column="warehouse_head" property="warehouseHead"></result>
+        <result column="warehouse_phone" property="warehousePhone"></result>
+        <result column="warehouse_call" property="warehouseCall"></result>
+        <result column="warehouse_note" property="warehouseNote"></result>
+        <result column="warehouse_disable" property="warehouseDisable"></result>
+    </resultMap>
+
+    <select id="selectWarehouseName" resultMap="warehouse">
+        select * from pslnvoining_warehouse
     </select>
 </mapper>

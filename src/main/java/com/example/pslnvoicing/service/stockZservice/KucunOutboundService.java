@@ -2,6 +2,7 @@ package com.example.pslnvoicing.service.stockZservice;
 
 import com.example.pslnvoicing.mapper.stockZmapper.KucunOutboundMapper;
 import com.example.pslnvoicing.pojos.KucunOutbound;
+import com.example.pslnvoicing.pojos.PslnvoiningWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,14 +18,15 @@ public class KucunOutboundService {
     public List<KucunOutbound> selectOutbound() {
         return outboundMapper.selectOutbound();
     }
-
-    public List<KucunOutbound> findOutbound() {
-        return outboundMapper.findOutbound();
+//    查询仓库
+    public List<PslnvoiningWarehouse> selectWarehouseName() {
+        return outboundMapper.selectWarehouseName();
     }
 
-    public List<KucunOutbound> findLikeStaff(String outboundStaff) {
-        return outboundMapper.findLikeStaff(outboundStaff);
+    public List<KucunOutbound> findOutbound(String warehouseName,String outboundStaff) {
+        return outboundMapper.findOutbound(warehouseName,outboundStaff);
     }
+
 
     public List<KucunOutbound> toDay() {
         return outboundMapper.toDay();
@@ -53,4 +55,6 @@ public class KucunOutboundService {
     public List<KucunOutbound> findDate() {
         return outboundMapper.findDate();
     }
+
+
 }
