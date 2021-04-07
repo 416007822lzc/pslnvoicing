@@ -2,7 +2,6 @@
 <mapper  namespace="com.example.pslnvoicing.mapper.capital.CapitalPaymentDMapper">
     <resultMap id="fxq" type="com.example.pslnvoicing.vo.Capitali">
         <id column="payment_details_id" property="xqid"/>
-        <result column="payment_details_id" property="xqid" />
         <result column="payment_id" property="id" />
         <result column="income_name" property="incomeName" />
         <result column="payment_dat" property="paymentDat" />
@@ -22,9 +21,10 @@
         left join pslnvoicing_suppier  pls on pls.supplier_id=pco.supplier_id
         left join pslnvoicing_zijin  plz on clp.zj_id=plz.zj_id
         left join pslnvoicing_income_expenses   pie on   clp.ie_id=pie.ie_id
-
 			<where>
-
+                <if test="paymentNumber !=null and paymentNumber !=''">
+                    and clp.payment_number like concat('%',concat(#{paymentNumber},'%'))
+                </if>
             </where>
         order by payment_details_id desc
     </select>

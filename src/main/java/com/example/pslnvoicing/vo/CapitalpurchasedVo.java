@@ -7,26 +7,37 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.sql.Timestamp;
 
-public class Capitali {
-	private Integer xqid;
+public class CapitalpurchasedVo {
+	private Integer puridxq;
+	private Integer purid;
 	private Integer id;
 	private String incomeName;
 	private Timestamp paymentDat;
+	private Timestamp purchaseDat;
 	private String popurchasingstaff;
 	private Integer pojinne;
 	private Integer paymenMoney;
 	private String supplierName;
 	private String paymentNumber;
+	private String purchaseNumber;
 	private String zjname;
-	private Integer rpaymentState;
+	private Integer purchasetState;
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer getXqid() {
-		return xqid;
+	public Integer getPuridxq() {
+		return puridxq;
 	}
 
-	public void setXqid(Integer xqid) {
-		this.xqid = xqid;
+	public void setPuridxq(Integer puridxq) {
+		this.puridxq = puridxq;
+	}
+
+	public Integer getPurid() {
+		return purid;
+	}
+
+	public void setPurid(Integer purid) {
+		this.purid = purid;
 	}
 
 	public Integer getId() {
@@ -45,15 +56,24 @@ public class Capitali {
 		this.incomeName = incomeName;
 	}
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	public Timestamp getPaymentDat() {
 		return paymentDat;
 	}
 
+	public void setPaymentDat(Timestamp paymentDat) {
+		this.paymentDat = paymentDat;
+	}
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-	public void setPaymentDat(Timestamp paymentDat) {
-		this.paymentDat = paymentDat;
+	public Timestamp getPurchaseDat() {
+		return purchaseDat;
+	}
+
+	public void setPurchaseDat(Timestamp purchaseDat) {
+		this.purchaseDat = purchaseDat;
 	}
 
 	public String getPopurchasingstaff() {
@@ -96,6 +116,14 @@ public class Capitali {
 		this.paymentNumber = paymentNumber;
 	}
 
+	public String getPurchaseNumber() {
+		return purchaseNumber;
+	}
+
+	public void setPurchaseNumber(String purchaseNumber) {
+		this.purchaseNumber = purchaseNumber;
+	}
+
 	public String getZjname() {
 		return zjname;
 	}
@@ -104,45 +132,51 @@ public class Capitali {
 		this.zjname = zjname;
 	}
 
-	public Integer getRpaymentState() {
-		return rpaymentState;
+	public Integer getPurchasetState() {
+		return purchasetState;
 	}
 
-	public void setRpaymentState(Integer rpaymentState) {
-		this.rpaymentState = rpaymentState;
+	public void setPurchasetState(Integer purchasetState) {
+		this.purchasetState = purchasetState;
 	}
 
-	public Capitali(Integer xqid, Integer id, String incomeName, Timestamp paymentDat, String popurchasingstaff, Integer pojinne, Integer paymenMoney, String supplierName, String paymentNumber, String zjname, Integer rpaymentState) {
-		this.xqid = xqid;
+	public CapitalpurchasedVo(Integer puridxq, Integer purid, Integer id, String incomeName, Timestamp paymentDat, Timestamp purchaseDat, String popurchasingstaff, Integer pojinne, Integer paymenMoney, String supplierName, String paymentNumber, String purchaseNumber, String zjname, Integer purchasetState) {
+		this.puridxq = puridxq;
+		this.purid = purid;
 		this.id = id;
 		this.incomeName = incomeName;
 		this.paymentDat = paymentDat;
+		this.purchaseDat = purchaseDat;
 		this.popurchasingstaff = popurchasingstaff;
 		this.pojinne = pojinne;
 		this.paymenMoney = paymenMoney;
 		this.supplierName = supplierName;
 		this.paymentNumber = paymentNumber;
+		this.purchaseNumber = purchaseNumber;
 		this.zjname = zjname;
-		this.rpaymentState = rpaymentState;
+		this.purchasetState = purchasetState;
 	}
 
-	public Capitali() {
+	public CapitalpurchasedVo() {
 	}
 
 	@Override
 	public String toString() {
-		return "Capitali{" +
-				"xqid=" + xqid +
+		return "CapitalpurchasedVo{" +
+				"puridxq=" + puridxq +
+				", purid=" + purid +
 				", id=" + id +
 				", incomeName='" + incomeName + '\'' +
 				", paymentDat=" + paymentDat +
+				", purchaseDat=" + purchaseDat +
 				", popurchasingstaff='" + popurchasingstaff + '\'' +
 				", pojinne=" + pojinne +
 				", paymenMoney=" + paymenMoney +
 				", supplierName='" + supplierName + '\'' +
 				", paymentNumber='" + paymentNumber + '\'' +
+				", purchaseNumber='" + purchaseNumber + '\'' +
 				", zjname='" + zjname + '\'' +
-				", rpaymentState=" + rpaymentState +
+				", purchasetState=" + purchasetState +
 				'}';
 	}
 }
