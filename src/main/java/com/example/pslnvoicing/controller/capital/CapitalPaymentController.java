@@ -1,9 +1,9 @@
-package com.example.pslnvoicing.controller;
+package com.example.pslnvoicing.controller.capital;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.pslnvoicing.pojos.*;
-import com.example.pslnvoicing.service.CapitalPaymentService;
+import com.example.pslnvoicing.service.capia.CapitalPaymentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
