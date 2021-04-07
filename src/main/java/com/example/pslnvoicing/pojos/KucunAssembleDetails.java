@@ -15,6 +15,19 @@ public class KucunAssembleDetails {
 	private ProductVo product;
 	private KucunAssemble kucunAssemble;
 
+	@Override
+	public String toString() {
+		return "KucunAssembleDetails{" +
+				"assembleDetailsId=" + assembleDetailsId +
+				", assembleDetailsWarehouse='" + assembleDetailsWarehouse + '\'' +
+				", assembleDetailsNumber=" + assembleDetailsNumber +
+				", assembleDetailsCost=" + assembleDetailsCost +
+				", assembleDetailsRemark='" + assembleDetailsRemark + '\'' +
+				", product=" + product +
+				", kucunAssemble=" + kucunAssemble +
+				'}';
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "assemble_id")
 	public KucunAssemble getKucunAssemble() {

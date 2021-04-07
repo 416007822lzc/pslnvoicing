@@ -26,7 +26,16 @@ public class KucunDismounting {
 	private Timestamp dismountingTime;
 	private Integer dismountingState;
 	private String dismountingRemark;
+	private String dismountingCjr;
 	private ProductVo product;
+
+	public String getDismountingCjr() {
+		return dismountingCjr;
+	}
+
+	public void setDismountingCjr(String dismountingCjr) {
+		this.dismountingCjr = dismountingCjr;
+	}
 
 	@Override
 	public String toString() {

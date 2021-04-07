@@ -72,7 +72,7 @@
 
     <insert id="addAssembleDetails">
         insert into kucun_assemble_details values
-        (#{assembleDetailsId},#{assembleId},#{product.productId},#{assembleDetailsWarehouse},
+        (#{assembleDetailsId},#{kucunAssemble.assembleId},#{product.productId},#{assembleDetailsWarehouse},
          #{assembleDetailsNumber},#{assembleDetailsCost},#{assembleDetailsRemark})
     </insert>
 

@@ -19,6 +19,7 @@
         <result column="assemble_time" property="assembleTime"></result>
         <result column="assemble_state" property="assembleState"></result>
         <result column="assemble_remark" property="assembleRemark"></result>
+        <result column="assemble_cjr" property="assembleCjr"></result>
         <association property="product" javaType="com.example.pslnvoicing.vo.xgy.ProductVo">
             <id column="product_id" property="productId"></id>
             <result column="product_name" property="productName"></result>
@@ -64,7 +65,7 @@
     <insert id="addAssemble">
         insert into kucun_assemble values
         (#{assembleId},#{assembleOdd},#{assembleDate},#{assembleMoney},#{product.productId},#{product.warehouse.warehouseName},
-         #{assembleNumber},#{assembleCost},#{assembleName},#{assembleTime},#{assembleState},#{assembleRemark})
+         #{assembleNumber},#{assembleCost},#{assembleName},#{assembleTime},#{assembleState},#{assembleRemark},#{assembleCjr})
     </insert>
 
     <select id="maxId" resultMap="assemble">

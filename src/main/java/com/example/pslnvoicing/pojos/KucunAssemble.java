@@ -25,9 +25,16 @@ public class KucunAssemble {
 	private Timestamp assembleTime;
 	private Integer assembleState;
 	private String assembleRemark;
+	private String assembleCjr;
 	private ProductVo product;
 
+	public String getAssembleCjr() {
+		return assembleCjr;
+	}
 
+	public void setAssembleCjr(String assembleCjr) {
+		this.assembleCjr = assembleCjr;
+	}
 
 	@Override
 	public String toString() {

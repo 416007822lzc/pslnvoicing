@@ -19,6 +19,7 @@
         <result column="dismounting_time" property="dismountingTime"></result>
         <result column="dismounting_state" property="dismountingState"></result>
         <result column="dismounting_remark" property="dismountingRemark"></result>
+        <result column="dismounting_cjr" property="dismountingCjr"></result>
         <association property="product" javaType="com.example.pslnvoicing.vo.xgy.ProductVo">
             <id column="product_id" property="productId"></id>
             <result column="product_name" property="productName"></result>
