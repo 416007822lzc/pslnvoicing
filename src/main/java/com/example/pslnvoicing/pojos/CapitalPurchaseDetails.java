@@ -7,9 +7,10 @@ import java.util.Objects;
 public class CapitalPurchaseDetails {
 	private int purchaseDetailsId;
 	private Integer purchaseDetailsState;
-	private CapitalPurchase capitalPurchaseByPurchaseId;
+	private Integer capitalPurchaseByPurchaseId;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "purchase_details_id")
 	public int getPurchaseDetailsId() {
 		return purchaseDetailsId;
@@ -45,11 +46,12 @@ public class CapitalPurchaseDetails {
 
 	@ManyToOne
 	@JoinColumn(name = "purchase_id", referencedColumnName = "purchase_id")
-	public CapitalPurchase getCapitalPurchaseByPurchaseId() {
+
+	public Integer getCapitalPurchaseByPurchaseId() {
 		return capitalPurchaseByPurchaseId;
 	}
 
-	public void setCapitalPurchaseByPurchaseId(CapitalPurchase capitalPurchaseByPurchaseId) {
+	public void setCapitalPurchaseByPurchaseId(Integer capitalPurchaseByPurchaseId) {
 		this.capitalPurchaseByPurchaseId = capitalPurchaseByPurchaseId;
 	}
 }
