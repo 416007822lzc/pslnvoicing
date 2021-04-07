@@ -1,5 +1,9 @@
 package com.example.pslnvoicing.pojos;
 
+import com.example.pslnvoicing.vo.xgy.ProductVo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,16 +12,56 @@ import java.util.Objects;
 public class KucunDismounting {
 	private int dismountingId;
 	private String dismountingOdd;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Timestamp dismountingDate;
 	private Integer dismountingMoney;
-	private Integer dismountingProductId;
+	//	private Integer dismountingProductId;
 	private Integer dismountingWarehouse;
 	private Integer dismountingNumber;
 	private Integer dismountingCost;
 	private String dismountingName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Timestamp dismountingTime;
 	private Integer dismountingState;
 	private String dismountingRemark;
+	private String dismountingCjr;
+	private ProductVo product;
+
+	public String getDismountingCjr() {
+		return dismountingCjr;
+	}
+
+	public void setDismountingCjr(String dismountingCjr) {
+		this.dismountingCjr = dismountingCjr;
+	}
+
+	@Override
+	public String toString() {
+		return "KucunDismounting{" +
+				"dismountingId=" + dismountingId +
+				", dismountingOdd='" + dismountingOdd + '\'' +
+				", dismountingDate=" + dismountingDate +
+				", dismountingMoney=" + dismountingMoney +
+				", dismountingWarehouse=" + dismountingWarehouse +
+				", dismountingNumber=" + dismountingNumber +
+				", dismountingCost=" + dismountingCost +
+				", dismountingName='" + dismountingName + '\'' +
+				", dismountingTime=" + dismountingTime +
+				", dismountingState=" + dismountingState +
+				", dismountingRemark='" + dismountingRemark + '\'' +
+				", product=" + product +
+				'}';
+	}
+
+	public ProductVo getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductVo product) {
+		this.product = product;
+	}
 
 	@Id
 	@Column(name = "dismounting_id")
@@ -59,15 +103,6 @@ public class KucunDismounting {
 		this.dismountingMoney = dismountingMoney;
 	}
 
-	@Basic
-	@Column(name = "dismounting_productId")
-	public Integer getDismountingProductId() {
-		return dismountingProductId;
-	}
-
-	public void setDismountingProductId(Integer dismountingProductId) {
-		this.dismountingProductId = dismountingProductId;
-	}
 
 	@Basic
 	@Column(name = "dismounting_warehouse")
@@ -148,7 +183,6 @@ public class KucunDismounting {
 				Objects.equals(dismountingOdd, that.dismountingOdd) &&
 				Objects.equals(dismountingDate, that.dismountingDate) &&
 				Objects.equals(dismountingMoney, that.dismountingMoney) &&
-				Objects.equals(dismountingProductId, that.dismountingProductId) &&
 				Objects.equals(dismountingWarehouse, that.dismountingWarehouse) &&
 				Objects.equals(dismountingNumber, that.dismountingNumber) &&
 				Objects.equals(dismountingCost, that.dismountingCost) &&
@@ -160,6 +194,6 @@ public class KucunDismounting {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dismountingId, dismountingOdd, dismountingDate, dismountingMoney, dismountingProductId, dismountingWarehouse, dismountingNumber, dismountingCost, dismountingName, dismountingTime, dismountingState, dismountingRemark);
+		return Objects.hash(dismountingId, dismountingOdd, dismountingDate, dismountingMoney, dismountingWarehouse, dismountingNumber, dismountingCost, dismountingName, dismountingTime, dismountingState, dismountingRemark);
 	}
 }

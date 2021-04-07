@@ -1,5 +1,7 @@
 package com.example.pslnvoicing.pojos;
 
+import com.example.pslnvoicing.vo.xgy.ProductVo;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,7 +12,7 @@ public class KucunAllotDetails {
 	private Integer allotDetailsNumber;
 	private Integer allotDetailsCost;
 	private String allotDetailsRemark;
-	private PslvoicingProduct products;
+	private ProductVo products;
 	private KucunAllot kucunAllot;
 
 	@Override
@@ -39,11 +41,11 @@ public class KucunAllotDetails {
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")
-	public PslvoicingProduct getProducts() {
+	public ProductVo getProducts() {
 		return products;
 	}
 
-	public void setProducts(PslvoicingProduct products) {
+	public void setProducts(ProductVo products) {
 		this.products = products;
 	}
 

@@ -14,6 +14,7 @@ public class KucunAllotService {
     KucunAllotMapper kucunAllotMapper;
 
     public List<KucunAllot> allotList(KucunAllot kucunAllot){
+        System.err.println(kucunAllot);
         return kucunAllotMapper.allotList(kucunAllot);
     }
 

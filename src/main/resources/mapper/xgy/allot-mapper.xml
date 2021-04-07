@@ -23,13 +23,13 @@
 
 
     <select id="allotList" resultMap="allot">
-        SELECT * FROM kucun_allot a
+        SELECT * FROM kucun_allot
         <where>
             <if test="allotOdd!=null and allotOdd!=''">
                 and allot_odd like '%${allotOdd}%'
             </if>
-            <if test="allotDate!=null and allotDate!=''">
-                and DATE_FORMAT(a.allot_date,'%Y-%m-%d')='2021-04-03'
+            <if test="allotRemark!=null and allotRemark!=''">
+                and DATE_FORMAT(allot_date,'%Y-%m-%dT16:00:00.000Z')=#{allotRemark}
             </if>
             <if test="allotName!=null and allotName!=''">
                 and allot_name=#{allotName}

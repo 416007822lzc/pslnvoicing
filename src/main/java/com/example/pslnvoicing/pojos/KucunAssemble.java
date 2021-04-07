@@ -1,5 +1,9 @@
 package com.example.pslnvoicing.pojos;
 
+import com.example.pslnvoicing.vo.xgy.ProductVo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -7,16 +11,47 @@ import java.util.Objects;
 public class KucunAssemble {
 	private int assembleId;
 	private String assembleOdd;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Timestamp assembleDate;
 	private Integer assembleMoney;
-	private Integer assembleProductId;
-	private Integer assembleWarehouse;
+	//	private Integer assembleProductId;
+	private String assembleWarehouse;
 	private Integer assembleNumber;
 	private Integer assembleCost;
 	private String assembleName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Timestamp assembleTime;
 	private Integer assembleState;
 	private String assembleRemark;
+	private String assembleCjr;
+	private ProductVo product;
+
+	public String getAssembleCjr() {
+		return assembleCjr;
+	}
+
+	public void setAssembleCjr(String assembleCjr) {
+		this.assembleCjr = assembleCjr;
+	}
+
+	@Override
+	public String toString() {
+		return "KucunAssemble{" +
+				"assembleId=" + assembleId +
+				", assembleOdd='" + assembleOdd + '\'' +
+				", assembleDate=" + assembleDate +
+				", assembleMoney=" + assembleMoney +
+				", assembleWarehouse='" + assembleWarehouse + '\'' +
+				", assembleNumber=" + assembleNumber +
+				", assembleCost=" + assembleCost +
+				", assembleName='" + assembleName + '\'' +
+				", assembleTime=" + assembleTime +
+				", assembleState=" + assembleState +
+				", assembleRemark='" + assembleRemark + '\'' +
+				'}';
+	}
 
 	@Id
 	@Column(name = "assemble_id")
@@ -26,6 +61,16 @@ public class KucunAssemble {
 
 	public void setAssembleId(int assembleId) {
 		this.assembleId = assembleId;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	public ProductVo getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductVo product) {
+		this.product = product;
 	}
 
 	@Basic
@@ -58,25 +103,20 @@ public class KucunAssemble {
 		this.assembleMoney = assembleMoney;
 	}
 
-	@Basic
-	@Column(name = "assemble_productId")
-	public Integer getAssembleProductId() {
-		return assembleProductId;
-	}
 
-	public void setAssembleProductId(Integer assembleProductId) {
-		this.assembleProductId = assembleProductId;
-	}
 
 	@Basic
 	@Column(name = "assemble_warehouse")
-	public Integer getAssembleWarehouse() {
+	public String getAssembleWarehouse() {
 		return assembleWarehouse;
 	}
 
-	public void setAssembleWarehouse(Integer assembleWarehouse) {
+	public void setAssembleWarehouse(String assembleWarehouse) {
 		this.assembleWarehouse = assembleWarehouse;
 	}
+
+
+
 
 	@Basic
 	@Column(name = "assemble_number")
@@ -147,7 +187,6 @@ public class KucunAssemble {
 				Objects.equals(assembleOdd, that.assembleOdd) &&
 				Objects.equals(assembleDate, that.assembleDate) &&
 				Objects.equals(assembleMoney, that.assembleMoney) &&
-				Objects.equals(assembleProductId, that.assembleProductId) &&
 				Objects.equals(assembleWarehouse, that.assembleWarehouse) &&
 				Objects.equals(assembleNumber, that.assembleNumber) &&
 				Objects.equals(assembleCost, that.assembleCost) &&
@@ -159,6 +198,6 @@ public class KucunAssemble {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(assembleId, assembleOdd, assembleDate, assembleMoney, assembleProductId, assembleWarehouse, assembleNumber, assembleCost, assembleName, assembleTime, assembleState, assembleRemark);
+		return Objects.hash(assembleId, assembleOdd, assembleDate, assembleMoney, assembleWarehouse, assembleNumber, assembleCost, assembleName, assembleTime, assembleState, assembleRemark);
 	}
 }
