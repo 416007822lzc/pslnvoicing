@@ -2,7 +2,7 @@ package com.example.pslnvoicing.mapper.purchase;
 
 import com.example.pslnvoicing.pojos.PurchaseOrder;
 import com.example.pslnvoicing.pojos.PurchaseProductdetails;
-import com.example.pslnvoicing.vo.NewpurchaseOrderVo;
+import com.example.pslnvoicing.vo.purchase.NewpurchaseOrderVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,8 @@ import java.util.List;
 @Mapper
 public interface PurchaseMapper {
 
-    public int addPurchase(PurchaseOrder p);
+    public int addPurchase(NewpurchaseOrderVo n);
 
     public int addPurchaseDetails(@Param("d") List<PurchaseProductdetails> d);
+
 }

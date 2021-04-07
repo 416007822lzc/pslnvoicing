@@ -1,11 +1,10 @@
 package com.example.pslnvoicing.service.purchase;
 
-import com.example.pslnvoicing.conn.CommonResult;
 import com.example.pslnvoicing.mapper.purchase.PurchaseMapper;
 import com.example.pslnvoicing.pojos.PslvoicingProduct;
 import com.example.pslnvoicing.pojos.PurchaseOrder;
 import com.example.pslnvoicing.pojos.PurchaseProductdetails;
-import com.example.pslnvoicing.vo.NewpurchaseOrderVo;
+import com.example.pslnvoicing.vo.purchase.NewpurchaseOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,22 +20,22 @@ public class PurchaseImpl implements PurchaseService{
 
     @Override
     public Boolean addCaigou(NewpurchaseOrderVo newpurchaseOrderVo) {
-        PurchaseOrder p=new PurchaseOrder();
-        p.setSupplierId(newpurchaseOrderVo.getSupplierId());
-        p.setWarehouseId(newpurchaseOrderVo.getWarehouseId());
-        p.setEmpId(newpurchaseOrderVo.getEmpId());
-        p.setPOPurchasenumber(newpurchaseOrderVo.getShuzi());
-        p.setPOJine(newpurchaseOrderVo.getZj());
-        p.setPODocumentdate(newpurchaseOrderVo.getJq());
-        p.setPODeliverydate(newpurchaseOrderVo.getSj());
-        int caig = purchaseMapper.addPurchase(p);
+//        PurchaseOrder p=new PurchaseOrder();
+//        p.setSupplierId(newpurchaseOrderVo.getSupplierId());
+//        p.setWarehouseId(newpurchaseOrderVo.getWarehouseId());
+//        p.setEmpId(newpurchaseOrderVo.getEmpId());
+//        p.setPOPurchasenumber(newpurchaseOrderVo.getShuzi());
+//        p.setPOJine(newpurchaseOrderVo.getZj());
+//        p.setPODocumentdate(newpurchaseOrderVo.getJq());
+//        p.setPODeliverydate(newpurchaseOrderVo.getSj());
+        int caig = purchaseMapper.addPurchase(newpurchaseOrderVo);
 
         PurchaseProductdetails xiangq=new PurchaseProductdetails();
         List<PslvoicingProduct> list= newpurchaseOrderVo.getPslvoicingproducts();
         List<PurchaseProductdetails> xq=new ArrayList<>();
         for (PslvoicingProduct pslvoicingProduct : list) {
             PurchaseProductdetails pu=new PurchaseProductdetails();
-            pu.setPOPurchasenumber(p.getPOPurchasenumber());//采购编号
+            pu.setPOPurchasenumber(newpurchaseOrderVo.getShuzi());//采购编号
             pu.setPPdCpid(pslvoicingProduct.getProductNum());//产品编号
             pu.setPPdSname(pslvoicingProduct.getProductName());//产品名称
             pu.setPPdCompany(pslvoicingProduct.getProductUnit());//单位

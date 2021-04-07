@@ -3,9 +3,8 @@ package com.example.pslnvoicing.controller.purchase;
 import com.example.pslnvoicing.conn.CommonResult;
 import com.example.pslnvoicing.pojos.*;
 import com.example.pslnvoicing.service.purchase.*;
-import com.example.pslnvoicing.vo.NewpurchaseOrderVo;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.github.pagehelper.PageHelper;
+import com.example.pslnvoicing.vo.ParameterVo;
+import com.example.pslnvoicing.vo.purchase.NewpurchaseOrderVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -105,5 +104,16 @@ public class PurchaseController {
             e.printStackTrace();
         }
         return new CommonResult(500, "新增失败");
+    }
+
+    @Autowired
+    private purchaseOrAllService purchaseOrAllService;
+
+    //查询采购单列表
+    @RequestMapping("/purchaseOrderAll")
+    public  PageInfo<PurchaseOrder> findAll(ParameterVo parameterVo) {
+        System.out.println(parameterVo.toString());
+        PageInfo<PurchaseOrder> orders = purchaseOrAllService.purchaseOrderall(parameterVo);
+        return orders;
     }
 }
