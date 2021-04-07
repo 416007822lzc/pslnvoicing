@@ -38,7 +38,7 @@
         </association>
     </resultMap>
 
-
+    <!--查询销售订单-->
     <select id="tbOrderfindAll" resultMap="tborderMap">
         select * FROM tb_order t
         LEFT JOIN personnel_emp p on t.emp_id=p.emp_id LEFT JOIN  pslnvoicing_client p1 on
@@ -55,11 +55,21 @@
             </if>
 
             <if test="empNameOrStoreNameOrNumber != null and empNameOrStoreNameOrNumber != ''">
-                and p2.(warehouse_name like #{empNameOrStoreNameOrNumber}
+                and (p2.warehouse_name like #{empNameOrStoreNameOrNumber}
                 or p.emp_name like #{empNameOrStoreNameOrNumber}
                 or t.order_number like #{empNameOrStoreNameOrNumber})
             </if>
         </where>
     </select>
 
+    <!--新增销售单-->
+    <insert id="addtborder" parameterType="com.example.pslnvoicing.vo.TborderVo">
+        INSERT INTO tb_order
+        (emp_id,client_id,warehouse_id,order_number,document_date,
+        delivery_date,account_receivable,payment_received,delivery_status,creator_person
+        ,create_time,approval_status,order_status,delivery_order_number)
+        values (#{empId},#{clientId},#{warehouseId},#{orderNumber},#{documentDate},
+        #{deliveryDate},#{accountReceivable},#{paymentReceived},#{deliveryStatus},#{creatorPerson}
+        ,#{createTime},#{approvalStatus},#{orderStatus},#{deliveryOrderNumber})
+    </insert>
 </mapper>

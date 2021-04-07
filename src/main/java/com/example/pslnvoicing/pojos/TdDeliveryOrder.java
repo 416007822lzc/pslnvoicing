@@ -1,5 +1,7 @@
 package com.example.pslnvoicing.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -7,22 +9,43 @@ import java.util.Objects;
 
 public class TdDeliveryOrder {
 	private int deliveryOrderId;
-	private Integer empId;
-	private Integer clientId;
-	private Integer warehouseId;
+	private PersonnelEmp personnelEmp;
+	private PslnvoicingClient pslnvoicingClient;
+	private PslnvoiningWarehouse PslnvoiningWarehouse;
 	private String deliveryOrderNumber;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp deliveryTime;
 	private Double receivables;
 	private Integer deliveryStatus;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp createTime;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp updateTime;
 	private Integer approvalStatus;
 	private String currentExaminer;
 	private String orderNumber;
 	private String salesReturnsNumber;
 
-	@Id
-	@Column(name = "delivery_order_id")
+	public TdDeliveryOrder() {
+	}
+
+	public TdDeliveryOrder(int deliveryOrderId, PersonnelEmp personnelEmp, PslnvoicingClient pslnvoicingClient, com.example.pslnvoicing.pojos.PslnvoiningWarehouse pslnvoiningWarehouse, String deliveryOrderNumber, Timestamp deliveryTime, Double receivables, Integer deliveryStatus, Timestamp createTime, Timestamp updateTime, Integer approvalStatus, String currentExaminer, String orderNumber, String salesReturnsNumber) {
+		this.deliveryOrderId = deliveryOrderId;
+		this.personnelEmp = personnelEmp;
+		this.pslnvoicingClient = pslnvoicingClient;
+		PslnvoiningWarehouse = pslnvoiningWarehouse;
+		this.deliveryOrderNumber = deliveryOrderNumber;
+		this.deliveryTime = deliveryTime;
+		this.receivables = receivables;
+		this.deliveryStatus = deliveryStatus;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.approvalStatus = approvalStatus;
+		this.currentExaminer = currentExaminer;
+		this.orderNumber = orderNumber;
+		this.salesReturnsNumber = salesReturnsNumber;
+	}
+
 	public int getDeliveryOrderId() {
 		return deliveryOrderId;
 	}
@@ -31,38 +54,30 @@ public class TdDeliveryOrder {
 		this.deliveryOrderId = deliveryOrderId;
 	}
 
-	@Basic
-	@Column(name = "emp_id")
-	public Integer getEmpId() {
-		return empId;
+	public PersonnelEmp getPersonnelEmp() {
+		return personnelEmp;
 	}
 
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
+	public void setPersonnelEmp(PersonnelEmp personnelEmp) {
+		this.personnelEmp = personnelEmp;
 	}
 
-	@Basic
-	@Column(name = "client_id")
-	public Integer getClientId() {
-		return clientId;
+	public PslnvoicingClient getPslnvoicingClient() {
+		return pslnvoicingClient;
 	}
 
-	public void setClientId(Integer clientId) {
-		this.clientId = clientId;
+	public void setPslnvoicingClient(PslnvoicingClient pslnvoicingClient) {
+		this.pslnvoicingClient = pslnvoicingClient;
 	}
 
-	@Basic
-	@Column(name = "warehouse_id")
-	public Integer getWarehouseId() {
-		return warehouseId;
+	public com.example.pslnvoicing.pojos.PslnvoiningWarehouse getPslnvoiningWarehouse() {
+		return PslnvoiningWarehouse;
 	}
 
-	public void setWarehouseId(Integer warehouseId) {
-		this.warehouseId = warehouseId;
+	public void setPslnvoiningWarehouse(com.example.pslnvoicing.pojos.PslnvoiningWarehouse pslnvoiningWarehouse) {
+		PslnvoiningWarehouse = pslnvoiningWarehouse;
 	}
 
-	@Basic
-	@Column(name = "delivery_order_number")
 	public String getDeliveryOrderNumber() {
 		return deliveryOrderNumber;
 	}
@@ -71,8 +86,6 @@ public class TdDeliveryOrder {
 		this.deliveryOrderNumber = deliveryOrderNumber;
 	}
 
-	@Basic
-	@Column(name = "delivery_time")
 	public Timestamp getDeliveryTime() {
 		return deliveryTime;
 	}
@@ -81,8 +94,6 @@ public class TdDeliveryOrder {
 		this.deliveryTime = deliveryTime;
 	}
 
-	@Basic
-	@Column(name = "receivables")
 	public Double getReceivables() {
 		return receivables;
 	}
@@ -91,8 +102,6 @@ public class TdDeliveryOrder {
 		this.receivables = receivables;
 	}
 
-	@Basic
-	@Column(name = "delivery_status")
 	public Integer getDeliveryStatus() {
 		return deliveryStatus;
 	}
@@ -101,8 +110,6 @@ public class TdDeliveryOrder {
 		this.deliveryStatus = deliveryStatus;
 	}
 
-	@Basic
-	@Column(name = "create_time")
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -111,8 +118,6 @@ public class TdDeliveryOrder {
 		this.createTime = createTime;
 	}
 
-	@Basic
-	@Column(name = "update_time")
 	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
@@ -121,8 +126,6 @@ public class TdDeliveryOrder {
 		this.updateTime = updateTime;
 	}
 
-	@Basic
-	@Column(name = "approval_status")
 	public Integer getApprovalStatus() {
 		return approvalStatus;
 	}
@@ -131,8 +134,6 @@ public class TdDeliveryOrder {
 		this.approvalStatus = approvalStatus;
 	}
 
-	@Basic
-	@Column(name = "current_examiner")
 	public String getCurrentExaminer() {
 		return currentExaminer;
 	}
@@ -141,8 +142,6 @@ public class TdDeliveryOrder {
 		this.currentExaminer = currentExaminer;
 	}
 
-	@Basic
-	@Column(name = "order_number")
 	public String getOrderNumber() {
 		return orderNumber;
 	}
@@ -151,39 +150,11 @@ public class TdDeliveryOrder {
 		this.orderNumber = orderNumber;
 	}
 
-	@Basic
-	@Column(name = "sales_returns_number")
 	public String getSalesReturnsNumber() {
 		return salesReturnsNumber;
 	}
 
 	public void setSalesReturnsNumber(String salesReturnsNumber) {
 		this.salesReturnsNumber = salesReturnsNumber;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		TdDeliveryOrder that = (TdDeliveryOrder) o;
-		return deliveryOrderId == that.deliveryOrderId &&
-				Objects.equals(empId, that.empId) &&
-				Objects.equals(clientId, that.clientId) &&
-				Objects.equals(warehouseId, that.warehouseId) &&
-				Objects.equals(deliveryOrderNumber, that.deliveryOrderNumber) &&
-				Objects.equals(deliveryTime, that.deliveryTime) &&
-				Objects.equals(receivables, that.receivables) &&
-				Objects.equals(deliveryStatus, that.deliveryStatus) &&
-				Objects.equals(createTime, that.createTime) &&
-				Objects.equals(updateTime, that.updateTime) &&
-				Objects.equals(approvalStatus, that.approvalStatus) &&
-				Objects.equals(currentExaminer, that.currentExaminer) &&
-				Objects.equals(orderNumber, that.orderNumber) &&
-				Objects.equals(salesReturnsNumber, that.salesReturnsNumber);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(deliveryOrderId, empId, clientId, warehouseId, deliveryOrderNumber, deliveryTime, receivables, deliveryStatus, createTime, updateTime, approvalStatus, currentExaminer, orderNumber, salesReturnsNumber);
 	}
 }

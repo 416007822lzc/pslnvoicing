@@ -1,6 +1,5 @@
-package com.example.pslnvoicing.service.impl.saleserviceImpl;
+package com.example.pslnvoicing.service.saleservice.saleserviceImpl;
 
-import com.example.pslnvoicing.mapper.salemapper.CustomerMapper;
 import com.example.pslnvoicing.mapper.salemapper.PersonnelEmpMapper;
 import com.example.pslnvoicing.pojos.PersonnelEmp;
 import com.example.pslnvoicing.service.saleservice.PersonnelEmpService;

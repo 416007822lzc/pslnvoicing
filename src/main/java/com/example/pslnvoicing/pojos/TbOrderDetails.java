@@ -5,112 +5,100 @@ import java.util.Objects;
 
 
 public class TbOrderDetails {
-	private int orderDetailsId;
-	private Integer orderId;
-	private String productName;
-	private String productNumber;
-	private Integer number;
-	private Double salesUnitPrice;
-	private Double salesAmount;
-	private String orderDetailsRemarks;
+    private int orderDetailsId;
+    private String orderId;
+    private String productName;
+    private String productNumber;
+    private Integer number;
+    private Double salesUnitPrice;
+    private Double salesAmount;
+    private String productUnit;
+    private String orderDetailsRemarks;
 
-	@Id
-	@Column(name = "order_details_id")
-	public int getOrderDetailsId() {
-		return orderDetailsId;
-	}
+    public TbOrderDetails() {
+    }
 
-	public void setOrderDetailsId(int orderDetailsId) {
-		this.orderDetailsId = orderDetailsId;
-	}
+    public TbOrderDetails(int orderDetailsId, String orderId, String productName, String productNumber, Integer number, Double salesUnitPrice, Double salesAmount, String productUnit, String orderDetailsRemarks) {
+        this.orderDetailsId = orderDetailsId;
+        this.orderId = orderId;
+        this.productName = productName;
+        this.productNumber = productNumber;
+        this.number = number;
+        this.salesUnitPrice = salesUnitPrice;
+        this.salesAmount = salesAmount;
+        this.productUnit = productUnit;
+        this.orderDetailsRemarks = orderDetailsRemarks;
+    }
 
-	@Basic
-	@Column(name = "order_id")
-	public Integer getOrderId() {
-		return orderId;
-	}
+    public int getOrderDetailsId() {
+        return orderDetailsId;
+    }
 
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
-	}
+    public void setOrderDetailsId(int orderDetailsId) {
+        this.orderDetailsId = orderDetailsId;
+    }
 
-	@Basic
-	@Column(name = "product_name")
-	public String getProductName() {
-		return productName;
-	}
+    public String getOrderId() {
+        return orderId;
+    }
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
-	@Basic
-	@Column(name = "product_number")
-	public String getProductNumber() {
-		return productNumber;
-	}
+    public String getProductName() {
+        return productName;
+    }
 
-	public void setProductNumber(String productNumber) {
-		this.productNumber = productNumber;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	@Basic
-	@Column(name = "number")
-	public Integer getNumber() {
-		return number;
-	}
+    public String getProductNumber() {
+        return productNumber;
+    }
 
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
+    }
 
-	@Basic
-	@Column(name = "sales_unit_price")
-	public Double getSalesUnitPrice() {
-		return salesUnitPrice;
-	}
+    public Integer getNumber() {
+        return number;
+    }
 
-	public void setSalesUnitPrice(Double salesUnitPrice) {
-		this.salesUnitPrice = salesUnitPrice;
-	}
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
 
-	@Basic
-	@Column(name = "sales_amount")
-	public Double getSalesAmount() {
-		return salesAmount;
-	}
+    public Double getSalesUnitPrice() {
+        return salesUnitPrice;
+    }
 
-	public void setSalesAmount(Double salesAmount) {
-		this.salesAmount = salesAmount;
-	}
+    public void setSalesUnitPrice(Double salesUnitPrice) {
+        this.salesUnitPrice = salesUnitPrice;
+    }
 
-	@Basic
-	@Column(name = "order_details_remarks")
-	public String getOrderDetailsRemarks() {
-		return orderDetailsRemarks;
-	}
+    public Double getSalesAmount() {
+        return salesAmount;
+    }
 
-	public void setOrderDetailsRemarks(String orderDetailsRemarks) {
-		this.orderDetailsRemarks = orderDetailsRemarks;
-	}
+    public void setSalesAmount(Double salesAmount) {
+        this.salesAmount = salesAmount;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		TbOrderDetails that = (TbOrderDetails) o;
-		return orderDetailsId == that.orderDetailsId &&
-				Objects.equals(orderId, that.orderId) &&
-				Objects.equals(productName, that.productName) &&
-				Objects.equals(productNumber, that.productNumber) &&
-				Objects.equals(number, that.number) &&
-				Objects.equals(salesUnitPrice, that.salesUnitPrice) &&
-				Objects.equals(salesAmount, that.salesAmount) &&
-				Objects.equals(orderDetailsRemarks, that.orderDetailsRemarks);
-	}
+    public String getProductUnit() {
+        return productUnit;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(orderDetailsId, orderId, productName, productNumber, number, salesUnitPrice, salesAmount, orderDetailsRemarks);
-	}
+    public void setProductUnit(String productUnit) {
+        this.productUnit = productUnit;
+    }
+
+    public String getOrderDetailsRemarks() {
+        return orderDetailsRemarks;
+    }
+
+    public void setOrderDetailsRemarks(String orderDetailsRemarks) {
+        this.orderDetailsRemarks = orderDetailsRemarks;
+    }
 }

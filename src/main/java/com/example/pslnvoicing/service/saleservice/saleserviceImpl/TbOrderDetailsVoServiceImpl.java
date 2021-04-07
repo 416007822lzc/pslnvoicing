@@ -1,4 +1,4 @@
-package com.example.pslnvoicing.service.impl.saleserviceImpl;
+package com.example.pslnvoicing.service.saleservice.saleserviceImpl;
 
 import com.example.pslnvoicing.mapper.salemapper.TbOrderDetailsVoMapper;
 import com.example.pslnvoicing.pojos.TbOrder;
