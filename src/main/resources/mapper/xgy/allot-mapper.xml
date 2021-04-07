@@ -38,7 +38,7 @@
                 and allot_state=#{allotState}
             </if>
         </where>
-        ORDER BY allot_date DESC
+        ORDER BY allot_id DESC
 
     </select>
 

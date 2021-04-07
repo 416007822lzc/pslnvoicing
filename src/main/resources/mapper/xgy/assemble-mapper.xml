@@ -59,7 +59,7 @@
                 and assemble_state=#{assembleState}
             </if>
         </where>
-        ORDER BY assemble_date desc
+        ORDER BY assemble_id desc
     </select>
 
     <insert id="addAssemble">
