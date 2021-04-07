@@ -1,6 +1,7 @@
 package com.example.pslnvoicing.controller.stockZcontroller;
 
 import com.example.pslnvoicing.pojos.KucunOutbound;
+import com.example.pslnvoicing.pojos.PslnvoiningWarehouse;
 import com.example.pslnvoicing.service.stockZservice.KucunOutboundService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -22,21 +23,21 @@ public class KucunOutboundContorller {
         return outboundService.selectOutbound();
     }
 
+
+    @RequestMapping("/select-out-warehouse")
+    public List<PslnvoiningWarehouse> selectWarehouseName(){
+        return outboundService.selectWarehouseName();
+    }
     //分页查询
     @RequestMapping("/find-outbound")
-    public Map<String,Object> outbound(Integer pageNum, Integer size){
+    public Map<String,Object> outbound(Integer pageNum, Integer size,String warehouseName,String outboundStaff){
         Map<String,Object> map = new HashMap<>();
 
         Page<Object> page = PageHelper.startPage(pageNum, size);
-        List<KucunOutbound> outbound = outboundService.findOutbound();
+        List<KucunOutbound> outbound = outboundService.findOutbound(warehouseName,outboundStaff);
         map.put("rows",outbound);
         map.put("total",page.getTotal());
         return map;
-    }
-    //    模糊查询 出库创建人
-    @RequestMapping("/find-lik-outbound-staff")
-    public List<KucunOutbound> findLikeStaff(String OutboundStaff){
-        return outboundService.findLikeStaff(OutboundStaff);
     }
 
 

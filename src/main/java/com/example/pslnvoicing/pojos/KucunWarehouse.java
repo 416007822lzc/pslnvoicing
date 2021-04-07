@@ -19,7 +19,6 @@ public class KucunWarehouse {
 
 	private PslnvoiningWarehouse warehouse;
 
-	@ManyToOne
 	public PslnvoiningWarehouse getWarehouse() {
 		return warehouse;
 	}
@@ -49,7 +48,7 @@ public class KucunWarehouse {
 	}
 
 	@Basic
-	@Column(name = "K_warehouse_number")
+	@Column(name = "k_warehouse_number")
 	public String getKWarehouseNumber() {
 		return kWarehouseNumber;
 	}
@@ -94,5 +93,4 @@ public class KucunWarehouse {
 	public int hashCode() {
 		return Objects.hash(kWarehouseId, ratifId, kWarehouseNumber, kWarehouseTime, kWarehouseStaff);
 	}
-
 }

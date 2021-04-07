@@ -1,6 +1,7 @@
 package com.example.pslnvoicing.controller.stockZcontroller;
 
 import com.example.pslnvoicing.pojos.KucunWarehouse;
+import com.example.pslnvoicing.pojos.PslnvoiningWarehouse;
 import com.example.pslnvoicing.service.stockZservice.KucunWarehouseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -22,21 +23,21 @@ public class KucunWarehouseContorller {
     public List<KucunWarehouse> selectWarehouse(){
         return warehouseService.selectWarehouse();
     }
+//仓库
+    @RequestMapping("/select-ware-warehouse")
+    public List<PslnvoiningWarehouse> selectWarehouseName(){
+        return warehouseService.selectWarehouseName();
+    }
     //分页查询
     @RequestMapping("/find-warehouse")
-    public Map<String,Object> warehouse(Integer pageNum, Integer size){
+    public Map<String,Object> warehouse(Integer pageNum, Integer size,String warehouseName,String kWarehouseStaff){
         Map<String,Object> map = new HashMap<>();
 
         Page<Object> page = PageHelper.startPage(pageNum, size);
-        List<KucunWarehouse> warehouse = warehouseService.findWarehouse();
+        List<KucunWarehouse> warehouse = warehouseService.findWarehouse(warehouseName,kWarehouseStaff);
         map.put("rows",warehouse);
         map.put("total",page.getTotal());
         return map;
-    }
-    //    模糊查询 入库创建人
-    @RequestMapping("/find-like-warehouse-staff")
-    public List<KucunWarehouse> findLikeStaff(String warehouseStaff){
-        return warehouseService.findLikeStaff(warehouseStaff);
     }
 
 
