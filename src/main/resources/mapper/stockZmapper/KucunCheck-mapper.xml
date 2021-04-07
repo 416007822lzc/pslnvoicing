@@ -30,7 +30,7 @@
     </select>
 
     <select id="findCheck" resultMap="check">
-        select * from kucun_check checks left join pslnvoining_warehouse pw on checks.psl_warehouse_id=pw.warehouse_id
+        select * from kucun_check checks left join pslnvoining_warehouse pw on checks.warehouse_id=pw.warehouse_id
         <!--<where>-->
             <!--<if test="checkTime!=null and checkTime!=''">-->
                 <!--and checks.check_time like '%${checkTime}%'-->
