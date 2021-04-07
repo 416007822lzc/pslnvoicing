@@ -250,4 +250,10 @@ public class DataStatisticsImpl implements DataStatisticsService {
 
         return list;
     }
+
+    @Override
+    public Boolean updateReturnsRatify(String numberType, Integer approvalStatus, Integer id) {
+        boolean flag = dataStatisticsMapper.updateReturnsRatify(numberType, approvalStatus, id) > 0;
+        return flag;
+    }
 }

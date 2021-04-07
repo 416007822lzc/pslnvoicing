@@ -50,4 +50,6 @@ public interface DataStatisticsService {
 
     List<RatifyVo> queryAllReturns(Integer approvalStatus);
 
+    Boolean updateReturnsRatify(String numberType, Integer approvalStatus, Integer id);
+
 }

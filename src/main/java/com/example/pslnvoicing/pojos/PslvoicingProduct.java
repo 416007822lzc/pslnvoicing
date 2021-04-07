@@ -149,7 +149,4 @@ public class PslvoicingProduct {
 	public void setProductPurchasePrice(BigDecimal productPurchasePrice) {
 		this.productPurchasePrice = productPurchasePrice;
 	}
-	private String productDescription;
-
-
 }

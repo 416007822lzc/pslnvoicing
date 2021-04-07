@@ -197,7 +197,10 @@
     </select>
 
     <select id="queryTbOrderReturns" resultMap="TbOrderReturns">
-         SELECT a.order_id,a.order_number,a.account_receivable,a.create_time,b.emp_name,c.client_name FROM tb_order a LEFT JOIN personnel_emp b on a.emp_id = b.emp_id LEFT JOIN pslnvoicing_client c on c.client_id = a.client_id WHERE approval_status = #{approvalStatus}
+         SELECT a.order_id,a.order_number,a.account_receivable,a.create_time,b.emp_name,c.client_name
+         FROM tb_order a LEFT JOIN personnel_emp b on a.emp_id = b.emp_id
+         LEFT JOIN pslnvoicing_client c on c.client_id = a.client_id
+          WHERE approval_status = #{approvalStatus}
     </select>
 
     <select id="queryCapitalReceiptReturns" resultMap="CapitalReceiptReturns">
@@ -213,7 +216,7 @@
     </select>
 
     <select id="queryPurchaseOrderReturns" resultMap="PurchaseOrderReturns">
-         SELECT a.p_o_id,a.p_o_purchasenumber,a.p_o_creationtime,b.emp_name,c.supplier_name,d.p_pd_totalprice FROM purchase_order a LEFT JOIN personnel_emp b on a.emp_id = b.emp_id LEFT JOIN pslnvoicing_suppier c on c.supplier_id = a.supplier_id left JOIN purchase_productdetails d on a.p_o_id=d.p_o_id WHERE a.p_o_approvalstatus = #{approvalStatus}
+         SELECT a.p_o_id,a.p_o_purchasenumber,a.p_o_creationtime,b.emp_name,c.supplier_name,d.p_pd_totalprice FROM purchase_order a LEFT JOIN personnel_emp b on a.emp_id = b.emp_id LEFT JOIN pslnvoicing_suppier c on c.supplier_id = a.supplier_id left JOIN purchase_productdetails d on a.p_o_purchasenumber=d.p_o_purchasenumber WHERE a.p_o_approvalstatus = #{approvalStatus}
     </select>
 
     <select id="queryPurchaseReturnReturns" resultMap="PurchaseReturnReturns">
@@ -244,4 +247,52 @@
     <select id="queryWarehouseReturns" resultMap="WarehouseReturns">
         select * from kucun_warehouse where k_approval_status = #{approvalStatus}
     </select>
+
+    <update id="updateReturnsRatify">
+        update
+        <if test='numberType == "销售出库"'>
+            td_delivery_order set approval_status = #{param2} where delivery_order_id = #{param3}
+        </if>
+        <if test='numberType == "销售退货"'>
+            td_sales_returns set approval_status = #{param2} where sales_returns_id = #{param3}
+        </if>
+        <if test='numberType == "销售订单"'>
+            tb_order set approval_status = #{param2} where order_id = #{param3}
+        </if>
+        <if test='numberType == "销售收款"'>
+            capital_receipt set receipt_state = #{param2}
+            where receipt_id == #{param3}
+        </if>
+        <if test='numberType == "销售开票"'>
+            capital_sale set sale_state = #{param2} where sale_id = #{param3}
+        </if>
+        <if test='numberType == "采购入库"'>
+            purchase_warehousing set p_w_approvalstatus = #{param2} where p_w_id = #{param3}
+
+        </if>
+        <if test='numberType == "采购订单"'>
+            purchase_order set approval_status = #{param2} where p_o_id = #{param3}
+        </if>
+        <if test='numberType == "采购退货"'>
+            purchase_return set p_r_approvalstatus = #{param2} where p_r_id = #{param3}
+        </if>
+        <if test='numberType == "付款"'>
+            capital_payment set rpayment_state = #{param2} where payment_id = #{param3}
+        </if>
+        <if test='numberType == "组装单"'>
+            kucun_assemble set assemble_state = #{param2} where assemble_id = #{param3}
+        </if>
+        <if test='numberType == "调拨单"'>
+            kucun_allot set allot_state = #{param2} where allot_id = #{param3}
+        </if>
+        <if test='numberType == "拆装单"'>
+            kucun_dismounting set dismounting_state = #{param2} where dismounting_id = #{param3}
+        </if>
+        <if test='numberType == "其他出库"'>
+            kucun_outbound set approval_status = #{param2} where outbound_id = #{param3}
+        </if>
+        <if test='numberType == "其他入库"'>
+            kucun_warehouse set k_approval_status = #{param2} where k_warehouse_id = #{param3}
+        </if>
+    </update>
 </mapper>

@@ -62,4 +62,13 @@ public interface DataStatisticsMapper {
     //其他入库
     List<RatifyVo> queryWarehouseReturns(Integer approvalStatus);
 
+    /***
+     *
+     * @param numberType 单据类型
+     * @param approvalStatus 审批状态
+     * @param id 审批数据的id
+     * @return
+     */
+    Integer updateReturnsRatify(String numberType, Integer approvalStatus, Integer id);
+
 }

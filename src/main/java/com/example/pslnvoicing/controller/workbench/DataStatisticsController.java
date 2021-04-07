@@ -8,6 +8,7 @@ import com.example.pslnvoicing.vo.workbench.RatifyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -59,6 +60,13 @@ public class DataStatisticsController {
         List<RatifyVo> ratifyVos = dataStatistics.queryAllReturns(approvalStatus);
 //        return new CommonResult(200,"",ratifyVos);
         return ratifyVos;
+    }
+
+    @PostMapping("/workbench/updateReturnsRatify/{numberType}/{approvalStatus}/{id}")
+    public Boolean updateReturnsRatify(@PathVariable String numberType, @PathVariable Integer approvalStatus,@PathVariable Integer id){
+        System.out.println(numberType+"" + approvalStatus + "l" + id);
+        Boolean aBoolean = dataStatistics.updateReturnsRatify(numberType, approvalStatus, id);
+        return aBoolean;
     }
 
 }
