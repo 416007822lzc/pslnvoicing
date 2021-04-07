@@ -14,6 +14,7 @@ public class PslnvoiningWarehouse {
 	private int warehouseCall;
 	private String warehouseNote;
 	private int warehouseDisable;
+	private int warehouseAmount;
 
 	@Basic
 	@Column(name = "warehouse_name")
@@ -105,6 +106,16 @@ public class PslnvoiningWarehouse {
 		this.warehouseDisable = warehouseDisable;
 	}
 
+	@Basic
+	@Column(name = "warehouse_amount")
+	public int getWarehouseAmount() {
+		return warehouseAmount;
+	}
+
+	public void setWarehouseAmount(int warehouseAmount) {
+		this.warehouseAmount = warehouseAmount;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -118,11 +129,12 @@ public class PslnvoiningWarehouse {
 				Objects.equals(warehouseName, that.warehouseName) &&
 				Objects.equals(warehouseAddress, that.warehouseAddress) &&
 				Objects.equals(warehouseHead, that.warehouseHead) &&
+				Objects.equals(warehouseAmount, that.warehouseAmount) &&
 				Objects.equals(warehouseNote, that.warehouseNote);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(warehouseName, warehouseId, warehouseNum, warehouseAddress, warehouseHead, warehousePhone, warehouseCall, warehouseNote, warehouseDisable);
+		return Objects.hash(warehouseName, warehouseId, warehouseNum, warehouseAddress, warehouseHead, warehousePhone, warehouseCall, warehouseNote, warehouseDisable,warehouseAmount);
 	}
 }
