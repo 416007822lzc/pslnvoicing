@@ -19,17 +19,18 @@
         <result property="warehouseId" column="warehouse_id"></result>
     </resultMap>
 
-<!--&lt;!&ndash;    新增&ndash;&gt;-->
-<!--    <insert id="createclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">-->
-<!--       INSERT  INTO pslnvoicing_client-->
-<!--       (client_name,client_id,client_num,client_type,client_price_ratio,client_receivables_balance,-->
-<!--        client_balance_prepayment,client_actual_receivable,client_address,client_head,client_contact,-->
-<!--        client_creator,client_create_time,client_update_time,client_phone,client_contact_number)-->
-<!--        VALUES-->
-<!--        (#{clientName},#{clientId},#{clientType},#{clientNum},#{clientReceivablesBalance},#{clientBalancePrepayment},-->
-<!--       #{clientActualReceivable},#{clientAddress},#{clientPriceRatio},#{clientCreator},#{clientUpdateTime},#{clientCreateTime},-->
-<!--       #{clientContact},#{clientHead},#{clientPhone},#{clientContactNum})-->
-<!--    </insert>-->
+<!--  新增-->
+   <insert id="createclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">
+      INSERT INTO pslvoicing_product
+        (product_name,product_id,product_num,product_spec,product_unit,product_opening_num,
+        product_status,product_remark,product_create_time,product_sales_price,
+        product_purchase_price,product_opening_cost,product_description,warehouse_id)
+        VALUE
+        (#{productName},#{productId},#{productNum},#{productSpec},#{productUnit},
+        #{productOpeningNum},#{productStatus},#{productRemark},#{productCreateTime},
+        #{productSalesPrice},#{productPurchasePrice},#{productOpeningCost},
+        #{productDescription},#{warehouseId})
+    </insert>
 
 <!--   查询-->
     <select id="selectproduct" resultMap="all">

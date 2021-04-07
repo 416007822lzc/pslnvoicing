@@ -12,4 +12,7 @@ public interface PslnvoicingProductMapper {
 
     //查询
     public List<PslvoicingProduct> selectproduct();
+
+    //新增
+    public Integer createproduct(PslvoicingProduct product);
 }

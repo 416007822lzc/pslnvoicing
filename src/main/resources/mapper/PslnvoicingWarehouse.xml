@@ -1,0 +1,46 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pslnvoicing.mapper.PslnvoicingWarehouseMapper">
+
+    <resultMap id="all" type="com.example.pslnvoicing.pojos.PslnvoiningWarehouse">
+        <id property="warehouseId" column="warehouse_id"></id>
+        <result property="warehouseName" column="warehouse_name"></result>
+        <result property="warehouseNum" column="warehouse_num"></result>
+        <result property="warehouseAddress" column="warehouse_address"></result>
+        <result property="warehouseHead" column="warehouse_head"></result>
+        <result property="warehousePhone" column="warehouse_phone"></result>
+        <result property="warehouseCall" column="warehouse_call"></result>
+        <result property="warehouseNote" column="warehouse_note"></result>
+        <result property="warehouseDisable" column="warehouse_disable"></result>
+        <result property="warehouseAmount" column="warehouse_amount"></result>
+    </resultMap>
+
+<!--&lt;!&ndash;    新增&ndash;&gt;-->
+<!--    <insert id="createclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">-->
+<!--       INSERT  INTO pslnvoicing_client-->
+<!--       (client_name,client_id,client_num,client_type,client_price_ratio,client_receivables_balance,-->
+<!--        client_balance_prepayment,client_actual_receivable,client_address,client_head,client_contact,-->
+<!--        client_creator,client_create_time,client_update_time,client_phone,client_contact_number)-->
+<!--        VALUES-->
+<!--        (#{clientName},#{clientId},#{clientType},#{clientNum},#{clientReceivablesBalance},#{clientBalancePrepayment},-->
+<!--       #{clientActualReceivable},#{clientAddress},#{clientPriceRatio},#{clientCreator},#{clientUpdateTime},#{clientCreateTime},-->
+<!--       #{clientContact},#{clientHead},#{clientPhone},#{clientContactNum})-->
+<!--    </insert>-->
+
+<!--   查询-->
+    <select id="selectwarehouse" resultMap="all">
+        SELECT * FROM pslnvoining_warehouse ORDER BY warehouse_id asc
+   </select>
+
+<!--    修改-->
+<!--    <update id="updateclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">-->
+<!--        update pslnvoicing_client-->
+<!--        set client_name = #{client_name},-->
+<!--            client_type = #{client_type},-->
+<!--            client_head = #{client_head}-->
+<!--            WHERE client_id = #{client_id}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteclient" parameterType="com.example.pslnvoicing.pojos.PslnvoicingClient">-->
+<!--        delete from pslvoicing_client where client_id=#{clientId}-->
+<!--    </delete>-->
+</mapper>
