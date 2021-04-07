@@ -1,5 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pslnvoicing.mapper.salemapper.ChoosePslvoicingMapper">
+<mapper namespace="com.example.pslnvoicing.mapper.salemapper.ChoosePslvoMapper">
     <resultMap id="ChoosePslvoicingMapper" type="com.example.pslnvoicing.pojos.PslvoicingProduct">
         <id column="product_id" property="productId"/>
         <result column="product_name" property="productName"/>

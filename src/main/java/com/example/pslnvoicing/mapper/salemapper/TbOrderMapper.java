@@ -1,6 +1,7 @@
 package com.example.pslnvoicing.mapper.salemapper;
 
 import com.example.pslnvoicing.pojos.TbOrder;
+import com.example.pslnvoicing.vo.TborderVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public interface TbOrderMapper {
 
     /**
      * 新增订单
-     * @param tbOrder
+     * @param tborderVo
      * @return
      */
-    int addtborder(TbOrder tbOrder);
+    int addtborder(TborderVo tborderVo);
 }

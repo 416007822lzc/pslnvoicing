@@ -1,19 +1,22 @@
 package com.example.pslnvoicing.pojos;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
 public class PslnvoiningWarehouse {
 	private String warehouseName;
 	private int warehouseId;
-	private int warehouseNum;
+	private String warehouseNum;
 	private String warehouseAddress;
 	private String warehouseHead;
-	private int warehousePhone;
+	private String warehousePhone;
 	private int warehouseCall;
 	private String warehouseNote;
 	private int warehouseDisable;
+
+
 
 	@Basic
 	@Column(name = "warehouse_name")
@@ -37,11 +40,11 @@ public class PslnvoiningWarehouse {
 
 	@Basic
 	@Column(name = "warehouse_num")
-	public int getWarehouseNum() {
+	public String getWarehouseNum() {
 		return warehouseNum;
 	}
 
-	public void setWarehouseNum(int warehouseNum) {
+	public void setWarehouseNum(String warehouseNum) {
 		this.warehouseNum = warehouseNum;
 	}
 
@@ -67,11 +70,11 @@ public class PslnvoiningWarehouse {
 
 	@Basic
 	@Column(name = "warehouse_phone")
-	public int getWarehousePhone() {
+	public String getWarehousePhone() {
 		return warehousePhone;
 	}
 
-	public void setWarehousePhone(int warehousePhone) {
+	public void setWarehousePhone(String warehousePhone) {
 		this.warehousePhone = warehousePhone;
 	}
 
@@ -124,5 +127,17 @@ public class PslnvoiningWarehouse {
 	@Override
 	public int hashCode() {
 		return Objects.hash(warehouseName, warehouseId, warehouseNum, warehouseAddress, warehouseHead, warehousePhone, warehouseCall, warehouseNote, warehouseDisable);
+	}
+
+	private List<KucunWarehouse> kucunWarehouses;
+
+
+	@OneToMany
+	public List<KucunWarehouse> getKucunWarehouses() {
+		return kucunWarehouses;
+	}
+
+	public void setKucunWarehouses(List<KucunWarehouse> kucunWarehouses) {
+		this.kucunWarehouses = kucunWarehouses;
 	}
 }

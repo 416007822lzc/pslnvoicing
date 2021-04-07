@@ -6,13 +6,16 @@ import com.example.pslnvoicing.pojos.*;
 import com.example.pslnvoicing.service.saleservice.TbOrderService;
 import com.example.pslnvoicing.vo.NewsaleOrderVo;
 import com.example.pslnvoicing.vo.ParameterVo;
+import com.example.pslnvoicing.vo.TborderVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,27 +35,22 @@ public class TbOrderServiceImpl implements TbOrderService {
 
     @Override
     public Boolean addorder(NewsaleOrderVo newsaleOrderVo) {
-            TbOrder tbOrder=new TbOrder();
-
-            PslnvoicingClient pslnvoicingClient=new PslnvoicingClient();
-            pslnvoicingClient.setClientId(newsaleOrderVo.getClientid());
-            tbOrder.setPslnvoicingClient(pslnvoicingClient);
-
-            PslnvoiningWarehouse pslnvoiningWarehouse=new PslnvoiningWarehouse();
-            pslnvoiningWarehouse.setWarehouseId(newsaleOrderVo.getWarehouseId());
-            tbOrder.setPslnvoiningWarehouse(pslnvoiningWarehouse);
-
-            PersonnelEmp personnelEmp=new PersonnelEmp();
-            personnelEmp.setEmpId(newsaleOrderVo.getEmpId());
-            tbOrder.setPersonnelEmp(personnelEmp);
+            TborderVo tbOrder=new TborderVo();
+            tbOrder.setEmpId(newsaleOrderVo.getEmpId());
+            tbOrder.setClientId(newsaleOrderVo.getClientid());
+            tbOrder.setWarehouseId(newsaleOrderVo.getWarehouseId());
             tbOrder.setOrderNumber(newsaleOrderVo.getOrdernumber());
             tbOrder.setAccountReceivable(newsaleOrderVo.getZj());
             tbOrder.setDocumentDate(newsaleOrderVo.getDocumentdate());
             tbOrder.setDeliveryDate(newsaleOrderVo.getDeliverydate());
+            tbOrder.setApprovalStatus(3);
+            tbOrder.setOrderStatus(2);
+            Timestamp d = new Timestamp(System.currentTimeMillis());
+            tbOrder.setCreateTime(d);
             int addtborder = tbOrderMapper.addtborder(tbOrder);
 
 
-             List<PslvoicingProduct> pslvoicingProducts = newsaleOrderVo.getPslvoicingProducts();
+             List<PslvoicingProduct> pslvoicingProducts = newsaleOrderVo.getPslvoicingproducts();
                 List<TbOrderDetails> xq=new ArrayList<>();
                 for (PslvoicingProduct pslvoicingProduct : pslvoicingProducts) {
                     TbOrderDetails tbOrderDetails=new TbOrderDetails();

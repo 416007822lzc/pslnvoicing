@@ -39,6 +39,7 @@ public class TbOrderDetailsVoController {
      */
     @RequestMapping("/updateOrderStatus/{id}")
     public @ResponseBody CommonResult updateOrderStatus(@PathVariable("id")String id){
+        System.out.println(id);
         if (tbOrderDetailsVoService.updateOrderStatus(id) == 1){
             return new CommonResult(200,"审批成功");
         }

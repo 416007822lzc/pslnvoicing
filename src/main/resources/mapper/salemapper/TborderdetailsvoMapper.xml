@@ -62,9 +62,9 @@
         INSERT INTO tb_order_details(order_id,product_name,product_number,number,sales_unit_price,sales_amount,product_unit,order_details_remarks)
         values
         <foreach collection="d"  item="item" separator="," >
-            (#{item.order_id,jdbcType=VARCHAR},#{item.product_name,jdbcType=VARCHAR},
-            #{item.product_number,jdbcType=VARCHAR},#{item.number},#{item.sales_unit_price,jdbcType=VARCHAR},
-            #{item.sales_amount,jdbcType=VARCHAR},#{item.product_unit,jdbcType=VARCHAR},#{item.order_details_remarks,jdbcType=VARCHAR})
+            (#{item.orderId,jdbcType=VARCHAR},#{item.productName,jdbcType=VARCHAR},
+            #{item.productNumber,jdbcType=VARCHAR},#{item.number},#{item.salesUnitPrice,jdbcType=VARCHAR},
+            #{item.salesAmount,jdbcType=VARCHAR},#{item.productUnit,jdbcType=VARCHAR},#{item.orderDetailsRemarks,jdbcType=VARCHAR})
     </foreach>
     </insert>
 </mapper>

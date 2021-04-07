@@ -3,21 +3,33 @@ package com.example.pslnvoicing.pojos;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tb_order_details", schema = "pslnvoicing", catalog = "")
+
 public class TbOrderDetails {
     private int orderDetailsId;
     private String orderId;
     private String productName;
-    private Integer productNumber;
+    private String productNumber;
     private Integer number;
     private Double salesUnitPrice;
     private Double salesAmount;
     private String productUnit;
     private String orderDetailsRemarks;
 
-    @Id
-    @Column(name = "order_details_id")
+    public TbOrderDetails() {
+    }
+
+    public TbOrderDetails(int orderDetailsId, String orderId, String productName, String productNumber, Integer number, Double salesUnitPrice, Double salesAmount, String productUnit, String orderDetailsRemarks) {
+        this.orderDetailsId = orderDetailsId;
+        this.orderId = orderId;
+        this.productName = productName;
+        this.productNumber = productNumber;
+        this.number = number;
+        this.salesUnitPrice = salesUnitPrice;
+        this.salesAmount = salesAmount;
+        this.productUnit = productUnit;
+        this.orderDetailsRemarks = orderDetailsRemarks;
+    }
+
     public int getOrderDetailsId() {
         return orderDetailsId;
     }
@@ -26,8 +38,6 @@ public class TbOrderDetails {
         this.orderDetailsId = orderDetailsId;
     }
 
-    @Basic
-    @Column(name = "order_id")
     public String getOrderId() {
         return orderId;
     }
@@ -36,8 +46,6 @@ public class TbOrderDetails {
         this.orderId = orderId;
     }
 
-    @Basic
-    @Column(name = "product_name")
     public String getProductName() {
         return productName;
     }
@@ -46,18 +54,14 @@ public class TbOrderDetails {
         this.productName = productName;
     }
 
-    @Basic
-    @Column(name = "product_number")
-    public Integer getProductNumber() {
+    public String getProductNumber() {
         return productNumber;
     }
 
-    public void setProductNumber(Integer productNumber) {
+    public void setProductNumber(String productNumber) {
         this.productNumber = productNumber;
     }
 
-    @Basic
-    @Column(name = "number")
     public Integer getNumber() {
         return number;
     }
@@ -66,8 +70,6 @@ public class TbOrderDetails {
         this.number = number;
     }
 
-    @Basic
-    @Column(name = "sales_unit_price")
     public Double getSalesUnitPrice() {
         return salesUnitPrice;
     }
@@ -76,8 +78,6 @@ public class TbOrderDetails {
         this.salesUnitPrice = salesUnitPrice;
     }
 
-    @Basic
-    @Column(name = "sales_amount")
     public Double getSalesAmount() {
         return salesAmount;
     }
@@ -86,8 +86,6 @@ public class TbOrderDetails {
         this.salesAmount = salesAmount;
     }
 
-    @Basic
-    @Column(name = "product_unit")
     public String getProductUnit() {
         return productUnit;
     }
@@ -96,34 +94,11 @@ public class TbOrderDetails {
         this.productUnit = productUnit;
     }
 
-    @Basic
-    @Column(name = "order_details_remarks")
     public String getOrderDetailsRemarks() {
         return orderDetailsRemarks;
     }
 
     public void setOrderDetailsRemarks(String orderDetailsRemarks) {
         this.orderDetailsRemarks = orderDetailsRemarks;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TbOrderDetails that = (TbOrderDetails) o;
-        return orderDetailsId == that.orderDetailsId &&
-                Objects.equals(orderId, that.orderId) &&
-                Objects.equals(productName, that.productName) &&
-                Objects.equals(productNumber, that.productNumber) &&
-                Objects.equals(number, that.number) &&
-                Objects.equals(salesUnitPrice, that.salesUnitPrice) &&
-                Objects.equals(salesAmount, that.salesAmount) &&
-                Objects.equals(productUnit, that.productUnit) &&
-                Objects.equals(orderDetailsRemarks, that.orderDetailsRemarks);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(orderDetailsId, orderId, productName, productNumber, number, salesUnitPrice, salesAmount, productUnit, orderDetailsRemarks);
     }
 }

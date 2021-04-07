@@ -42,5 +42,5 @@ public interface TbOrderDetailsVoMapper {
      * @param tbOrderDetails
      * @return
      */
-     int addtbOrderDetails(List<TbOrderDetails> tbOrderDetails);
+     int addtbOrderDetails(@Param("d") List<TbOrderDetails> tbOrderDetails);
 }

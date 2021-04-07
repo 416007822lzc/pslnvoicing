@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-
 public class CapitalPurchase {
 	private int purchaseId;
 	private Integer paymentId;

@@ -63,13 +63,13 @@
     </select>
 
     <!--新增销售单-->
-    <insert id="addtborder" parameterType="com.example.pslnvoicing.pojos.TbOrder">
+    <insert id="addtborder" parameterType="com.example.pslnvoicing.vo.TborderVo">
         INSERT INTO tb_order
         (emp_id,client_id,warehouse_id,order_number,document_date,
         delivery_date,account_receivable,payment_received,delivery_status,creator_person
         ,create_time,approval_status,order_status,delivery_order_number)
-        values (#{emp_id},#{client_id},#{warehouse_id},#{order_number},#{document_date},
-        #{delivery_date},#{account_receivable},#{payment_received},#{delivery_status},#{creator_person}
-        ,#{create_time},#{approval_status},#{order_status},#{delivery_order_number})
+        values (#{empId},#{clientId},#{warehouseId},#{orderNumber},#{documentDate},
+        #{deliveryDate},#{accountReceivable},#{paymentReceived},#{deliveryStatus},#{creatorPerson}
+        ,#{createTime},#{approvalStatus},#{orderStatus},#{deliveryOrderNumber})
     </insert>
 </mapper>

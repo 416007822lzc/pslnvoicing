@@ -8,9 +8,7 @@ import com.example.pslnvoicing.vo.ParameterVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class TbOrderController {
@@ -24,8 +22,8 @@ public class TbOrderController {
     }
 
     //新增采购单，采购单产品详情
-    @RequestMapping("/addorder")
-    public CommonResult addPurchase(@RequestBody NewsaleOrderVo newsaleOrderVo) {
+    @PostMapping("/addorder")
+    public @ResponseBody CommonResult addPurchase(@RequestBody NewsaleOrderVo newsaleOrderVo) {
         try {
             Boolean addorder = tbOrderService.addorder(newsaleOrderVo);
             if (addorder){

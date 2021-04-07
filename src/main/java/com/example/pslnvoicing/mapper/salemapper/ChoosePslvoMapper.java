@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ChoosePslvoicingMapper {
+public interface ChoosePslvoMapper {
     /*
    查询所有产品基础信息
     */

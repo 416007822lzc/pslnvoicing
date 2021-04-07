@@ -1,15 +1,22 @@
 package com.example.pslnvoicing.pojos;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PslvoicingProduct {
 	private String productName;
 	private int productId;
-	private int productNum;
+	private String productNum;
 	private String productSpec;
 	private String productCategories;
 	private String productUnit;
@@ -23,27 +30,8 @@ public class PslvoicingProduct {
 	private Integer warehouseId;
 	private String productDescription;
 
-	public PslvoicingProduct() {
-	}
-
-	public PslvoicingProduct(String productName, int productId, int productNum, String productSpec, String productCategories, String productUnit, BigDecimal productOpeningNum, int productStatus, String productRemark, Timestamp productCreateTime, BigDecimal productSalesPrice, BigDecimal productPurchasePrice, BigDecimal productOpeningCost, Integer warehouseId, String productDescription) {
-		this.productName = productName;
-		this.productId = productId;
-		this.productNum = productNum;
-		this.productSpec = productSpec;
-		this.productCategories = productCategories;
-		this.productUnit = productUnit;
-		this.productOpeningNum = productOpeningNum;
-		this.productStatus = productStatus;
-		this.productRemark = productRemark;
-		this.productCreateTime = productCreateTime;
-		this.productSalesPrice = productSalesPrice;
-		this.productPurchasePrice = productPurchasePrice;
-		this.productOpeningCost = productOpeningCost;
-		this.warehouseId = warehouseId;
-		this.productDescription = productDescription;
-	}
-
+	@Basic
+	@Column(name = "product_name")
 	public String getProductName() {
 		return productName;
 	}
@@ -52,6 +40,8 @@ public class PslvoicingProduct {
 		this.productName = productName;
 	}
 
+	@Id
+	@Column(name = "product_id")
 	public int getProductId() {
 		return productId;
 	}
@@ -60,14 +50,18 @@ public class PslvoicingProduct {
 		this.productId = productId;
 	}
 
-	public int getProductNum() {
+	@Basic
+	@Column(name = "product_num")
+	public String getProductNum() {
 		return productNum;
 	}
 
-	public void setProductNum(int productNum) {
+	public void setProductNum(String productNum) {
 		this.productNum = productNum;
 	}
 
+	@Basic
+	@Column(name = "product_spec")
 	public String getProductSpec() {
 		return productSpec;
 	}
@@ -76,6 +70,8 @@ public class PslvoicingProduct {
 		this.productSpec = productSpec;
 	}
 
+	@Basic
+	@Column(name = "product_categories")
 	public String getProductCategories() {
 		return productCategories;
 	}
@@ -84,6 +80,8 @@ public class PslvoicingProduct {
 		this.productCategories = productCategories;
 	}
 
+	@Basic
+	@Column(name = "product_unit")
 	public String getProductUnit() {
 		return productUnit;
 	}
@@ -92,6 +90,8 @@ public class PslvoicingProduct {
 		this.productUnit = productUnit;
 	}
 
+	@Basic
+	@Column(name = "product_opening_num")
 	public BigDecimal getProductOpeningNum() {
 		return productOpeningNum;
 	}
@@ -100,6 +100,8 @@ public class PslvoicingProduct {
 		this.productOpeningNum = productOpeningNum;
 	}
 
+	@Basic
+	@Column(name = "product_status")
 	public int getProductStatus() {
 		return productStatus;
 	}
@@ -108,6 +110,8 @@ public class PslvoicingProduct {
 		this.productStatus = productStatus;
 	}
 
+	@Basic
+	@Column(name = "product_remark")
 	public String getProductRemark() {
 		return productRemark;
 	}
@@ -116,6 +120,8 @@ public class PslvoicingProduct {
 		this.productRemark = productRemark;
 	}
 
+	@Basic
+	@Column(name = "product_create_time")
 	public Timestamp getProductCreateTime() {
 		return productCreateTime;
 	}
@@ -124,6 +130,8 @@ public class PslvoicingProduct {
 		this.productCreateTime = productCreateTime;
 	}
 
+	@Basic
+	@Column(name = "product_sales_price")
 	public BigDecimal getProductSalesPrice() {
 		return productSalesPrice;
 	}
@@ -132,35 +140,13 @@ public class PslvoicingProduct {
 		this.productSalesPrice = productSalesPrice;
 	}
 
+	@Basic
+	@Column(name = "product_purchase_price")
 	public BigDecimal getProductPurchasePrice() {
 		return productPurchasePrice;
 	}
 
 	public void setProductPurchasePrice(BigDecimal productPurchasePrice) {
 		this.productPurchasePrice = productPurchasePrice;
-	}
-
-	public BigDecimal getProductOpeningCost() {
-		return productOpeningCost;
-	}
-
-	public void setProductOpeningCost(BigDecimal productOpeningCost) {
-		this.productOpeningCost = productOpeningCost;
-	}
-
-	public Integer getWarehouseId() {
-		return warehouseId;
-	}
-
-	public void setWarehouseId(Integer warehouseId) {
-		this.warehouseId = warehouseId;
-	}
-
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
 	}
 }

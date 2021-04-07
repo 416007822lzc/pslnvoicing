@@ -1,22 +1,22 @@
 package com.example.pslnvoicing.service.saleservice.saleserviceImpl;
 
-import com.example.pslnvoicing.mapper.salemapper.ChoosePslvoicingMapper;
+import com.example.pslnvoicing.mapper.salemapper.ChoosePslvoMapper;
 import com.example.pslnvoicing.pojos.PslvoicingProduct;
-import com.example.pslnvoicing.service.saleservice.ChoosePslvoicingService;
+import com.example.pslnvoicing.service.saleservice.ChoosePslvoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ChoosePslvoicingImpl implements ChoosePslvoicingService {
+public class ChoosePslvoImpl implements ChoosePslvoService {
 
     @Autowired
-    private ChoosePslvoicingMapper choosePslvoicingMapper;
+    private ChoosePslvoMapper choosePslvoMapper;
 
     @Override
     public PageInfo<PslvoicingProduct> chaPslvoicing(String productName, String productNum, String productCategories, Integer limit, Integer page) {
         PageHelper.startPage(limit,page);
-        return new PageInfo<>(choosePslvoicingMapper.chaPslvoicing(productName,productNum,productCategories));
+        return new PageInfo<>(choosePslvoMapper.chaPslvoicing(productName,productNum,productCategories));
     }
 }
