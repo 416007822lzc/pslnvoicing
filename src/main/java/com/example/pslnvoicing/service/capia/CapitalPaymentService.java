@@ -1,7 +1,11 @@
 package com.example.pslnvoicing.service.capia;
 
 import com.example.pslnvoicing.mapper.capital.CapitalPaymentMapper;
-import com.example.pslnvoicing.pojos.*;
+import com.example.pslnvoicing.pojos.PslnvoicingZijin;
+import com.example.pslnvoicing.pojos.PslnvoicingSuppier;
+import com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses;
+import com.example.pslnvoicing.pojos.PurchaseOrders;
+import com.example.pslnvoicing.pojos.CapitalPayment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +42,7 @@ public class CapitalPaymentService {
 	/**
 	 * 采购
 	 */
-	public List<PurchaseOrder>selectcg(){
+	public List<PurchaseOrders>selectcg(){
 		return  capitalPaymentMapper.selectcg();
 	}
 

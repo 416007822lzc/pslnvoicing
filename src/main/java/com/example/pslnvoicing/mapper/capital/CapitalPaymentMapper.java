@@ -1,6 +1,9 @@
 package com.example.pslnvoicing.mapper.capital;
-
-import com.example.pslnvoicing.pojos.*;
+import com.example.pslnvoicing.pojos.PslnvoicingZijin;
+import com.example.pslnvoicing.pojos.PslnvoicingSuppier;
+import com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses;
+import com.example.pslnvoicing.pojos.PurchaseOrders;
+import com.example.pslnvoicing.pojos.CapitalPayment;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +26,7 @@ public interface CapitalPaymentMapper {
 	//新增 收款
 	public void insertfukuan(CapitalPayment capitalPayment);
 	//采购表下拉
-	public List<PurchaseOrder>selectcg();
+	public List<PurchaseOrders>selectcg();
 
 	//详情表新增
 	public void insertxq(CapitalPayment capitalPayment);

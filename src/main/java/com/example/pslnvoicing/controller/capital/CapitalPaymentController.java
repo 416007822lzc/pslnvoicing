@@ -2,7 +2,11 @@ package com.example.pslnvoicing.controller.capital;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.pslnvoicing.pojos.*;
+import com.example.pslnvoicing.pojos.PslnvoicingZijin;
+import com.example.pslnvoicing.pojos.PslnvoicingSuppier;
+import com.example.pslnvoicing.pojos.PslnvoicingIncomeExpenses;
+import com.example.pslnvoicing.pojos.PurchaseOrders;
+import com.example.pslnvoicing.pojos.CapitalPayment;
 import com.example.pslnvoicing.service.capia.CapitalPaymentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -69,7 +73,7 @@ public class CapitalPaymentController {
 	 * 采购u
 	 */
 	@RequestMapping("/cg")
-	public List<PurchaseOrder>selectcg(){
+	public List<PurchaseOrders>selectcg(){
 		return capitalPaymentService.selectcg();
 	}
 

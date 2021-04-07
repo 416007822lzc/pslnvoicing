@@ -10,7 +10,7 @@
         <result column="zj_id" property="zjId"/>
 
         <!--采购表-->
-        <association property="pOId" javaType="com.example.pslnvoicing.pojos.PurchaseOrder">
+        <association property="pOId" javaType="com.example.pslnvoicing.pojos.PurchaseOrders">
             <id column="p_o_id" property="pOId"/>
             <result column="p_o_purchasenumber" property="pOPurchasenumber"/>
             <result column="p_o_documentdate" property="pODocumentdate"/>
@@ -32,6 +32,7 @@
             </association>
 
         </association>
+
 
         <!--供应商表-->
         <association property="supplierId" javaType="com.example.pslnvoicing.pojos.PslnvoicingSuppier">
@@ -72,7 +73,7 @@
     </resultMap>
 
     <!--采购表-->
-    <resultMap id="cg" type="com.example.pslnvoicing.pojos.PurchaseOrder">
+    <resultMap id="cg" type="com.example.pslnvoicing.pojos.PurchaseOrders">
         <id column="p_o_id" property="pOId"/>
         <result column="p_o_purchasenumber" property="pOPurchasenumber"/>
         <result column="p_o_purchasingstaff" property="pOPurchasingstaff"/>
