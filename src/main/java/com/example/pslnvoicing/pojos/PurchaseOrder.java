@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class PurchaseOrder {
 	private int pOId;
-	private Integer supplierId;
-	private Integer warehouseId;
-	private Integer empId;
+	private PslnvoicingSuppier supplierId;
+	private PslnvoiningWarehouse warehouseId;
+	private PersonnelEmp empId;
 	private String pOPurchasenumber;
 	private Timestamp pODocumentdate;
 	private Timestamp pODeliverydate;

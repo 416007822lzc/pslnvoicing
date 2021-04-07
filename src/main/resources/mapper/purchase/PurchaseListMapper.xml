@@ -1,12 +1,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pslnvoicing.mapper.purchase.PurchaseDetailsMapper">
-    <resultMap id="purchaseOrderMap" type="com.example.pslnvoicing.pojos.PurchaseOrder">
+<mapper namespace="com.example.pslnvoicing.mapper.purchase.PurchaseListMapper">
+    <resultMap id="purchaseOrderListMap" type="com.example.pslnvoicing.pojos.PurchaseOrder">
         <id property="pOId" column="p_o_id" />
-        <result property="supplierId" column="supplier_id" />
-        <result property="warehouseId" column="warehouse_id" />
-        <result property="empId" column="emp_id" />
         <result property="pOPurchasenumber" column="p_o_purchasenumber" />
         <result property="pODocumentdate" column="p_o_documentdate" />
         <result property="pODeliverydate" column="p_o_deliverydate" />
@@ -32,8 +29,8 @@
         </association>
 
         <association property="supplierId" javaType="com.example.pslnvoicing.pojos.PslnvoicingSuppier" >
-            <id property="supplierId" column="client_id" />
-            <result property="supplierName" column="client_name"/>
+            <id property="supplierId" column="supplier_id" />
+            <result property="supplierName" column="supplier_name"/>
         </association>
 
         <association property="warehouseId" javaType="com.example.pslnvoicing.pojos.PslnvoiningWarehouse">
@@ -42,22 +39,25 @@
         </association>
     </resultMap>
 
-
-    <select id="findAllDeliveryOrder" resultMap="purchaseOrderMap">
-        select *  from td_delivery_order  t
-        LEFT JOIN personnel_emp p on t.emp_id=p.emp_id LEFT JOIN  pslnvoicing_client p1 on
-        t.client_id=p1.client_id  LEFT JOIN pslnvoining_warehouse p2 on t.warehouse_id=p2.warehouse_id
+    <select id="purchaseOrderall" resultMap="purchaseOrderListMap" parameterType="com.example.pslnvoicing.vo.ParameterVo">
+        select * FROM purchase_order p
+        inner JOIN personnel_emp pe on p.emp_id=pe.emp_id inner JOIN  pslnvoicing_suppier ps on
+        p.supplier_id=ps.supplier_id  inner JOIN pslnvoining_warehouse pw on p.warehouse_id=pw.warehouse_id
         <where>
-            <if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
-                and  t.delivery_time >= #{startTime} and t.delivery_time &lt; #{endTime}
+
+
+            <if test="parameterVo.startTime != null and parameterVo.startTime != '' and parameterVo.endTime != null and parameterVo.endTime != '' ">
+                and p.p_o_documentdate >= #{parameterVo.startTime} and p.p_o_documentdate &lt; #{parameterVo.endTime}
             </if>
-            <if test="status != null">
-                and t.approval_status = #{status}
+
+            <if test="parameterVo.orderStatus != null">
+                and p.p_o_approvalstatus = #{parameterVo.orderStatus}
             </if>
-            <if test="empNameOrStoreNameOrNumber != null and empNameOrStoreNameOrNumber != ''">
-                and (p2.warehouse_name like #{empNameOrStoreNameOrNumber}
-                or p.emp_name like #{empNameOrStoreNameOrNumber}
-                or t.delivery_order_number like #{empNameOrStoreNameOrNumber})
+
+            <if test="parameterVo.empNameOrStoreNameOrNumber != null and parameterVo.empNameOrStoreNameOrNumber != ''">
+                and (pw.warehouse_name like #{parameterVo.empNameOrStoreNameOrNumber}
+                or pe.emp_name like #{parameterVo.empNameOrStoreNameOrNumber}
+                or p.p_o_purchasenumber like #{parameterVo.empNameOrStoreNameOrNumber})
             </if>
         </where>
     </select>

@@ -11,13 +11,13 @@
                '2021-04-03 16:07:11',1,0,null,null)
     </insert>-->
     <!--新增采购单-->
-    <insert id="addPurchase" parameterType="com.example.pslnvoicing.pojos.PurchaseOrder">
+    <insert id="addPurchase" parameterType="com.example.pslnvoicing.vo.purchase.NewpurchaseOrderVo">
         INSERT INTO purchase_order
         (supplier_id,warehouse_id,emp_id,p_o_purchasenumber,p_o_documentdate,
         p_o_deliverydate,p_o_jine,p_o_approvalstatus,p_o_executionstatus,p_o_repositorystatus
         ,p_o_notesondocuments)
-        values (#{supplierId},#{warehouseId},#{empId},#{pOPurchasenumber},#{pODocumentdate},
-        #{pODeliverydate},#{pOJine},1,1,0,#{pORepositorystatus})
+        values (#{supplierId},#{warehouseId},#{empId},#{shuzi},#{jq},
+        #{sj},#{zj},3,2,0,null)
     </insert>
     <!--新增采购单详情表-->
     <insert id="addPurchaseDetails" parameterType="java.util.List">

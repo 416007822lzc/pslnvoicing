@@ -1,0 +1,55 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pslnvoicing.mapper.purchase.PurchaseorderdetailsvoMapper">
+    <resultMap id="orderMap" type="com.example.pslnvoicing.vo.purchase.PurchaseOrderdetailsVo">
+        <id property="pOId" column="p_o_id" />
+        <result property="empname" column="emp_name" />
+        <result property="supplierName" column="supplier_name" />
+        <result property="warehousename" column="warehouse_name" />
+        <result property="supplierContact" column="supplier_contact" />
+        <result property="supplierPhone" column="supplier_phone" />
+        <result property="supplierContactNumber" column="supplier_contact_number" />
+        <result property="supplierAddress" column="supplier_address" />
+        <result property="pOPurchasenumber" column="p_o_purchasenumber" />
+        <result property="pODocumentdate" column="p_o_documentdate" />
+        <result property="pODdeliverydate" column="p_o_deliverydate"/>
+        <result property="pOJine" column="p_o_jine" />
+        <result property="deliveryStatus" column="p_o_repositorystatus" />
+        <result property="pOCreationtime" column="p_o_creationtime" />
+        <result property="pOApprovalstatus" column="p_o_approvalstatus" />
+        <result property="pOExecutionstatus" column="p_o_executionstatus" />
+        <result property="pWWarehousingnumber" column="p_w_warehousingnumber" />
+        <collection property="purchaseProductdetails" ofType="com.example.pslnvoicing.pojos.PurchaseProductdetails">
+            <id property="pPdId" column="p_pd_id"/>
+            <result property="pOPurchasenumber" column="p_o_purchasenumber" />
+            <result property="pPdCpid" column="p_pd_cpid" />
+            <result property="pPdSname" column="p_pd_sname" />
+            <result property="pPdNumber" column="p_pd_number" />
+            <result property="pPdCompany" column="p_pd_company" />
+            <result property="pPdUnitprice" column="p_pd_unitprice"/>
+            <result property="pPdTotalprice" column="p_pd_totalprice" />
+        </collection>
+    </resultMap>
+
+    <select id="purchaseOrderdetailsvoList"  resultMap="orderMap">
+            SELECT *
+            FROM purchase_order p LEFT JOIN purchase_productdetails pp on p.p_o_purchasenumber=pp.p_o_purchasenumber
+            LEFT JOIN personnel_emp e on e.emp_id=p.emp_id LEFT JOIN  pslnvoicing_suppier p1 on
+            p.supplier_id=p1.supplier_id  LEFT JOIN pslnvoining_warehouse p2 on p.warehouse_id=p2.warehouse_id
+            where pp.p_o_purchasenumber=#{id}
+    </select>
+
+
+<!--    <select id="selectOrderById" resultType="com.example.pslnvoicing.pojos.TbOrder">-->
+<!--        select * from tb_order t where  t.order_number=#{id}-->
+<!--    </select>-->
+
+    <update id="updateOrderStatus">
+        update purchase_order  set p_o_approvalstatus= 2 , p_o_executionstatus = 1 where p_o_purchasenumber=#{id}
+    </update>
+
+    <update id="rejectOrderStatus">
+        update purchase_order  set p_o_executionstatus= 1 ,p_o_approvalstatus = 1 where p_o_purchasenumber=#{id}
+    </update>
+</mapper>
