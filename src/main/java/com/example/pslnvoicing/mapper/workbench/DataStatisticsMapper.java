@@ -2,8 +2,10 @@ package com.example.pslnvoicing.mapper.workbench;
 
 import com.example.pslnvoicing.pojos.CapitalPayment;
 import com.example.pslnvoicing.pojos.CapitalReceipt;
+import com.example.pslnvoicing.vo.workbench.ClientQueryVo;
 import com.example.pslnvoicing.vo.workbench.DataStatisticsVo;
 import com.example.pslnvoicing.vo.workbench.RatifyVo;
+import com.example.pslnvoicing.vo.workbench.RepertoryQueryVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -70,5 +72,27 @@ public interface DataStatisticsMapper {
      * @return
      */
     Integer updateReturnsRatify(String numberType, Integer approvalStatus, Integer id);
+
+    /**
+     * 查询产品库存
+     * @param queryVal 编号
+     * @return
+     */
+    List<RepertoryQueryVo> queryRepertory(String queryVal);
+
+
+    /**
+     * 查询客户
+     * @param queryVal 客户名或客户编号
+     * @return 返回客户列表
+     */
+    List<ClientQueryVo> queryClient(String queryVal);
+
+    /**
+     * 查询供应商
+     * @param queryVal 供应商名或供应商编号
+     * @return 返回供应商列表
+     */
+    List<ClientQueryVo> querySupplier(String queryVal);
 
 }

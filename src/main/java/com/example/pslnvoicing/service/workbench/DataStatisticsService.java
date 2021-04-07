@@ -1,7 +1,9 @@
 package com.example.pslnvoicing.service.workbench;
 
 import com.example.pslnvoicing.pojos.CapitalPayment;
+import com.example.pslnvoicing.vo.workbench.ClientQueryVo;
 import com.example.pslnvoicing.vo.workbench.RatifyVo;
+import com.example.pslnvoicing.vo.workbench.RepertoryQueryVo;
 
 import java.util.List;
 import java.util.Map;
@@ -50,6 +52,13 @@ public interface DataStatisticsService {
 
     List<RatifyVo> queryAllReturns(Integer approvalStatus);
 
-    Boolean updateReturnsRatify(String numberType, Integer approvalStatus, Integer id);
+    List<RatifyVo> updateReturnsRatify(String numberType, Integer approvalStatus, Integer id);
+
+    List<RepertoryQueryVo> queryRepertory(String queryVal);
+
+    List<ClientQueryVo> queryClient(String queryVal);
+
+    List<ClientQueryVo> querySupplier(String queryVal);
+
 
 }

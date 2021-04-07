@@ -1,11 +1,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pslnvoicing.mapper.workbench.EmpMapper">
+    <resultMap id="EmpVo" type="com.example.pslnvoicing.vo.workbench.EmpVo">
+        <id column="emp_id" property="empId"/>
+        <result column="emp_name" property="empName"/>
+        <result column="emp_gender" property="empGender"/>
+        <result column="emp_emil" property="empEmil"/>
+        <result column="emp_phone" property="empPhone"/>
+        <result column="emp_password" property="empPassword"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="dept_id" property="deptId"/>
+    </resultMap>
 
-    <select id="queryEmpList" resultType="com.example.pslnvoicing.vo.workbench.EmpVo">
-        select a.emp_id,a.emp_name,a.emp_gender,a.emp_phone,a.emp_password,b.dept_name from personnel_emp a left join personnel_dept b on a.dept_id = b.dept_id;
+    <select id="queryEmpList" resultMap="EmpVo">
+        select a.emp_id,a.emp_name,a.emp_gender,a.emp_emil,a.emp_phone,a.emp_password,b.dept_name,a.dept_id from personnel_emp a left join personnel_dept b on a.dept_id = b.dept_id;
     </select>
 
     <select id="login" resultType="integer">
         select count(*) from personnel_emp where emp_phone = #{param1} and emp_password = #{param2}
     </select>
+
+    <select id="queryDeptList" resultType="com.example.pslnvoicing.pojos.PersonnelDept">
+        select * from personnel_dept;
+    </select>
+
+    <insert id="addDept">
+        insert into personnel_dept (dept_name) values (#{deptName})
+    </insert>
+
+    <insert id="addDEmp" parameterType="com.example.pslnvoicing.vo.workbench.EmpVo">
+        insert into personnel_emp values (null,#{empName},#{empGender},#{empPhone},#{empEmil},#{empPassword},#{deptId})
+    </insert>
+
+    <update id="updateEmp" parameterType="com.example.pslnvoicing.vo.workbench.EmpVo">
+        update personnel_emp a set a.emp_name = #{empName},a.emp_gender = #{empGender},a.emp_emil = #{empEmil},a.emp_phone = #{empPhone},a.emp_password = #{empPassword},
+        a.dept_id = #{deptId}
+        where a.emp_id = #{empId}
+    </update>
+
+    <delete id="delEmp">
+        delete from personnel_emp where emp_id = #{id}
+    </delete>
 </mapper>

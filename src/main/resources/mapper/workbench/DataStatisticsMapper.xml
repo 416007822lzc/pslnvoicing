@@ -114,6 +114,12 @@
         <result column="emp_name" property="submitter"/>
         <result column="p_r_creationtime" property="submitterTime"/>
     </resultMap>
+    <resultMap id="QuerySupplier" type="com.example.pslnvoicing.vo.workbench.ClientQueryVo">
+        <result column="supplier_name" property="clientName"/>
+        <result column="supplier_num" property="clientNum"/>
+        <result column="supplier_contact" property="clientContact"/>
+        <result column="supplier_phone" property="clientPhone"/>
+    </resultMap>
 
     <select id="queryPaymentByState" resultType="integer">
         SELECT sum(payment_money) FROM capital_payment WHERE rpayment_state = 1
@@ -248,6 +254,7 @@
         select * from kucun_warehouse where k_approval_status = #{approvalStatus}
     </select>
 
+<!--    修改审批状态-->
     <update id="updateReturnsRatify">
         update
         <if test='numberType == "销售出库"'>
@@ -261,7 +268,7 @@
         </if>
         <if test='numberType == "销售收款"'>
             capital_receipt set receipt_state = #{param2}
-            where receipt_id == #{param3}
+            where receipt_id = #{param3}
         </if>
         <if test='numberType == "销售开票"'>
             capital_sale set sale_state = #{param2} where sale_id = #{param3}
@@ -271,7 +278,7 @@
 
         </if>
         <if test='numberType == "采购订单"'>
-            purchase_order set approval_status = #{param2} where p_o_id = #{param3}
+            purchase_order set p_o_approvalstatus = #{param2} where p_o_id = #{param3}
         </if>
         <if test='numberType == "采购退货"'>
             purchase_return set p_r_approvalstatus = #{param2} where p_r_id = #{param3}
@@ -295,4 +302,25 @@
             kucun_warehouse set k_approval_status = #{param2} where k_warehouse_id = #{param3}
         </if>
     </update>
+
+    <select id="queryRepertory" resultType="com.example.pslnvoicing.vo.workbench.RepertoryQueryVo">
+        SELECT a.product_num,a.product_name,a.product_spec,a.product_categories,b.warehouse_name,a.product_opening_num FROM pslvoicing_product a LEFT join pslnvoining_warehouse b on a.warehouse_id = b.warehouse_id
+        <where>
+            a.product_num like #{queryVal} or a.product_name like #{queryVal}
+        </where>
+    </select>
+
+    <select id="queryClient" resultType="com.example.pslnvoicing.vo.workbench.ClientQueryVo">
+        select a.client_name,a.client_num,client_contact,a.client_phone FROM pslnvoicing_client a
+        <where>
+            a.client_name like #{queryVal} or a.client_num like #{queryVal}
+        </where>
+    </select>
+
+    <select id="querySupplier" resultMap="QuerySupplier">
+        select a.supplier_name,a.supplier_num,a.supplier_contact,a.supplier_phone FROM  pslnvoicing_suppier a
+        <where>
+            a.supplier_name like #{queryVal} or a.supplier_num like #{queryVal}
+        </where>
+    </select>
 </mapper>

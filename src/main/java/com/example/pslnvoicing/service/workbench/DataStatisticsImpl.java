@@ -1,8 +1,10 @@
 package com.example.pslnvoicing.service.workbench;
 
 import com.example.pslnvoicing.mapper.workbench.DataStatisticsMapper;
+import com.example.pslnvoicing.vo.workbench.ClientQueryVo;
 import com.example.pslnvoicing.vo.workbench.DataStatisticsVo;
 import com.example.pslnvoicing.vo.workbench.RatifyVo;
+import com.example.pslnvoicing.vo.workbench.RepertoryQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -252,8 +254,42 @@ public class DataStatisticsImpl implements DataStatisticsService {
     }
 
     @Override
-    public Boolean updateReturnsRatify(String numberType, Integer approvalStatus, Integer id) {
+    public List<RatifyVo> updateReturnsRatify(String numberType, Integer approvalStatus, Integer id) {
         boolean flag = dataStatisticsMapper.updateReturnsRatify(numberType, approvalStatus, id) > 0;
-        return flag;
+        if (flag){
+            return queryAllReturns(3);
+        }
+        return null;
+    }
+
+    @Override
+    public List<RepertoryQueryVo> queryRepertory(String queryVal) {
+        if (queryVal == null){
+            queryVal = "%%";
+        }else {
+            queryVal = "%" + queryVal + "%";
+        }
+        return dataStatisticsMapper.queryRepertory(queryVal);
+    }
+
+
+    @Override
+    public List<ClientQueryVo> queryClient(String queryVal) {
+        if (queryVal == null){
+            queryVal = "%%";
+        }else {
+            queryVal = "%" + queryVal + "%";
+        }
+        return dataStatisticsMapper.queryClient(queryVal);
+    }
+
+    @Override
+    public List<ClientQueryVo> querySupplier(String queryVal) {
+        if (queryVal == null){
+            queryVal = "%%";
+        }else {
+            queryVal = "%" + queryVal + "%";
+        }
+        return dataStatisticsMapper.querySupplier(queryVal);
     }
 }

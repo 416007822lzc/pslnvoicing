@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmpVo {
+    private Integer deptId;
+    private String deptName;
+    private String empEmil;
+    private String empGender;
     private int empId;
     private String empName;
-    private String empGender;
-    private String empPhone;
-    private String empEmil;
     private String empPassword;
-    private String deptName;
+    private String empPhone;
 }
