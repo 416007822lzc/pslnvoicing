@@ -13,7 +13,7 @@
         <result property="productRemark" column="product_remark"></result>
         <result property="productCreateTime" column="product_create_time"></result>
         <result property="productSalesPrice" column="product_sales_price"></result>
-        <result property="productSurchasePricer" column="product_purchase_pricer"></result>
+        <result property="productPurchasePrice" column="product_purchase_pricer"></result>
         <result property="productOpeningCost" column="product_opening_cost"></result>
         <result property="productDescription" column="product_description"></result>
         <result property="warehouseId" column="warehouse_id"></result>

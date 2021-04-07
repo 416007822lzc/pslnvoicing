@@ -17,7 +17,7 @@
         <result property="clientCreateTime" column="client_create_time"></result>
         <result property="clientUpdateTime" column="client_update_time"></result>
         <result property="clientPhone" column="client_phone"></result>
-        <result property="clientContactNum" column="client_contact_num"></result>
+        <result property="clientContactNumber" column="client_contact_num"></result>
     </resultMap>
 
 <!--    新增-->

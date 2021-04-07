@@ -14,5 +14,5 @@ public interface PslnvoicingProductMapper {
     public List<PslvoicingProduct> selectproduct();
 
     //新增
-    public Integer createproduct(PslvoicingProduct product);
+//    public Integer createproduct(PslvoicingProduct product);
 }
