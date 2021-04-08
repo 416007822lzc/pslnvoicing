@@ -59,13 +59,13 @@
                 and assemble_state=#{assembleState}
             </if>
         </where>
-        ORDER BY assemble_date desc
+        ORDER BY assemble_id desc
     </select>
 
     <insert id="addAssemble">
         insert into kucun_assemble values
         (#{assembleId},#{assembleOdd},#{assembleDate},#{assembleMoney},#{product.productId},#{product.warehouse.warehouseName},
-         #{assembleNumber},#{assembleCost},#{assembleName},#{assembleTime},#{assembleState},#{assembleRemark},#{assembleCjr})
+         #{assembleNumber},#{assembleCost},#{assembleName},#{assembleTime},#{assembleState},#{assembleRemark},'admin')
     </insert>
 
     <select id="maxId" resultMap="assemble">

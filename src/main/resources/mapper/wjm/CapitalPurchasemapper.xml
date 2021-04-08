@@ -46,7 +46,7 @@
 
     <!--下拉栏-->
     <select id="selectxl" resultMap="fu">
-        select distinct * from  capital_payment
+        select distinct * from  capital_payment order by payment_id desc
     </select>
 
     <insert id="insertcgkp" parameterType="com.example.pslnvoicing.vo.CapitalpurchaseVo">

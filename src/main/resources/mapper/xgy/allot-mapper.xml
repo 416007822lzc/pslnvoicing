@@ -38,13 +38,13 @@
                 and allot_state=#{allotState}
             </if>
         </where>
-        ORDER BY allot_date DESC
+        ORDER BY allot_id DESC
 
     </select>
 
     <insert id="addallot">
         insert into kucun_allot values
-        (#{allotId},#{allotOdd},#{allotDate},#{allotCallout},#{allotFold},#{allotName}
+        (#{allotId},#{allotOdd},#{allotDate},#{allotCallout},#{allotFold},'admin'
         ,#{allotTotal},#{allotTime},#{allotState},#{allotRemark},#{allotShr})
     </insert>
 

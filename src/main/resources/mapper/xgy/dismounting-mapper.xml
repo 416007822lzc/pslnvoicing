@@ -59,7 +59,7 @@
                 and dismounting_state=#{dismountingState}
             </if>
         </where>
-        ORDER BY dismounting_date desc
+        ORDER BY dismounting_id desc
     </select>
 
 
