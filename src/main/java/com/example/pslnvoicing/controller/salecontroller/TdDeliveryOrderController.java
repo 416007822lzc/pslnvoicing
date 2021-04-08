@@ -15,6 +15,11 @@ public class TdDeliveryOrderController {
     @Autowired
     private TddeliveryorderService tddeliveryorderService;
 
+    /**
+     * 查询销售出库信息
+     * @param parameterVo
+     * @return
+     */
     @RequestMapping("/findAllDeliveryOrder")
     public @ResponseBody PageInfo<TdDeliveryOrder> findAllDeliveryOrder(ParameterVo parameterVo){
         PageInfo<TdDeliveryOrder> orders = tddeliveryorderService.findAllDeliveryOrder(parameterVo);

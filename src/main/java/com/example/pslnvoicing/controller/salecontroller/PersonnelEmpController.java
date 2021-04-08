@@ -15,6 +15,10 @@ public class PersonnelEmpController {
     @Autowired
     private PersonnelEmpService personnelEmpService;
 
+    /**
+     * 查询所有销售人员
+     * @return
+     */
     @RequestMapping("/PersonnelEmpAll")
     public @ResponseBody CommonResult personnelEmpAll() {
         try {

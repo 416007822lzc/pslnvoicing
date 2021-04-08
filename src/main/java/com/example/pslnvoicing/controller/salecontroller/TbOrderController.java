@@ -15,13 +15,23 @@ public class TbOrderController {
     @Autowired
     private TbOrderService tbOrderService;
 
+    /**
+     * 查询所有订单信息
+     * @param parameterVo
+     * @return
+     */
     @RequestMapping("/TbOrderAll")
     public @ResponseBody PageInfo<TbOrder> findAll(ParameterVo parameterVo){
         PageInfo<TbOrder> orders = tbOrderService.tbOrderfindAll(parameterVo);
         return orders;
     }
 
-    //新增采购单，采购单产品详情
+
+    /**
+     * 新增订单、订单详情信息
+     * @param newsaleOrderVo
+     * @return
+     */
     @PostMapping("/addorder")
     public @ResponseBody CommonResult addPurchase(@RequestBody NewsaleOrderVo newsaleOrderVo) {
         try {

@@ -13,7 +13,10 @@ public class PersonnelEmpServiceImpl implements PersonnelEmpService {
 
     @Autowired
     private PersonnelEmpMapper personnelEmpMapper;
-
+    /**
+     * 查询所有销售人员
+     * @return
+     */
     @Override
     public List<PersonnelEmp> personnelEmpClientList() {
         return personnelEmpMapper.personnelEmpClientList();

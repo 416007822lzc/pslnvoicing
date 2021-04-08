@@ -14,6 +14,15 @@ public class ChoosePslvoController {
     @Autowired
     private ChoosePslvoService choosePslvoService;
 
+    /**
+     * 查询所有产品信息
+     * @param productName
+     * @param productNum
+     * @param productCategories
+     * @param limit
+     * @param page
+     * @return
+     */
     @RequestMapping("/chaxPslvoicing")
     public @ResponseBody
     CommonResult chaxPslvoicing(String productName, String productNum, String productCategories, Integer limit, Integer page) {

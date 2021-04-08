@@ -14,6 +14,10 @@ public class PslnvoiningWarehouseServiceImpl implements PslnvoiningWarehouseServ
     @Autowired
     private PslnvoiningWarehouseMapper kucunWarehouseMapper;
 
+    /**
+     * 查询所有仓库信息
+     * @return
+     */
     @Override
     public List<PslnvoiningWarehouse> pslnvoiningWarehouseList() {
         return kucunWarehouseMapper.pslnvoiningWarehouseList();

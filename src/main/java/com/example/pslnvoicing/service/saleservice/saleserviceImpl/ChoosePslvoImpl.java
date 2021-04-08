@@ -14,6 +14,16 @@ public class ChoosePslvoImpl implements ChoosePslvoService {
     @Autowired
     private ChoosePslvoMapper choosePslvoMapper;
 
+    /**
+     * 查询所有产品基础信息
+     * @param productName
+     * @param productNum
+     * @param productCategories
+     * @param limit
+     * @param page
+     * @return
+     */
+
     @Override
     public PageInfo<PslvoicingProduct> chaPslvoicing(String productName, String productNum, String productCategories, Integer limit, Integer page) {
         PageHelper.startPage(limit,page);

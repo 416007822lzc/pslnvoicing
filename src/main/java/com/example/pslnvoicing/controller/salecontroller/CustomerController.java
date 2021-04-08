@@ -15,6 +15,10 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    /**
+     * 查询所有客户
+     * @return
+     */
     @RequestMapping("/CustomerAll")
     public @ResponseBody CommonResult customerAll(){
         try {

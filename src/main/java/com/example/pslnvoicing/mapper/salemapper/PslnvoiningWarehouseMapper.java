@@ -7,5 +7,9 @@ import java.util.List;
 
 @Repository
 public interface PslnvoiningWarehouseMapper {
+    /**
+     * 查询所有仓库信息
+     * @return
+     */
     List<PslnvoiningWarehouse> pslnvoiningWarehouseList();
 }

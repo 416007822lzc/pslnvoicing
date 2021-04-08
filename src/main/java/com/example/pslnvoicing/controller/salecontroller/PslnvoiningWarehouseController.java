@@ -15,6 +15,10 @@ public class PslnvoiningWarehouseController {
     @Autowired
     private PslnvoiningWarehouseService kucunWarehouseService;
 
+    /**
+     * 查询所有仓库信息
+     * @return
+     */
     @RequestMapping("/PslnvoiningWarehouseAll")
     public @ResponseBody CommonResult personnelEmpAll(){
         try {

@@ -14,6 +14,10 @@ public class TddeliveryorderServiceImpl implements TddeliveryorderService {
     @Autowired
     private TddeliveryorderMapper tddeliveryorderMapper;
 
+    /**
+     * 查询出库订单
+     * @param
+     */
     @Override
     public PageInfo<TdDeliveryOrder> findAllDeliveryOrder(ParameterVo parameterVo) {
         PageHelper.startPage(parameterVo.getPageNum(),parameterVo.getPageSize());

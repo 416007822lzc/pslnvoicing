@@ -26,12 +26,23 @@ public class TbOrderServiceImpl implements TbOrderService {
     @Autowired
     private TbOrderDetailsVoMapper  tbOrderDetailsVoMapper;
 
+    /**
+     * 查询销售订单列表
+     * @param
+     */
     @Override
     public PageInfo<TbOrder> tbOrderfindAll(ParameterVo parameterVo) {
         PageHelper.startPage(parameterVo.getPageNum(),parameterVo.getPageSize());
         PageInfo<TbOrder> orders = new PageInfo<>(tbOrderMapper.tbOrderfindAll(parameterVo.getEmpNameOrStoreNameOrNumber(),parameterVo.getStartTime(),parameterVo.getEndTime(),parameterVo.getStatus()));
         return orders;
     }
+
+
+    /**
+     * 新增订单、订单详情
+     * @param newsaleOrderVo
+     * @return
+     */
 
     @Override
     public Boolean addorder(NewsaleOrderVo newsaleOrderVo) {
