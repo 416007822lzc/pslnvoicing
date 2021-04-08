@@ -59,7 +59,7 @@
                 or pe.emp_name like #{parameterVo.empNameOrStoreNameOrNumber}
                 or p.p_o_purchasenumber like #{parameterVo.empNameOrStoreNameOrNumber})
             </if>
-        </where>
+        </where> Order By p_o_documentdate Desc
     </select>
 
 </mapper>

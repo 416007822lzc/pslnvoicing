@@ -115,7 +115,7 @@
 
     <!--采购表-->
     <select id="selectcg" resultMap="cg">
-         select distinct * from  purchase_order
+         select distinct * from  purchase_order   order by p_o_id desc
     </select>
 
     <update id="updatefukuan"  parameterType="com.example.pslnvoicing.pojos.CapitalPayment">

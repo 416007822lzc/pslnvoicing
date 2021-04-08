@@ -59,7 +59,7 @@
                 or p.emp_name like #{empNameOrStoreNameOrNumber}
                 or t.order_number like #{empNameOrStoreNameOrNumber})
             </if>
-        </where>
+        </where> Order By document_date Desc
     </select>
 
     <!--新增销售单-->
