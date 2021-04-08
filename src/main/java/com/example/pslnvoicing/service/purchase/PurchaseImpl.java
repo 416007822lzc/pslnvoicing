@@ -18,19 +18,16 @@ public class PurchaseImpl implements PurchaseService{
     @Autowired
     private PurchaseMapper purchaseMapper;
 
+    /**
+     * 生成采购单
+     * @param newpurchaseOrderVo
+     * @return
+     */
     @Override
     public Boolean addCaigou(NewpurchaseOrderVo newpurchaseOrderVo) {
-//        PurchaseOrder p=new PurchaseOrder();
-//        p.setSupplierId(newpurchaseOrderVo.getSupplierId());
-//        p.setWarehouseId(newpurchaseOrderVo.getWarehouseId());
-//        p.setEmpId(newpurchaseOrderVo.getEmpId());
-//        p.setPOPurchasenumber(newpurchaseOrderVo.getShuzi());
-//        p.setPOJine(newpurchaseOrderVo.getZj());
-//        p.setPODocumentdate(newpurchaseOrderVo.getJq());
-//        p.setPODeliverydate(newpurchaseOrderVo.getSj());
+
         int caig = purchaseMapper.addPurchase(newpurchaseOrderVo);
 
-        PurchaseProductdetails xiangq=new PurchaseProductdetails();
         List<PslvoicingProduct> list= newpurchaseOrderVo.getPslvoicingproducts();
         List<PurchaseProductdetails> xq=new ArrayList<>();
         for (PslvoicingProduct pslvoicingProduct : list) {
@@ -43,7 +40,7 @@ public class PurchaseImpl implements PurchaseService{
             int i = openingNum.intValue(); //BigDecimal类型转为int
             pu.setPPdNumber(i);//数量
             double v=0;
-            if (pslvoicingProduct.getProductPurchasePrice()!=null){
+            if (pslvoicingProduct.getProductPurchasePrice()!=null){//如果采购单价不为null
                  v = pslvoicingProduct.getProductPurchasePrice().doubleValue();
             }
             pu.setPPdUnitprice(v);//单价

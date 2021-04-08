@@ -22,7 +22,7 @@ public class PurchaseorderdetailsvoController {
      * @return
      */
     @RequestMapping("/PurchaseOrderdetailsVoAll/{id}")
-    public @ResponseBody CommonResult  PurchaseOrderdetailsVoAll(@PathVariable("id") String  id){
+    public @ResponseBody CommonResult  purchaseOrderdetailsVoAll(@PathVariable("id") String  id){
         try {
             List<PurchaseOrderdetailsVo> purchaseOrderdetailsVos = purchaseorderdetailsvoService.purchaseOrderdetailsvoList(id);
             return new CommonResult(200,"查询成功",purchaseOrderdetailsVos);

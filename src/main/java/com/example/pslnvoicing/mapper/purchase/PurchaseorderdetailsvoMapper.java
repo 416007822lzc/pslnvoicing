@@ -16,8 +16,17 @@ public interface PurchaseorderdetailsvoMapper {
      */
     List<PurchaseOrderdetailsVo> purchaseOrderdetailsvoList(String id);
 
-
+    /**
+     * 审批通过
+     * @param id
+     * @return
+     */
     int updateOrderStatus(String id);
 
+    /**
+     * 驳回
+     * @param id
+     * @return
+     */
     int rejectOrderStatus(String id);
 }

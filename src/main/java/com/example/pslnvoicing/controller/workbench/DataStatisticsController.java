@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @deprecated:
- */
 @RestController
 public class DataStatisticsController {
     @Autowired
@@ -79,13 +76,19 @@ public class DataStatisticsController {
     @GetMapping("/queryTbDeliveryRatify")
     public List<RatifyVo> queryTbDeliveryRatify(String approvalStatus1){
         int approvalStatus = Integer.parseInt(approvalStatus1);
-        approvalStatus+=1;
+        approvalStatus++;
         System.out.println(approvalStatus);
         List<RatifyVo> ratifyVos = dataStatistics.queryAllReturns(approvalStatus);
-//        return new CommonResult(200,"",ratifyVos);
         return ratifyVos;
     }
 
+    /**
+     * 修改审批状态
+     * @param numberType 根据单据类型修改对应的表
+     * @param approvalStatus 修改的审批类型
+     * @param id 根据id修改
+     * @return  返回审批列表
+     */
     @PostMapping("/workbench/updateReturnsRatify/{numberType}/{approvalStatus}/{id}")
     public List<RatifyVo> updateReturnsRatify(@PathVariable String numberType, @PathVariable Integer approvalStatus,@PathVariable Integer id){
         System.out.println(numberType+"" + approvalStatus + "l" + id);
@@ -94,6 +97,11 @@ public class DataStatisticsController {
         return aBoolean;
     }
 
+    /**
+     * 查询库存
+     * @param queryVal 查询值可为单据也可为产品名 下面2个方法类推
+     * @return 库存列表
+     */
     @GetMapping("/workbench/queryRepertory")
     public List<RepertoryQueryVo> queryRepertory(String queryVal){
         System.out.println(queryVal);
@@ -105,6 +113,7 @@ public class DataStatisticsController {
         System.out.println(queryVal);
         return dataStatistics.queryClient(queryVal);
     }
+
     @GetMapping("/workbench/querySupplier")
     List<ClientQueryVo> querySupplier(String queryVal){
         System.out.println(queryVal);
