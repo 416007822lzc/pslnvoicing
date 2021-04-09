@@ -122,11 +122,11 @@
     </resultMap>
 
     <select id="queryPaymentByState" resultType="integer">
-        SELECT sum(payment_money) FROM capital_payment WHERE rpayment_state = 1
+        SELECT sum(payment_money) FROM capital_payment WHERE rpayment_state = 2
     </select>
 
     <select id="queryReceiptByState" resultType="integer">
-        SELECT sum(receipt_money) FROM capital_receipt WHERE receipt_state = 1
+        SELECT sum(receipt_money) FROM capital_receipt WHERE receipt_state = 2
     </select>
 
     <select id="queryWarehousingByTimeNow" parameterType="string" resultType="com.example.pslnvoicing.vo.workbench.DataStatisticsVo">

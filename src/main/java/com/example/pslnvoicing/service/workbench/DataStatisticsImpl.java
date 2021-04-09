@@ -19,6 +19,7 @@ public class DataStatisticsImpl implements DataStatisticsService {
     @Autowired
     DataStatisticsMapper dataStatisticsMapper;
 
+
     @Override
     public Map<String, Integer> queryPaymentByState() {
         Map<String,Integer> debt = new HashMap<>();

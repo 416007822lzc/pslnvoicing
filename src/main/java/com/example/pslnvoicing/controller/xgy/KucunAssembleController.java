@@ -28,7 +28,7 @@ public class KucunAssembleController {
 
     @RequestMapping("/assembleList")
     @ResponseBody
-    //调拨单查询
+    /*调拨单查询*/
     public Map<String, Object> assembleList(Integer pageNum, Integer size, String serach){
         System.err.println(serach);
         KucunAssemble k = JSONObject.toJavaObject(JSON.parseObject(serach),KucunAssemble.class);
@@ -41,14 +41,14 @@ public class KucunAssembleController {
         return map;
     }
 
-    //查询组装详情
+    /*查询组装详情*/
     @RequestMapping("/assembleDetailsList")
     @ResponseBody
     public List<KucunAssembleDetails> assembleDetailsList(Integer id){
         return ks.assembleDetailsList(id);
     }
 
-    //新增组装单
+    /*新增组装单*/
     @PostMapping("/addAssemble")
     @ResponseBody
     public void addAssemble(@RequestBody KucunAssemble kucunAssemble){
@@ -56,7 +56,7 @@ public class KucunAssembleController {
         ks.addAssemble(kucunAssemble);
     }
 
-    //新增组装详情
+    /*新增组装详情*/
     @RequestMapping(value = "/addAssembleDetails", produces = "application/json")
     @ResponseBody
     public void addAllotDetails(@RequestBody String json){

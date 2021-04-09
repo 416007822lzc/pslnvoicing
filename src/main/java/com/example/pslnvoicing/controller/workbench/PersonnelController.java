@@ -68,7 +68,6 @@ public class PersonnelController {
 
     @PostMapping("/personnel/addEmp")
     public CommonResult addDept(@RequestBody EmpVo empVo){
-        System.out.println(empVo.toString());
         try {
             List<EmpVo> personnelDepts = personnelService.addDEmp(empVo);
             return new CommonResult(200,"新增成功",personnelDepts);
@@ -80,7 +79,6 @@ public class PersonnelController {
 
     @PostMapping("/personnel/updateEmp")
     public CommonResult updateEmp(@RequestBody EmpVo empVo){
-        System.out.println(empVo.toString());
         try {
             List<EmpVo> personnelDepts = personnelService.updateEmp(empVo);
             return new CommonResult(200,"修改成功",personnelDepts);

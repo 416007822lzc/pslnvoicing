@@ -77,9 +77,7 @@ public class DataStatisticsController {
     public List<RatifyVo> queryTbDeliveryRatify(String approvalStatus1){
         int approvalStatus = Integer.parseInt(approvalStatus1);
         approvalStatus++;
-        System.out.println(approvalStatus);
-        List<RatifyVo> ratifyVos = dataStatistics.queryAllReturns(approvalStatus);
-        return ratifyVos;
+        return dataStatistics.queryAllReturns(approvalStatus);
     }
 
     /**
@@ -91,7 +89,6 @@ public class DataStatisticsController {
      */
     @PostMapping("/workbench/updateReturnsRatify/{numberType}/{approvalStatus}/{id}")
     public List<RatifyVo> updateReturnsRatify(@PathVariable String numberType, @PathVariable Integer approvalStatus,@PathVariable Integer id){
-        System.out.println(numberType+"" + approvalStatus + "l" + id);
         List<RatifyVo> aBoolean = dataStatistics.updateReturnsRatify(numberType, approvalStatus, id);
 
         return aBoolean;
@@ -104,19 +101,16 @@ public class DataStatisticsController {
      */
     @GetMapping("/workbench/queryRepertory")
     public List<RepertoryQueryVo> queryRepertory(String queryVal){
-        System.out.println(queryVal);
         return dataStatistics.queryRepertory(queryVal);
     }
 
     @GetMapping("/workbench/queryClient")
     List<ClientQueryVo> queryClient(String queryVal){
-        System.out.println(queryVal);
         return dataStatistics.queryClient(queryVal);
     }
 
     @GetMapping("/workbench/querySupplier")
     List<ClientQueryVo> querySupplier(String queryVal){
-        System.out.println(queryVal);
         return dataStatistics.querySupplier(queryVal);
     }
 

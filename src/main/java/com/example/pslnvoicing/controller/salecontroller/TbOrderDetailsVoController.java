@@ -21,7 +21,7 @@ public class TbOrderDetailsVoController {
      * @param id
      * @return
      */
-    @RequestMapping("/TbOrderDetailsVoAll/{id}")
+    @RequestMapping("/tbOrderDetailsVoAll/{id}")
     public @ResponseBody CommonResult  TbOrderDetailsVoAll(@PathVariable("id") String  id){
         try {
             List<TbOrderDetailsVo> tbOrderDetailsVos = tbOrderDetailsVoService.tbOrderDetailsVoList(id);

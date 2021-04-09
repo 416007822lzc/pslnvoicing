@@ -40,11 +40,10 @@ public class KucunAllotController {
 
     @RequestMapping("/allotList")
     @ResponseBody
-    //调拨单查询
+    /*调拨单查询*/
     public Map<String, Object> allotList(Integer pageNum, Integer size, String serach){
 
         KucunAllot k = JSONObject.toJavaObject(JSON.parseObject(serach),KucunAllot.class);
-//        System.err.println(k);
         Map<String,Object> map = new HashMap<>();
         Page<Object> page = PageHelper.startPage(pageNum, size);
         List<KucunAllot> kucunAllot = ks.allotList(k);
@@ -55,12 +54,12 @@ public class KucunAllotController {
 
     @RequestMapping("/allotDetailsList")
     @ResponseBody
-    //调拨详情查询
+    /*调拨详情查询*/
     public List<KucunAllotDetails> allotDetailsList(int id){
         return kds.allotDetailsList(id);
     }
 
-    //新增调拨表
+    /*新增调拨表*/
     @PostMapping("/addAllot")
     @ResponseBody
     public void addAllot(@RequestBody KucunAllot k){
@@ -68,7 +67,7 @@ public class KucunAllotController {
         ks.addAllot(k);
     }
 
-    //调拨详情
+    /*调拨详情*/
     @RequestMapping(value = "/addAllotDetails", produces = "application/json")
     @ResponseBody
     public void addAllotDetails(@RequestBody String json){
@@ -87,28 +86,28 @@ public class KucunAllotController {
         }
     }
 
-    //用户
+    /*用户*/
     @RequestMapping("/empList")
     @ResponseBody
     public List<PersonnelEmp> empList(){
         return es.empList();
     }
 
-    //仓库
+    /*仓库*/
     @RequestMapping("/warehouseList")
     @ResponseBody
     public List<PslnvoiningWarehouse> warehouseList(){
         return ws.warehouseList();
     }
 
-    //商品
+    /*商品*/
     @RequestMapping("/productList")
     @ResponseBody
-    public List<PslvoicingProduct> productList(String warehouseName,String name){
+    public List<ProductVo> productList(String warehouseName,String name){
         return ps.productList(warehouseName,name);
     }
 
-    //根据仓库，商品id查询产品的库存数
+    /*根据仓库，商品id查询产品的库存数*/
     @RequestMapping("/number")
     @ResponseBody
     public Integer number(String name,Integer id){
@@ -116,7 +115,7 @@ public class KucunAllotController {
         return ps.number(name,id);
     }
 
-    //审批
+    /*审批*/
     @RequestMapping("/updateState")
     @ResponseBody
     public void updateState(Integer allotState,String allotShr,Integer allotId){

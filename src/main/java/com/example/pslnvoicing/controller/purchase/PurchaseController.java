@@ -60,9 +60,9 @@ public class PurchaseController {
             List<PslnvoicingSuppier> pslnvoicingClients = supplierService.pslnvoicingSuppierList();
             return new CommonResult(200, "查询成功", pslnvoicingClients);
         } catch (Exception e) {
-            e.printStackTrace();
+            return new CommonResult(500, "查询失败");
         }
-        return new CommonResult(500, "查询失败");
+
     }
 
     //查询所有员工信息

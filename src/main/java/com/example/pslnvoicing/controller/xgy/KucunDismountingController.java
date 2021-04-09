@@ -27,7 +27,7 @@ public class KucunDismountingController {
 
     @RequestMapping("/dismountingList")
     @ResponseBody
-    //调拨单查询
+    /*拆装单查询*/
     public Map<String, Object> assembleList(Integer pageNum, Integer size, String serach){
         System.err.println(serach);
         KucunDismounting kd = JSONObject.toJavaObject(JSON.parseObject(serach),KucunDismounting.class);
@@ -39,6 +39,7 @@ public class KucunDismountingController {
         return map;
     }
 
+    /*拆装详情查询*/
     @RequestMapping("/dismountingDetailsList")
     @ResponseBody
     public List<KucunDismountingDetails> dismountingDetailsList(Integer id){
